@@ -395,53 +395,6 @@ window.HNSS_ARCHITECTURE = {
 @media(max-width:760px){.mc-grid,.mc-grid.three,.mc-grid.four{grid-template-columns:1fr}.mc-form-wrap{max-height:70vh}.mc-section{padding:10px}}
 </style>
 
-
-<style id="assistencia-mobile-tablet-fix">
-/* Ajustes responsivos somente de apresentação; preserva funções e integrações existentes. */
-html, body { max-width:100%; overflow-x:hidden; -webkit-text-size-adjust:100%; }
-*, *::before, *::after { box-sizing:border-box; }
-.app { width:100%; min-width:0; }
-.main { min-width:0; }
-.multi-wrap, .multi-intro, .multi-intro *, .multi-kpis, .multi-filters, #multiTable { min-width:0; }
-.multi-intro h2 { white-space:normal; overflow-wrap:anywhere; word-break:normal; line-height:1.25; }
-.multi-intro p { white-space:normal; overflow-wrap:anywhere; line-height:1.5; }
-.multi-table { min-width:720px; }
-#multiTable { width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-@media (max-width:900px) {
-  .sidebar { width:100%; max-width:100%; }
-  .main { width:100%; max-width:100%; margin-left:0; padding:14px; }
-  .top { flex-wrap:wrap; align-items:flex-start; gap:10px; }
-  .top > div:first-child { min-width:0; max-width:100%; }
-  .top h1 { font-size:clamp(20px, 4vw, 28px); line-height:1.2; overflow-wrap:anywhere; }
-  .multi-kpis { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
-  .multi-filters { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; }
-  .multi-filters input, .multi-filters select { width:100%; min-width:0; max-width:100%; }
-}
-@media (max-width:600px) {
-  html, body { width:100%; }
-  .sidebar { padding:10px 10px; }
-  .sidebar .brand { display:flex; align-items:center; justify-content:space-between; gap:10px; white-space:normal; padding:4px 6px 10px; font-size:clamp(16px,4.8vw,21px); }
-  .sidebar .brand span { display:block; flex:1 1 auto; min-width:0; white-space:normal; overflow-wrap:anywhere; line-height:1.2; }
-  .mobile-nav-toggle { flex:0 0 auto; }
-  .main { padding:12px 10px 24px; }
-  .top { width:100%; }
-  .top h1 { font-size:clamp(20px,5.5vw,26px); }
-  .multi-wrap { width:100%; gap:12px; }
-  .multi-intro { width:100%; padding:14px; overflow:hidden; }
-  .multi-intro h2 { font-size:clamp(20px,5.3vw,26px); margin:0 0 8px; }
-  .multi-intro p { font-size:15px; }
-  .multi-action-row { display:grid; grid-template-columns:minmax(0,1fr); width:100%; }
-  .multi-action-row button { width:100%; min-width:0; white-space:normal; }
-  .multi-note { font-size:12px; }
-  .multi-kpis { grid-template-columns:minmax(0,1fr) !important; }
-  .multi-filters { grid-template-columns:minmax(0,1fr); }
-  .card.panel { width:100%; max-width:100%; padding:12px; }
-  #multiTable { width:100%; max-width:100%; }
-  .multi-table { min-width:720px; }
-  .modal-box { width:100% !important; max-width:100% !important; }
-}
-</style>
-
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
