@@ -3548,6 +3548,73 @@ function printPurchaseOrder(id){const p=cache.purchases.find(x=>String(x.id)===S
 <style id="hnss-fase1054-visita-relatorio-profissional">
 .multi-observations-wrap{margin-top:14px;min-width:0}.multi-observations-title{display:flex;align-items:center;gap:8px;font-size:16px!important;color:#172b4d;margin:18px 0 10px!important}.multi-gemini-report{max-width:100%;border:1px solid #d5dfec;border-radius:14px;overflow:hidden;margin:10px 0 16px;background:#fff;color:#253449;box-shadow:0 5px 18px rgba(22,45,80,.06)}.multi-gemini-report>header{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;background:linear-gradient(120deg,#f0f6ff,#fbfdff);padding:15px 17px;border-bottom:1px solid #dbe5f1;margin:0}.multi-gemini-heading{display:flex;flex-direction:column;gap:3px;min-width:0}.multi-gemini-eyebrow{font-size:10px;font-weight:800;letter-spacing:.1em;color:#55708f}.multi-gemini-heading strong{font-size:17px;line-height:1.3;color:#17365d}.multi-gemini-subtitle{font-size:12px;color:#64748b}.multi-gemini-status{display:inline-flex;align-items:center;justify-content:center;border:1px solid #efd69c;background:#fff7e6;color:#855b13;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:800;letter-spacing:.04em;white-space:normal}.multi-gemini-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 16px;background:#fafcff;border-bottom:1px solid #e8eef5}.multi-gemini-meta>div{display:flex;flex-direction:column;gap:4px;min-width:0;padding:9px 10px;border:1px solid #e4eaf2;border-radius:9px;background:#fff;font-size:12px;overflow-wrap:anywhere}.multi-gemini-meta b{color:#63748b;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.multi-gemini-meta span{line-height:1.45;color:#26364b}.multi-gemini-body{padding:4px 16px 8px;line-height:1.6;overflow-wrap:anywhere}.multi-gemini-section{padding:12px 0;border-bottom:1px solid #edf1f6;break-inside:auto}.multi-gemini-section:last-child{border-bottom:0}.multi-gemini-section h4{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.4;color:#17477c;margin:0 0 7px;text-transform:uppercase;letter-spacing:.045em}.multi-gemini-section h4:before{content:"";display:inline-block;width:4px;height:15px;border-radius:4px;background:#4385d8;flex:0 0 4px}.multi-gemini-section-content p{margin:0 0 8px;font-size:13px;white-space:normal}.multi-gemini-section-content p:last-child{margin-bottom:0}.multi-gemini-section-content ul{margin:3px 0 8px;padding-left:21px}.multi-gemini-section-content li{padding:2px 0 3px;font-size:13px;line-height:1.55}.multi-gemini-footer{padding:11px 16px 13px;border-top:1px solid #e8edf4;background:#f8fafc}.multi-gemini-footer>span{display:block;color:#64748b;font-size:10px;font-weight:700;margin-bottom:5px}.multi-gemini-footer p{margin:0;color:#77551b;font-size:11px;line-height:1.5}.multi-report-empty{display:flex;flex-direction:column;gap:5px;padding:14px;border:1px dashed #cbd5e1;border-radius:10px;background:#f8fafc;color:#334155}.multi-report-empty strong{font-size:13px}.multi-report-empty span{font-size:12px;color:#64748b;line-height:1.5}.multi-observations-plain{margin:8px 0;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;overflow-wrap:anywhere;line-height:1.55;font-size:13px}.multi-plain-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#64748b;margin-bottom:7px}@media(max-width:600px){.multi-gemini-meta{grid-template-columns:minmax(0,1fr);padding:10px}.multi-gemini-report>header{align-items:flex-start;flex-direction:column;padding:13px}.multi-gemini-status{align-self:flex-start}.multi-gemini-body{padding:3px 12px 7px}.multi-gemini-section{padding:10px 0}.multi-gemini-section-content p,.multi-gemini-section-content li{font-size:12.5px}}
 </style>
+
+<style id="hnss-responsive-overflow-final">
+/* Correção final de largura para celulares e tablets; não altera funções ou dados. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { width:100%; max-width:100%; margin:0; overflow-x:hidden!important; }
+#app, .app, .layout, .main, main.main, #page-visita-multi, #page-analise-prescricao {
+  min-width:0!important; max-width:100%!important;
+}
+.main { width:auto!important; }
+#page-visita-multi { overflow-x:clip; }
+#page-visita-multi .multi-wrap,
+#page-visita-multi .multi-wrap > *,
+#page-visita-multi .multi-intro,
+#page-visita-multi .multi-kpis,
+#page-visita-multi .multi-kpi,
+#page-visita-multi .panel,
+#page-visita-multi .multi-filters,
+#page-visita-multi #multiTable {
+  min-width:0!important; max-width:100%!important;
+}
+#page-visita-multi .multi-intro { width:100%!important; overflow:hidden; }
+#page-visita-multi .multi-intro h2 {
+  max-width:100%!important; white-space:normal!important; overflow-wrap:anywhere!important;
+  word-break:normal!important; font-size:clamp(20px, 4vw, 28px)!important; line-height:1.25!important;
+}
+#page-visita-multi .multi-intro p,
+#page-visita-multi .multi-note {
+  max-width:100%!important; white-space:normal!important; overflow-wrap:anywhere!important;
+}
+#page-visita-multi .multi-action-row { display:flex!important; flex-wrap:wrap!important; min-width:0!important; max-width:100%!important; }
+#page-visita-multi .multi-action-row button { flex:0 1 auto; max-width:100%!important; white-space:normal!important; }
+#page-visita-multi .multi-kpis { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+#page-visita-multi .multi-filters {
+  display:grid!important; grid-template-columns:minmax(0,1fr)!important; width:100%!important; gap:8px!important;
+}
+#page-visita-multi .multi-filters input,
+#page-visita-multi .multi-filters select {
+  display:block!important; width:100%!important; min-width:0!important; max-width:100%!important;
+}
+#page-visita-multi #multiTable {
+  display:block!important; width:100%!important; overflow-x:auto!important; overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important; overscroll-behavior-x:contain;
+}
+#page-visita-multi #multiTable table,
+#page-visita-multi #multiTable .multi-table { width:max-content!important; min-width:720px!important; max-width:none!important; }
+@media (max-width: 900px) {
+  .sidebar { max-width:85vw!important; }
+  .main { margin-left:0!important; width:100%!important; max-width:100%!important; padding:16px!important; }
+  .top { flex-wrap:wrap!important; min-width:0!important; }
+  .top > * { min-width:0!important; max-width:100%!important; }
+  .kpis { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+}
+@media (max-width: 600px) {
+  .main { padding:12px!important; }
+  #page-visita-multi .multi-intro { padding:14px!important; }
+  #page-visita-multi .multi-intro h2 { font-size:21px!important; }
+  #page-visita-multi .multi-kpis { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:8px!important; }
+  #page-visita-multi .multi-kpi { padding:12px!important; }
+  #page-visita-multi .multi-kpi span { overflow-wrap:anywhere!important; white-space:normal!important; }
+  #page-visita-multi .multi-action-row button { flex:1 1 140px; }
+  .top h1 { white-space:normal!important; overflow-wrap:anywhere!important; }
+}
+@media (max-width: 360px) {
+  #page-visita-multi .multi-kpis { grid-template-columns:minmax(0,1fr)!important; }
+  #page-visita-multi .multi-action-row button { flex-basis:100%; }
+}
+</style>
 </head><body><h1>HNSS — PEDIDO DE COMPRA</h1><p><b>Pedido:</b> ${esc(p.order_number||'-')}<br><b>Requisição:</b> ${esc(p.number||'-')}<br><b>Fornecedor:</b> ${esc(sup?.name||'-')}<br><b>Data:</b> ${new Date().toLocaleDateString('pt-BR')}</p><table><thead><tr><th>Código</th><th>Item</th><th>Un.</th><th>Qtd.</th><th>Unitário</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table><div class="total">Total: ${money(p.total_value)}</div><p>Pedido gerado pelo Sistema de Compras HNSS a partir da cotação aprovada.</p><script>window.onload=()=>window.print()<\/script><div aria-hidden="true" style="display:none" data-hnss-version="5.3.0"></div>
 <style id="hnss-phase1016-compact-report">
 /* Fase 10.16: keep the prescription report calm and readable by default. */
