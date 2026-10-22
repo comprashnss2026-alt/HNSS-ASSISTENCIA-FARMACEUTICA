@@ -395,6 +395,55 @@ window.HNSS_ARCHITECTURE = {
 @media(max-width:760px){.mc-grid,.mc-grid.three,.mc-grid.four{grid-template-columns:1fr}.mc-form-wrap{max-height:70vh}.mc-section{padding:10px}}
 </style>
 
+
+<style id="hnss-assistencia-responsive-css-only">
+/* Ajustes estritamente visuais para smartphone/tablet. Não altera JS, Gemini, APIs ou Supabase. */
+@media (max-width: 900px) {
+  .sidebar { width: 190px !important; padding: 16px 10px !important; }
+  .main { margin-left: 190px !important; padding: 16px !important; min-width: 0 !important; }
+  .kpis { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .grid { grid-template-columns: minmax(0,1fr) !important; }
+  .rx-context-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .table-wrap { max-width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  #page-analise-prescricao, #page-visita-multi { min-width: 0 !important; max-width: 100% !important; }
+  #page-analise-prescricao .rx-photo-wrap, #page-analise-prescricao #rxGeminiCard,
+  #page-analise-prescricao #rxGeminiResults { min-width: 0 !important; max-width: 100% !important; overflow-wrap: anywhere !important; }
+}
+@media (max-width: 600px) {
+  html, body { width: 100% !important; max-width: 100% !important; overflow-x: hidden !important; }
+  .sidebar { position: relative !important; width: 100% !important; height: auto !important; inset: auto !important; padding: 10px 12px !important; }
+  .sidebar .brand { padding: 0 4px 8px !important; font-size: 19px !important; }
+  .nav { display: grid !important; grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 4px !important; }
+  .nav button { margin: 0 !important; padding: 10px 8px !important; font-size: 13px !important; }
+  .main { margin: 0 !important; width: 100% !important; padding: 12px !important; }
+  .top { align-items: flex-start !important; gap: 10px !important; flex-wrap: wrap !important; margin-bottom: 14px !important; }
+  .top h1 { font-size: 21px !important; line-height: 1.25 !important; }
+  .kpis { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 8px !important; }
+  .kpi, .panel { min-width: 0 !important; padding: 12px !important; border-radius: 12px !important; }
+  .kpi strong { font-size: 23px !important; }
+  .grid, .content-grid, .dash-grid, .smart-grid, .mgr-grid, .predictive-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .multi-filters { display: grid !important; grid-template-columns: minmax(0,1fr) !important; gap: 8px !important; }
+  .multi-filters input, .multi-filters select { width: 100% !important; min-width: 0 !important; }
+  .multi-table { min-width: 700px !important; }
+  .rx-context-grid { grid-template-columns: minmax(0,1fr) !important; }
+  .rx-med-fields { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #page-analise-prescricao .rx-photo-wrap, #page-analise-prescricao .rx-photo-hero,
+  #page-analise-prescricao .rx-photo-grid, #page-analise-prescricao #rxPatientContextCard,
+  #page-analise-prescricao #rxGeminiCard, #page-analise-prescricao #rxGeminiResults,
+  #page-visita-multi .panel { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+  #page-analise-prescricao input[type="file"] { display: block !important; width: 100% !important; max-width: 100% !important; min-width: 0 !important; font-size: 12px !important; }
+  #page-analise-prescricao input:not([type="file"]), #page-analise-prescricao select,
+  #page-analise-prescricao textarea { max-width: 100% !important; min-width: 0 !important; }
+  #page-analise-prescricao #rxGeminiResults, #page-analise-prescricao #rxGeminiResults * { overflow-wrap: anywhere !important; }
+  #page-analise-prescricao #rxGeminiResults pre, #page-analise-prescricao #rxGeminiResults code { white-space: pre-wrap !important; }
+  button { max-width: 100%; }
+}
+@media (max-width: 380px) {
+  .kpis, .rx-med-fields { grid-template-columns: minmax(0,1fr) !important; }
+  .main { padding: 9px !important; }
+}
+</style>
+
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
