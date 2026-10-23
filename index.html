@@ -995,6 +995,32 @@ html, body { max-width:100% !important; }
 </style>
 
 
+<style id="hnss-mobile-modal-actions-fix">
+/* Correção mobile: botões de ações de modais não podem encolher em colunas estreitas. */
+@media (max-width: 700px) {
+  .modal { padding: 8px !important; place-items: center !important; }
+  .modal-box {
+    width: 100% !important; max-width: 100% !important;
+    max-height: 90vh !important; max-height: 90dvh !important;
+    overflow: auto !important; padding: 16px !important; min-width: 0 !important;
+  }
+  .modal-box .actions {
+    display: grid !important; grid-template-columns: minmax(0, 1fr) !important;
+    justify-content: stretch !important; align-items: stretch !important;
+    gap: 8px !important; width: 100% !important;
+  }
+  .modal-box .actions > button {
+    width: 100% !important; min-width: 0 !important; max-width: 100% !important;
+    white-space: normal !important; overflow-wrap: anywhere !important;
+    word-break: normal !important; min-height: 44px !important;
+    text-align: center !important;
+  }
+  .modal-box .form-grid, .modal-box .multi-detail-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .modal-box table { min-width: 640px; }
+}
+</style>
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
@@ -3079,15 +3105,15 @@ function go(p){
  const section=$('page-'+(p==='configuracoes'?'configuracoes':target));if(section)section.classList.remove('hidden');
  document.body.classList.toggle('hnss-show-pharm-base',p==='base-farmacologica');
  const titles={dashboard:'Dashboard',integracao:'Integração MV/Apoio',estoque:'Estoque',inteligencia:'Inteligência de Compras',preditivo:'Planejamento Preditivo',abc:p==='relatorios'?'Relatórios · Curva ABC':'Curva ABC & Consumo',ia:'IA de Gestão',compras:'Requisições e Compras',fornecedores:'Fornecedores',produtos:'Produtos e Preços',recebimento:'Recebimento / Nota Fiscal','visita-multi':'Farmácia Clínica · Visita Multi','analise-prescricao':'Análise de Prescrição',pacientes:'Pacientes · Internação',intervencoes:'Intervenções Farmacêuticas','base-farmacologica':'Base Farmacológica',relatorios:'Relatórios',configuracoes:'Configurações'};
- $('pageTitle').textContent=titles[p]||titles[target]||'HNSS';
+ $('pageTitle').textContent=(['pacientes','intervencoes'].includes(p)?titles['visita-multi']:(titles[p]||titles[target]||'HNSS'));
  $('newBtn').textContent=['visita-multi','pacientes','intervencoes'].includes(p)?'+ Nova visita':p==='analise-prescricao'?'+ Nova análise':'+ Novo';
  $('newBtn').style.display=['dashboard','base-farmacologica','configuracoes','relatorios'].includes(p)?'none':'';
  const renderers={dashboard:renderClinicalDashboard,relatorios:renderClinicalReports,integracao:renderIntegrationCenter,estoque:renderStock,inteligencia:renderInteligencia,preditivo:renderPreditivo,abc:renderABC,ia:renderAI,compras:renderPurchases,fornecedores:renderSuppliers,produtos:renderProducts,recebimento:renderReceiving,'visita-multi':renderMultiVisits,'analise-prescricao':renderPrescriptionPhoto,configuracoes:renderSettings};
  if(renderers[target])renderers[target]();
  if(p==='base-farmacologica'){
-   setTimeout(()=>{const outer=document.querySelector('#page-analise-prescricao .rx-photo-wrap > details.rx-advanced');if(outer)outer.open=true;const base=document.getElementById('rxLocalPharmBase');if(base)base.open=true;document.getElementById('rxPharmReferences')?.scrollIntoView({behavior:'smooth',block:'start'});},250);
+   setTimeout(()=>{const outer=document.querySelector('#page-analise-prescricao .rx-photo-wrap > details.rx-advanced');if(outer)outer.open=true;const base=document.getElementById('rxLocalPharmBase');if(base)base.open=true;const refs=document.getElementById('rxPharmReferences');if(refs)refs.scrollIntoView({behavior:'auto',block:'start'});},650);
  }
- if(['pacientes','intervencoes'].includes(p))toast(p==='pacientes'?'Lista de pacientes: use a busca da Visita Multiprofissional.':'As intervenções são registradas dentro da avaliação de cada paciente.');
+ if(['pacientes','intervencoes'].includes(p))toast(p==='pacientes'?'Pacientes: use a busca na tela Visita Multiprofissional.':'Intervenções: abra uma visita e selecione a avaliação do paciente.');
 }
 $('newBtn').onclick=()=>{const active=document.querySelector('.nav button.active')?.dataset.page||'dashboard';if(['visita-multi','pacientes','intervencoes'].includes(active))multiVisitForm();else if(active==='analise-prescricao'){go('analise-prescricao');rxResetPhoto()}else if(active==='estoque')itemForm();else if(active==='compras')purchaseForm();else if(active==='fornecedores')supplierForm();else if(active==='produtos')productForm();else if(active==='recebimento')renderReceiving();else if(['base-farmacologica','configuracoes','relatorios'].includes(active))toast('Use as ações disponíveis nesta tela.');else itemForm()}
 
