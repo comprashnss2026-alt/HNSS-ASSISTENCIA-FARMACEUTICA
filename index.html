@@ -1370,6 +1370,14 @@ html, body { max-width:100% !important; }
 @media(prefers-reduced-motion:reduce){#page-analise-prescricao *{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
+
+<style id="hnss-v59-tablet-file-picker">
+/* V59: melhora apenas a seleção do arquivo em tablets/celulares; mantém o fluxo Gemini. */
+#page-analise-prescricao .rx-file-picker-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;margin:10px auto 4px;padding:13px 16px;border:1px solid #147b78;border-radius:11px;background:#138783;color:#fff;font-size:16px;font-weight:750;line-height:1.3;cursor:pointer;touch-action:manipulation;-webkit-appearance:none}
+#page-analise-prescricao #rxPhotoInput{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;min-height:48px!important;margin:8px auto 0!important;padding:8px!important;font-size:16px!important;line-height:1.4!important;box-sizing:border-box!important;touch-action:manipulation}
+#page-analise-prescricao #rxPhotoInput::file-selector-button{min-height:38px;margin:0 9px 0 0;padding:8px 12px;border:1px solid #cbd8e1;border-radius:8px;background:#eef5f6;color:#1e4f54;font-size:15px;font-weight:700;cursor:pointer}
+@media(max-width:900px){#page-analise-prescricao .rx-file-picker-button{min-height:54px;font-size:16px}#page-analise-prescricao #rxPhotoInput{min-height:54px!important;font-size:16px!important}}
+</style>
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
@@ -2380,7 +2388,7 @@ window.HNSS_GEMINI_STANDBY = false;
 let rxPhotoFile=null,rxPhotoObjectUrl=null,rxOcrText='',rxOcrCropFile=null,rxCropState=null,rxPdfExtractedText='',rxOriginalPrescriptionFile=null;
 function renderPrescriptionPhoto(){
  const root=$('page-analise-prescricao');if(!root)return;
- root.innerHTML=`<div class="rx-photo-wrap"><div class="rx-photo-hero"><div class="eyebrow">HNSS · FARMÁCIA CLÍNICA</div><h2 style="margin:6px 0">Análise de prescrição</h2><p class="muted">Envie a foto ou PDF original e execute diretamente a análise técnica farmacêutica pelo Gemini, sem OCR intermediário. Esta tela mostra somente o relatório do Gemini; a conferência final continua sendo responsabilidade do farmacêutico.</p><div class="rx-flow-steps"><span class="rx-flow-active">1 · Enviar arquivo</span><span>2 · Análise visual Gemini</span><span>3 · Validar relatório</span></div></div><div class="rx-photo-warning"><strong>Revisão obrigatória:</strong> a leitura visual pode errar nomes, doses e unidades. O Gemini é o único mecanismo de análise apresentado nesta tela. Antes do envio, oculte nome, CPF, CNS e número de prontuário sempre que possível, sem retirar informações clínicas necessárias. O documento será transmitido ao serviço Gemini para processamento; confirme os achados na prescrição original e em fontes clínicas confiáveis. Nenhuma prescrição é aprovada ou alterada automaticamente.</div><div class="rx-photo-grid"><div class="card rx-photo-card"><h3>1. Enviar prescrição</h3><div class="rx-photo-drop"><div><div style="font-size:30px">📷</div><strong>Selecione a foto ou o PDF da prescrição</strong><p class="muted" style="margin:6px 0">PDF até 3,5 MB ou imagem PNG/JPG/WEBP até 10 MB. O Gemini recebe o documento original diretamente; PDFs com várias páginas são analisados página a página pelo modelo. Prefira imagem reta, nítida e sem identificadores pessoais.</p><input id="rxPhotoInput" type="file" accept="application/pdf,.pdf,image/png,image/jpeg,image/webp" onchange="rxSelectPhoto(this)"></div></div><img id="rxPhotoPreview" class="rx-photo-preview hidden" alt="Pré-visualização da prescrição"><div class="rx-photo-actions"><button class="secondary" id="rxCropButton" onclick="rxOpenCropper()" disabled>Recortar/ocultar dados (opcional)</button><button class="secondary hidden" id="rxRemoveCropButton" onclick="rxRemoveCrop()">Usar imagem original</button><button class="secondary" onclick="rxResetPhoto()">Limpar</button></div><div id="rxPhotoStatus" class="rx-photo-status" style="margin-top:10px">Selecione a imagem ou PDF original e clique em “Analisar documento original com Gemini”. Esta tela usa somente a análise visual do Gemini, sem OCR ou transcrição intermediária. O documento é enviado ao serviço Gemini para processamento e não é gravado nas tabelas do HNSS.</div></div></div>
+ root.innerHTML=`<div class="rx-photo-wrap"><div class="rx-photo-hero"><div class="eyebrow">HNSS · FARMÁCIA CLÍNICA</div><h2 style="margin:6px 0">Análise de prescrição</h2><p class="muted">Envie a foto ou PDF original e execute diretamente a análise técnica farmacêutica pelo Gemini, sem OCR intermediário. Esta tela mostra somente o relatório do Gemini; a conferência final continua sendo responsabilidade do farmacêutico.</p><div class="rx-flow-steps"><span class="rx-flow-active">1 · Enviar arquivo</span><span>2 · Análise visual Gemini</span><span>3 · Validar relatório</span></div></div><div class="rx-photo-warning"><strong>Revisão obrigatória:</strong> a leitura visual pode errar nomes, doses e unidades. O Gemini é o único mecanismo de análise apresentado nesta tela. Antes do envio, oculte nome, CPF, CNS e número de prontuário sempre que possível, sem retirar informações clínicas necessárias. O documento será transmitido ao serviço Gemini para processamento; confirme os achados na prescrição original e em fontes clínicas confiáveis. Nenhuma prescrição é aprovada ou alterada automaticamente.</div><div class="rx-photo-grid"><div class="card rx-photo-card"><h3>1. Enviar prescrição</h3><div class="rx-photo-drop"><div><div style="font-size:30px">📷</div><strong>Selecione a foto ou o PDF da prescrição</strong><p class="muted" style="margin:6px 0">PDF até 3,5 MB ou imagem PNG/JPG/WEBP até 10 MB. O Gemini recebe o documento original diretamente; PDFs com várias páginas são analisados página a página pelo modelo. Prefira imagem reta, nítida e sem identificadores pessoais.</p><button type="button" class="rx-file-picker-button" onclick="document.getElementById('rxPhotoInput').click()">📎 Escolher foto ou PDF</button><input id="rxPhotoInput" type="file" accept="application/pdf,.pdf,image/*,.heic,.heif" aria-label="Escolher foto ou PDF da prescrição" onchange="rxSelectPhoto(this).catch(e=>{const s=document.getElementById('rxPhotoStatus');if(s)s.textContent='Não foi possível abrir esse arquivo. Tente selecionar um PDF ou uma imagem JPG/PNG.';console.error(e);})"></div></div><img id="rxPhotoPreview" class="rx-photo-preview hidden" alt="Pré-visualização da prescrição"><div class="rx-photo-actions"><button class="secondary" id="rxCropButton" onclick="rxOpenCropper()" disabled>Recortar/ocultar dados (opcional)</button><button class="secondary hidden" id="rxRemoveCropButton" onclick="rxRemoveCrop()">Usar imagem original</button><button class="secondary" onclick="rxResetPhoto()">Limpar</button></div><div id="rxPhotoStatus" class="rx-photo-status" style="margin-top:10px">Selecione a imagem ou PDF original e clique em “Analisar documento original com Gemini”. Esta tela usa somente a análise visual do Gemini, sem OCR ou transcrição intermediária. O documento é enviado ao serviço Gemini para processamento e não é gravado nas tabelas do HNSS.</div></div></div>
 <div class="card rx-photo-card" id="rxAnvisaCatalogCard" style="border-color:#b8d7c6;background:#fbfefc">
 <h3>Base oficial de medicamentos — Anvisa</h3>
 <p class="rx-photo-note">Catálogo cadastral oficial preparado a partir dos dados abertos da Anvisa. Permite pesquisar nome, princípio ativo, registro, empresa e sinônimos e abrir a busca correspondente no Bulário oficial. <strong>Não contém o texto integral das bulas nem uma base completa de interações.</strong></p>
@@ -3040,12 +3048,22 @@ function rxNativePdfTextLooksReadable(text){
  return vowelRatio>=0.60&&garbleRatio<=0.12&&oddRatio<=0.025&&alphaRatio>=0.45&&medTerms;
 }
 async function rxSelectPhoto(input){
- const file=input?.files?.[0];if(!file)return;
+ let file=input?.files?.[0];if(!file)return;
+ const originalName=file.name||'prescricao';
+ const isHeic=/\.(heic|heif)$/i.test(originalName)||/image\/(heic|heif)/i.test(file.type||'');
+ if(isHeic){
+  try{
+   const bmp=await createImageBitmap(file);const canvas=document.createElement('canvas');
+   const scale=Math.min(1,2800/Math.max(bmp.width,bmp.height));canvas.width=Math.max(1,Math.round(bmp.width*scale));canvas.height=Math.max(1,Math.round(bmp.height*scale));
+   const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)throw new Error('canvas indisponível');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(bmp,0,0,canvas.width,canvas.height);bmp.close?.();
+   const jpg=await rxCanvasBlob(canvas,'image/jpeg',0.88);file=new File([jpg],originalName.replace(/\.(heic|heif)$/i,'.jpg'),{type:'image/jpeg'});
+  }catch(e){toast('Este tablet não conseguiu converter a foto HEIC. No app Fotos/Arquivos, compartilhe ou salve como JPG e selecione novamente.');if(input)input.value='';return;}
+ }
  const isPdf=file.type==='application/pdf'||/\.pdf$/i.test(file.name||'');
  const isImage=/^image\/(png|jpeg|webp)$/.test(file.type)||/\.(png|jpe?g|webp)$/i.test(file.name||'');
  if(!isPdf&&!isImage){toast('Selecione um PDF, PNG, JPG ou WEBP.');input.value='';return;}
- if(isImage&&file.size>10*1024*1024){toast('A imagem deve ter até 10 MB.');input.value='';return;}
- if(isPdf&&file.size>3.5*1024*1024){toast('Para envio direto ao Gemini, use um PDF de até 3,5 MB. Se for maior, exporte as páginas como imagens ou reduza o tamanho do PDF.');input.value='';return;}
+ if(isImage&&file.size>10*1024*1024){const msg='A imagem deve ter até 10 MB. Reduza o tamanho ou salve uma cópia menor e tente novamente.';toast(msg);const st=$('rxPhotoStatus');if(st)st.textContent=msg;input.value='';return;}
+ if(isPdf&&file.size>3.5*1024*1024){const msg='Este PDF tem '+(file.size/1024/1024).toFixed(2)+' MB. Para envio direto ao Gemini, o limite atual é 3,5 MB. Comprima o PDF ou exporte as páginas como imagens JPG/PNG de até 10 MB cada.';toast(msg);const st=$('rxPhotoStatus');if(st)st.textContent=msg;input.value='';return;}
  rxOriginalPrescriptionFile=file;
  rxOcrCropFile=null;rxOcrText='';rxPdfExtractedText='';
  const textArea=$('rxOcrOutput');if(textArea)textArea.value='';
@@ -8227,4 +8245,52 @@ function rxBuildVisibleClinicalSummary(){
 })();
 </script>
 
+<style id="hnss-v61-outside-menu-style">
+@media (max-width: 900px) {
+  #hnssNavBackdrop { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+}
+</style>
+<script id="hnss-v61-outside-menu-close">
+(function () {
+  'use strict';
+  var sidebar = document.getElementById('hnssSidebar');
+  var launcher = document.getElementById('mobileMenuLauncher');
+  var backdrop = document.getElementById('hnssNavBackdrop');
+  var mobileToggle = document.getElementById('mobileNavToggle');
+  if (!sidebar) return;
+
+  function closeMenu() {
+    sidebar.classList.add('mobile-collapsed');
+    sidebar.classList.remove('tablet-nav-open');
+    if (backdrop) backdrop.classList.remove('tablet-backdrop-open');
+    if (launcher) {
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.setAttribute('aria-label', 'Abrir menu');
+      launcher.textContent = '☰';
+    }
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.textContent = '☰ Menu';
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
+    var target = event.target;
+    if (!(target instanceof Element)) return;
+    if (sidebar.contains(target)) return;
+    if (launcher && (target === launcher || launcher.contains(target))) return;
+
+    var tabletOpen = sidebar.classList.contains('tablet-nav-open');
+    var mobileOpen = window.matchMedia('(max-width: 700px)').matches &&
+      !sidebar.classList.contains('mobile-collapsed');
+    var backdropOpen = !!(backdrop && backdrop.classList.contains('tablet-backdrop-open'));
+    if (tabletOpen || mobileOpen || backdropOpen) closeMenu();
+  }, false);
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeMenu();
+  });
+})();
+</script>
 </body></html>
