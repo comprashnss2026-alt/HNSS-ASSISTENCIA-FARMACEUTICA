@@ -135,6 +135,28 @@ textarea{width:100%;box-sizing:border-box;padding:11px;border:1px solid #d6dce5;
 @media(max-width:700px){#page-relatorios .clinical-report-chart-grid{grid-template-columns:1fr}#page-relatorios .clinical-report-chart-card.wide{grid-column:auto}#page-relatorios .clinical-report-chart-card{padding:13px}#page-relatorios .clinical-report-chart-card svg{max-height:none}#page-relatorios .clinical-chart-bar-row{grid-template-columns:minmax(82px,38%) minmax(0,1fr) 24px;gap:7px}}
 
 
+
+/* V43 — refinamento visual dos gráficos e do relatório PDF, sem alterar módulos assistenciais */
+#page-relatorios .clinical-report-charts-section{background:linear-gradient(180deg,#f8fbfe 0%,#fff 100%)}
+#page-relatorios .clinical-report-chart-grid{gap:16px}
+#page-relatorios .clinical-report-chart-card{padding:18px;border:1px solid #dce7f0;border-radius:16px;box-shadow:0 5px 16px rgba(20,48,78,.045);transition:box-shadow .15s ease,border-color .15s ease}
+#page-relatorios .clinical-report-chart-card:hover{border-color:#bdd8e6;box-shadow:0 8px 22px rgba(20,48,78,.075)}
+#page-relatorios .clinical-report-chart-card h4{font-size:15px;line-height:1.35;letter-spacing:-.015em}
+#page-relatorios .clinical-report-chart-card p{font-size:12px;line-height:1.55;max-width:760px}
+#page-relatorios .clinical-report-chart-card svg{max-height:320px}
+#page-relatorios .clinical-report-chart-card.wide{padding:20px}
+#page-relatorios .clinical-chart-legend{gap:9px 16px;margin-top:12px}
+#page-relatorios .clinical-chart-legend span{font-size:12px}
+#page-relatorios .clinical-chart-dot{width:10px;height:10px;border-radius:50%}
+#page-relatorios .clinical-chart-bars{gap:14px;padding:4px 0}
+#page-relatorios .clinical-chart-bar-row{grid-template-columns:minmax(115px,30%) minmax(0,1fr) 34px;gap:11px}
+#page-relatorios .clinical-chart-bar-label{font-size:12px;line-height:1.35}
+#page-relatorios .clinical-chart-bar-track{height:13px;background:#edf3f7}
+#page-relatorios .clinical-chart-bar-value{font-size:12px}
+#page-relatorios .clinical-chart-empty{padding:28px 16px;line-height:1.6}
+@media(max-width:900px){#page-relatorios .clinical-report-chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#page-relatorios .clinical-report-chart-card.wide{grid-column:1/-1}}
+@media(max-width:700px){#page-relatorios .clinical-report-chart-grid{grid-template-columns:1fr;gap:12px}#page-relatorios .clinical-report-chart-card.wide{grid-column:auto}#page-relatorios .clinical-report-chart-card,#page-relatorios .clinical-report-chart-card.wide{padding:14px}#page-relatorios .clinical-report-chart-card h4{font-size:14px}#page-relatorios .clinical-report-chart-card p{font-size:11px}#page-relatorios .clinical-chart-bar-row{grid-template-columns:minmax(92px,36%) minmax(0,1fr) 25px;gap:7px}#page-relatorios .clinical-chart-bar-label,#page-relatorios .clinical-chart-bar-value{font-size:11px}}
+
 </style><style id="hnss-rx-local-flow-fix">
 .rx-local-flow-status{margin-top:10px;padding:12px 14px;border:1px solid #d7e5f8;border-radius:12px;background:#f7faff;line-height:1.55;font-size:13px}
 .rx-local-flow-status strong{display:block;margin-bottom:5px}
@@ -1094,6 +1116,130 @@ html, body { max-width:100% !important; }
 .clinical-directory{display:grid;gap:14px}.clinical-directory .card{min-width:0}.clinical-directory-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.clinical-directory-head h2{margin:0 0 6px}.clinical-directory-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.45fr);gap:10px;margin-bottom:14px}.clinical-directory-filters input,.clinical-directory-filters select{width:100%;min-width:0;min-height:44px}.clinical-directory-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.clinical-directory-stat{padding:14px;border:1px solid var(--hnss-line,#dce5ed);border-radius:14px;background:#fff}.clinical-directory-stat span{display:block;color:var(--hnss-muted,#718096);font-size:13px}.clinical-directory-stat b{display:block;font-size:25px;margin-top:4px;color:var(--hnss-ink,#172b40)}.clinical-directory-table{width:100%;border-collapse:collapse}.clinical-directory-table th,.clinical-directory-table td{padding:11px 10px;text-align:left;border-bottom:1px solid var(--hnss-line,#e0e7ee);vertical-align:top}.clinical-directory-table th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--hnss-muted,#6b7d8d)}.clinical-directory-table .actions{display:flex;gap:6px;flex-wrap:wrap}.clinical-directory-table button{min-height:38px}.clinical-directory-note{padding:12px 14px;border-radius:12px;background:#f2f7fb;color:#4b6174;font-size:13px;line-height:1.5}.clinical-intervention-select{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.clinical-intervention-select select{flex:1;min-width:220px;min-height:44px}
 @media(max-width:700px){.clinical-directory-filters,.clinical-directory-stats{grid-template-columns:minmax(0,1fr)}.clinical-directory-table,.clinical-directory-table tbody,.clinical-directory-table tr,.clinical-directory-table td{display:block;width:100%}.clinical-directory-table thead{display:none}.clinical-directory-table tr{padding:10px 0;border-bottom:1px solid var(--hnss-line,#dce5ed)}.clinical-directory-table td{border:0;padding:5px 8px}.clinical-directory-table td:last-child{padding-top:8px}.clinical-directory-table td[data-label]::before{content:attr(data-label) ': ';font-weight:700;color:var(--hnss-muted,#718096)}.clinical-directory-table td.actions-cell::before{content:''}.clinical-intervention-select select{min-width:100%}}
 </style>
+
+<style id="hnss-interventions-layout-v45">
+/* V45 — modernização visual isolada do módulo Intervenções */
+#page-intervencoes .clinical-directory{gap:18px}
+#page-intervencoes .clinical-directory>.card.panel{padding:clamp(16px,2vw,26px);border:1px solid #dfe8f0;border-radius:20px;background:linear-gradient(180deg,#fbfdff 0%,#fff 190px);box-shadow:0 10px 30px rgba(18,48,76,.06)}
+#page-intervencoes .clinical-directory-head{align-items:center;padding-bottom:16px;border-bottom:1px solid #e8eef4}
+#page-intervencoes .clinical-directory-head h2{font-size:clamp(20px,2vw,26px);letter-spacing:-.025em;color:#143652}
+#page-intervencoes .clinical-directory-head p{max-width:720px;margin:6px 0 0;line-height:1.55;font-size:13px}
+#page-intervencoes .clinical-directory-head>button{flex:0 0 auto;border-radius:11px;min-height:42px}
+#page-intervencoes .clinical-intervention-select{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-top:16px;padding:13px;background:#f3f8fb;border:1px solid #e1ebf2;border-radius:15px}
+#page-intervencoes .clinical-intervention-select select{min-width:0;width:100%;border-radius:10px;background:#fff}
+#page-intervencoes .clinical-intervention-select button{min-height:44px;border-radius:11px;white-space:nowrap}
+#page-intervencoes .clinical-directory-filters{grid-template-columns:minmax(0,1fr) minmax(210px,.34fr);gap:10px;margin:0 0 14px}
+#page-intervencoes .clinical-directory-filters input,
+#page-intervencoes .clinical-directory-filters select{min-height:46px;border-radius:11px;background:#fff}
+#page-intervencoes .clinical-directory-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:4px 0 16px}
+#page-intervencoes .clinical-directory-stat{position:relative;min-height:86px;padding:15px 16px 13px 19px;border:1px solid #e0eaf1;border-radius:15px;background:#fff;box-shadow:0 3px 12px rgba(20,54,82,.035)}
+#page-intervencoes .clinical-directory-stat:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;border-radius:15px 0 0 15px;background:#159eaa}
+#page-intervencoes .clinical-directory-stat span{font-size:12px;font-weight:650;line-height:1.45;color:#63768a}
+#page-intervencoes .clinical-directory-stat b{font-size:29px;color:#153a59;line-height:1.15;margin-top:7px}
+#page-intervencoes #clinicalInterventionRows{overflow:visible;border:0;background:transparent}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table{width:100%;border-collapse:separate;border-spacing:0 10px;table-layout:fixed;font-size:13px}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table thead{display:block}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table thead tr{display:grid;grid-template-columns:minmax(135px,.9fr) minmax(190px,1.35fr) minmax(210px,1.5fr) minmax(145px,.95fr) 100px;gap:14px;padding:0 16px}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table th{padding:5px 0 8px;border:0;background:transparent;color:#6a7e91;font-size:10px;letter-spacing:.07em;line-height:1.35}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody{display:block}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody tr{display:grid;grid-template-columns:minmax(135px,.9fr) minmax(190px,1.35fr) minmax(210px,1.5fr) minmax(145px,.95fr) 100px;gap:14px;align-items:start;margin-bottom:11px;padding:16px;border:1px solid #e0e9f0;border-radius:16px;background:#fff;box-shadow:0 4px 14px rgba(21,54,82,.045);transition:border-color .15s,box-shadow .15s}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody tr:hover{background:#fff;border-color:#b8dce2;box-shadow:0 7px 20px rgba(21,54,82,.075)}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td{min-width:0;padding:2px 0;border:0;background:transparent;color:#344b60;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td b{display:inline-block;margin-bottom:4px;color:#153853;font-size:13px;line-height:1.4}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Medicamento / problema"] b{padding:5px 8px;border-radius:7px;background:#edf7f8;color:#087b86}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Aceite / desfecho"]{font-weight:650;color:#3d586e}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Aceite / desfecho"] .muted{font-weight:500}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td.actions-cell{display:flex;align-items:flex-start;justify-content:flex-end}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table .actions{width:100%}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table button{width:100%;min-height:40px;padding:8px 10px;border-radius:10px;white-space:normal;line-height:1.3;font-size:12px}
+#page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label]::before{display:none}
+#page-intervencoes #clinicalInterventionRows .dash-empty{padding:28px 18px;border:1px dashed #cbdbe6;border-radius:15px;background:#f8fbfd;text-align:center;line-height:1.6}
+@media(max-width:1100px){
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table thead tr,
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody tr{grid-template-columns:minmax(115px,.85fr) minmax(160px,1.2fr) minmax(170px,1.25fr) minmax(130px,.9fr) 84px;gap:10px;padding-left:12px;padding-right:12px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td{font-size:11.5px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table button{font-size:11px;padding:7px 6px}
+}
+@media(max-width:760px){
+ #page-intervencoes .clinical-directory>.card.panel{padding:14px;border-radius:16px}
+ #page-intervencoes .clinical-directory-head{align-items:flex-start}
+ #page-intervencoes .clinical-directory-head>button{min-height:38px;padding:8px 10px}
+ #page-intervencoes .clinical-intervention-select{grid-template-columns:minmax(0,1fr);padding:10px}
+ #page-intervencoes .clinical-intervention-select select{min-width:0}
+ #page-intervencoes .clinical-intervention-select button{width:100%}
+ #page-intervencoes .clinical-directory-filters{grid-template-columns:minmax(0,1fr);margin-bottom:12px}
+ #page-intervencoes .clinical-directory-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ #page-intervencoes .clinical-directory-stat{min-height:76px;padding:11px 8px 10px 12px;border-radius:12px}
+ #page-intervencoes .clinical-directory-stat span{font-size:10px}
+ #page-intervencoes .clinical-directory-stat b{font-size:23px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table thead{display:none}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table{display:block;border-spacing:0}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody{display:grid;gap:12px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 14px;margin:0;padding:14px;border-radius:15px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td{display:block;width:auto;padding:0;font-size:12px;line-height:1.5}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td::before{display:block!important;content:attr(data-label);margin:0 0 4px;color:#708398;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Conduta"]{grid-column:1/-1;padding:10px;border-radius:10px;background:#f5f9fc}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Aceite / desfecho"]{grid-column:1/-1;padding-top:1px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td.actions-cell{grid-column:1/-1;justify-content:stretch;padding-top:2px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table .actions,
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table button{width:100%}
+}
+@media(max-width:420px){
+ #page-intervencoes .clinical-directory-stats{grid-template-columns:1fr}
+ #page-intervencoes .clinical-directory-stat{min-height:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px}
+ #page-intervencoes .clinical-directory-stat b{margin:0;font-size:22px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table tbody tr{grid-template-columns:minmax(0,1fr);gap:11px}
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Conduta"],
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td[data-label="Aceite / desfecho"],
+ #page-intervencoes #clinicalInterventionRows>.clinical-directory-table td.actions-cell{grid-column:1}
+}
+</style>
+
+
+<style id="hnss-patients-layout-v46">
+/* V47: lista compacta e paginada de pacientes; não altera consultas ou persistência. */
+#page-pacientes .clinical-directory{gap:18px}
+#page-pacientes .clinical-directory>.card.panel{padding:clamp(16px,2.2vw,26px);border:1px solid #e1e9f1;border-radius:20px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);box-shadow:0 8px 26px rgba(20,49,78,.055)}
+#page-pacientes .clinical-directory-head{align-items:center;margin-bottom:16px}
+#page-pacientes .clinical-directory-head h2{font-size:clamp(19px,2vw,24px);font-weight:800;color:#153453}
+#page-pacientes .clinical-directory-head p{max-width:760px;line-height:1.55;margin:5px 0 0;color:#66788b}
+#page-pacientes .clinical-directory-head>button{min-height:42px;border-radius:11px}
+#page-pacientes .clinical-directory-filters{grid-template-columns:minmax(0,1fr) minmax(210px,.38fr);gap:12px;margin:18px 0}
+#page-pacientes .clinical-directory-filters input,#page-pacientes .clinical-directory-filters select{min-height:48px;border-radius:12px;border:1px solid #d7e2ed;background:#fff;padding:10px 13px}
+#page-pacientes .clinical-directory-stats{gap:12px;margin:8px 0 20px}
+#page-pacientes .clinical-directory-stat{position:relative;min-height:90px;padding:17px 18px 15px 20px;border:1px solid #e0e9f2;border-radius:15px;background:linear-gradient(145deg,#fff,#f7fbff);box-shadow:0 3px 12px rgba(21,52,83,.035);overflow:hidden}
+#page-pacientes .clinical-directory-stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#149eaa}
+#page-pacientes .clinical-directory-stat span{font-size:12px;font-weight:650;line-height:1.4;color:#62758a}
+#page-pacientes .clinical-directory-stat b{font-size:29px;line-height:1.1;margin-top:8px;color:#143653;font-variant-numeric:tabular-nums}
+#page-pacientes #clinicalPatientRows{overflow:visible}
+#page-pacientes .patient-record-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#page-pacientes .patient-record-card{min-width:0;padding:17px;border:1px solid #dfe8f1;border-radius:16px;background:#fff;box-shadow:0 4px 16px rgba(19,48,76,.045);transition:box-shadow .18s,border-color .18s}
+#page-pacientes .patient-record-card:hover{border-color:#b9d5e5;box-shadow:0 7px 20px rgba(19,48,76,.08)}
+#page-pacientes .patient-record-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid #edf2f6}
+#page-pacientes .patient-record-identity{display:flex;align-items:center;gap:11px;min-width:0}
+#page-pacientes .patient-record-avatar{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:#e8f5f8;color:#087f91;font-size:21px}
+#page-pacientes .patient-record-identity h3{margin:0;color:#173653;font-size:15px;line-height:1.35;font-weight:800;overflow-wrap:anywhere}
+#page-pacientes .patient-record-identity p{margin:4px 0 0;color:#758599;font-size:12px;overflow-wrap:anywhere}
+#page-pacientes .patient-status-badge,#page-pacientes .patient-risk-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:750;line-height:1.2;white-space:normal;text-align:center}
+#page-pacientes .patient-status-badge.done{background:#e5f6ed;color:#167347}
+#page-pacientes .patient-status-badge.pending{background:#fff3d9;color:#8b5a00}
+#page-pacientes .patient-status-badge.review{background:#e8f1ff;color:#2459a6}
+#page-pacientes .patient-status-badge.followup{background:#e7f7f8;color:#087a85}
+#page-pacientes .patient-status-badge.neutral{background:#eef2f6;color:#536579}
+#page-pacientes .patient-record-details{display:grid;grid-template-columns:1fr 1fr;gap:15px 12px;padding:16px 0}
+#page-pacientes .patient-detail{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+#page-pacientes .patient-detail>span:first-child{font-size:10px;letter-spacing:.055em;font-weight:750;color:#7b8da0;line-height:1.4}
+#page-pacientes .patient-detail>b{font-size:13px;line-height:1.4;color:#2a4056;overflow-wrap:anywhere}
+#page-pacientes .patient-detail small{font-size:12px;line-height:1.4;color:#7a8a9b}
+#page-pacientes .patient-risk-badge.risk-high{background:#ffebeb;color:#b4232f}
+#page-pacientes .patient-risk-badge.risk-medium{background:#fff2df;color:#9a5b00}
+#page-pacientes .patient-risk-badge.risk-low{background:#e7f6ed;color:#187448}
+#page-pacientes .patient-record-actions{display:flex;justify-content:flex-end;padding-top:12px;border-top:1px solid #edf2f6}
+#page-pacientes .patient-record-actions button{min-height:42px;border-radius:11px;font-weight:700}
+@media(max-width:1050px){#page-pacientes .patient-record-list{grid-template-columns:1fr}}
+@media(max-width:680px){#page-pacientes .clinical-directory>.card.panel{padding:14px;border-radius:15px}#page-pacientes .clinical-directory-head{align-items:stretch}#page-pacientes .clinical-directory-head>button{width:100%}#page-pacientes .clinical-directory-filters{grid-template-columns:1fr;gap:9px}#page-pacientes .clinical-directory-stats{grid-template-columns:1fr;gap:9px;margin-bottom:15px}#page-pacientes .clinical-directory-stat{min-height:72px;padding:13px 15px 12px 18px}#page-pacientes .clinical-directory-stat b{font-size:25px;margin-top:5px}#page-pacientes .patient-record-card{padding:14px;border-radius:14px}#page-pacientes .patient-record-top{gap:8px}#page-pacientes .patient-record-avatar{flex-basis:36px;width:36px;height:36px}#page-pacientes .patient-record-identity h3{font-size:14px}#page-pacientes .patient-status-badge{max-width:125px;font-size:10px}#page-pacientes .patient-record-details{gap:13px 8px;padding:13px 0}#page-pacientes .patient-detail>span:first-child{font-size:9px}#page-pacientes .patient-record-actions button{width:100%}}
+@media(min-width:681px) and (max-width:900px){#page-pacientes .patient-record-list{grid-template-columns:1fr}#page-pacientes .clinical-directory-filters{grid-template-columns:minmax(0,1fr) minmax(190px,.45fr)}}
+</style>
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
@@ -1440,21 +1586,38 @@ async function clinicalLoadVisitsForViews(){
  const r=await sb.from('pharmacy_multi_visits').select('*').order('visit_date',{ascending:false});
  if(r.error)throw r.error;multiVisits=r.data||[];multiLoaded=true;return multiVisits;
 }
+let clinicalPatientPage=1;
 async function renderClinicalPatients(){
  const root=$('page-pacientes');if(!root)return;
- root.innerHTML='<div class="clinical-directory"><div class="card panel"><div class="clinical-directory-head"><div><h2>♙ Pacientes internados</h2><p class="muted">Cadastro consolidado a partir das visitas registradas. Para cadastrar um paciente, use “Nova visita” no módulo de visita multiprofissional.</p></div><button class="secondary" onclick="renderClinicalPatients()">↻ Atualizar</button></div><div class="clinical-directory-filters"><input id="clinicalPatientSearch" placeholder="Pesquisar paciente, prontuário, setor ou leito" oninput="renderClinicalPatientRows()"><select id="clinicalPatientStatus" onchange="renderClinicalPatientRows()"><option value="">Todas as situações</option><option value="pendente">Pendente</option><option value="em_avaliacao">Em avaliação</option><option value="avaliado">Concluída</option><option value="reavaliar">Em acompanhamento</option></select></div><div id="clinicalPatientStats" class="clinical-directory-stats"></div><div id="clinicalPatientRows" class="table-wrap"><p class="muted">Carregando pacientes…</p></div></div></div>';
+ clinicalPatientPage=1;
+ root.innerHTML='<div class="clinical-directory"><div class="card panel"><div class="clinical-directory-head"><div><h2>♙ Pacientes internados</h2><p class="muted">Lista compacta para localizar pacientes rapidamente. Os dados são consolidados a partir das visitas registradas.</p></div><button class="secondary" onclick="renderClinicalPatients()">↻ Atualizar</button></div><div class="clinical-directory-filters clinical-patient-filters"><input id="clinicalPatientSearch" placeholder="Pesquisar paciente, prontuário, setor ou leito" oninput="clinicalPatientPage=1;renderClinicalPatientRows()"><select id="clinicalPatientStatus" onchange="clinicalPatientPage=1;renderClinicalPatientRows()"><option value="">Todas as situações</option><option value="pendente">Pendente</option><option value="em_avaliacao">Em avaliação</option><option value="avaliado">Concluída</option><option value="reavaliar">Em acompanhamento</option></select><select id="clinicalPatientRisk" onchange="clinicalPatientPage=1;renderClinicalPatientRows()"><option value="">Todos os riscos</option><option value="alto">Alto risco</option><option value="moderado">Risco moderado</option><option value="baixo">Baixo risco</option></select></div><div id="clinicalPatientStats" class="clinical-directory-stats"></div><div id="clinicalPatientRows" class="table-wrap"><p class="muted">Carregando pacientes…</p></div></div></div>';
  try{await clinicalLoadVisitsForViews();renderClinicalPatientRows()}catch(e){$('clinicalPatientRows').innerHTML='<div class="alert critical">Não foi possível carregar os pacientes: '+esc(e.message||'')+'</div>';console.error(e)}
 }
 function renderClinicalPatientRows(){
  const el=$('clinicalPatientRows');if(!el)return;
- const q=($('clinicalPatientSearch')?.value||'').trim().toLowerCase(),st=$('clinicalPatientStatus')?.value||'';
+ const q=($('clinicalPatientSearch')?.value||'').trim().toLowerCase(),st=$('clinicalPatientStatus')?.value||'',risk=$('clinicalPatientRisk')?.value||'';
  const map=new Map();
  [...multiVisits].sort((a,b)=>String(b.visit_date||'').localeCompare(String(a.visit_date||''))).forEach(v=>{const key=String(v.medical_record||'').trim().toLowerCase()||String(v.patient_name||'').trim().toLowerCase();if(!map.has(key)){map.set(key,{...v,visit_count:1});}else map.get(key).visit_count++;});
- const all=[...map.values()];const rows=all.filter(v=>[v.patient_name,v.medical_record,v.sector,v.bed].join(' ').toLowerCase().includes(q)&&(!st||v.status===st));
- const stats=$('clinicalPatientStats');if(stats)stats.innerHTML='<div class="clinical-directory-stat"><span>Pacientes cadastrados</span><b>'+all.length+'</b></div><div class="clinical-directory-stat"><span>Em acompanhamento</span><b>'+all.filter(v=>v.status==='reavaliar').length+'</b></div><div class="clinical-directory-stat"><span>Risco alto</span><b>'+all.filter(v=>v.risk_level==='alto'&&v.status!=='avaliado').length+'</b></div>';
- if(!rows.length){el.innerHTML='<div class="dash-empty">Nenhum paciente encontrado. Ajuste a pesquisa ou registre uma visita multiprofissional.</div>';return}
- el.innerHTML='<table class="clinical-directory-table"><thead><tr><th>Paciente / prontuário</th><th>Setor / leito</th><th>Última visita</th><th>Status</th><th>Histórico</th></tr></thead><tbody>'+rows.map(v=>'<tr><td data-label="Paciente"><b>'+esc(v.patient_name||'Sem nome')+'</b><br><span class="muted">'+esc(v.medical_record||'Prontuário não informado')+'</span></td><td data-label="Localização">'+esc(v.sector||'—')+' · Leito '+esc(v.bed||'—')+'</td><td data-label="Última visita">'+(v.visit_date?new Date(v.visit_date+'T12:00:00').toLocaleDateString('pt-BR'):'—')+'<br><span class="muted">'+v.visit_count+' visita(s)</span></td><td data-label="Status">'+esc(multiStatusLabel(v.status))+'<br><span class="muted">Risco '+esc(v.risk_level||'não classificado')+'</span></td><td class="actions-cell"><div class="actions"><button class="secondary" onclick="clinicalOpenVisit(\''+String(v.id).replace(/'/g,'')+'\')">Abrir última visita</button></div></td></tr>').join('')+'</tbody></table>';
+ const all=[...map.values()];
+ const riskRank=v=>({alto:0,moderado:1,baixo:2}[String(v.risk_level||'').toLowerCase()]??3);
+ const statusRank=v=>({pendente:0,em_avaliacao:1,reavaliar:2,avaliado:3}[String(v.status||'').toLowerCase()]??4);
+ const rows=all.filter(v=>[v.patient_name,v.medical_record,v.sector,v.bed].join(' ').toLowerCase().includes(q)&&(!st||v.status===st)&&(!risk||String(v.risk_level||'').toLowerCase()===risk))
+  .sort((a,b)=>riskRank(a)-riskRank(b)||statusRank(a)-statusRank(b)||String(b.visit_date||'').localeCompare(String(a.visit_date||'')));
+ const stats=$('clinicalPatientStats');if(stats)stats.innerHTML='<div class="clinical-directory-stat"><span>Pacientes cadastrados</span><b>'+all.length+'</b></div><div class="clinical-directory-stat"><span>Em acompanhamento</span><b>'+all.filter(v=>v.status==='reavaliar').length+'</b></div><div class="clinical-directory-stat"><span>Risco alto</span><b>'+all.filter(v=>String(v.risk_level||'').toLowerCase()==='alto'&&v.status!=='avaliado').length+'</b></div>';
+ if(!rows.length){el.innerHTML='<div class="dash-empty">Nenhum paciente encontrado. Ajuste a pesquisa ou os filtros, ou registre uma visita multiprofissional.</div>';return}
+ const pageSize=clinicalPatientPageSize||20,totalPages=Math.max(1,Math.ceil(rows.length/pageSize));clinicalPatientPage=Math.min(Math.max(1,clinicalPatientPage),totalPages);
+ const pageRows=rows.slice((clinicalPatientPage-1)*pageSize,clinicalPatientPage*pageSize);
+ const body=pageRows.map(v=>{
+  const statusClass=({pendente:'pending',em_avaliacao:'review',avaliado:'done',reavaliar:'followup'})[v.status]||'neutral';
+  const riskText=String(v.risk_level||'Não classificado');
+  const riskClass=String(v.risk_level||'').toLowerCase()==='alto'?'risk-high':String(v.risk_level||'').toLowerCase()==='moderado'?'risk-medium':String(v.risk_level||'').toLowerCase()==='baixo'?'risk-low':'risk-unknown';
+  const date=v.visit_date?new Date(v.visit_date+'T12:00:00').toLocaleDateString('pt-BR'):'—';
+  return '<tr><td data-label="Paciente"><div class="clinical-patient-name">'+esc(v.patient_name||'Sem nome')+'</div><small>'+esc(v.medical_record||'Prontuário não informado')+'</small></td><td data-label="Setor / leito"><strong>'+esc(v.sector||'—')+'</strong><small>Leito '+esc(v.bed||'—')+'</small></td><td data-label="Última visita"><strong>'+date+'</strong><small>'+v.visit_count+' visita(s)</small></td><td data-label="Risco"><span class="patient-risk-badge '+riskClass+'">'+esc(riskText)+'</span></td><td data-label="Situação"><span class="patient-status-badge '+statusClass+'">'+esc(multiStatusLabel(v.status))+'</span></td><td class="clinical-patient-actions" data-label="Ação"><button class="secondary" onclick="clinicalOpenVisit(\''+String(v.id).replace(/'/g,'')+'\')">Abrir visita →</button></td></tr>';
+ }).join('');
+ const first=(clinicalPatientPage-1)*pageSize+1,last=Math.min(clinicalPatientPage*pageSize,rows.length);
+ el.innerHTML='<div class="clinical-patient-list-head"><span>Exibindo <strong>'+first+'–'+last+'</strong> de <strong>'+rows.length+'</strong> pacientes</span><label>Por página <select aria-label="Pacientes por página" onchange="clinicalPatientPage=1;clinicalPatientPageSize=Number(this.value);renderClinicalPatientRows()"><option value="20" '+((clinicalPatientPageSize||20)===20?'selected':'')+'>20</option><option value="25" '+((clinicalPatientPageSize||20)===25?'selected':'')+'>25</option><option value="50" '+((clinicalPatientPageSize||20)===50?'selected':'')+'>50</option></select></label></div><table class="clinical-directory-table clinical-patients-table"><thead><tr><th>Paciente / prontuário</th><th>Setor / leito</th><th>Última visita</th><th>Risco</th><th>Situação</th><th>Ação</th></tr></thead><tbody>'+body+'</tbody></table>'+(totalPages>1?'<div class="clinical-patient-pagination"><button class="secondary" '+(clinicalPatientPage<=1?'disabled':'')+' onclick="clinicalPatientPage=Math.max(1,clinicalPatientPage-1);renderClinicalPatientRows()">← Anterior</button><span>Página <strong>'+clinicalPatientPage+'</strong> de <strong>'+totalPages+'</strong></span><button class="secondary" '+(clinicalPatientPage>=totalPages?'disabled':'')+' onclick="clinicalPatientPage=Math.min('+totalPages+',clinicalPatientPage+1);renderClinicalPatientRows()">Próxima →</button></div>':'');
 }
+let clinicalPatientPageSize=20;
 async function renderClinicalInterventions(){
  const root=$('page-intervencoes');if(!root)return;
  root.innerHTML='<div class="clinical-directory"><div class="card panel"><div class="clinical-directory-head"><div><h2>☑ Intervenções farmacêuticas</h2><p class="muted">Acompanhe recomendações, aceite pela equipe e desfecho. O cadastro da intervenção fica vinculado a uma visita existente.</p></div><button class="secondary" onclick="renderClinicalInterventions()">↻ Atualizar</button></div><div class="clinical-intervention-select"><select id="clinicalInterventionVisit"><option value="">Selecione o paciente/visita para registrar uma intervenção</option></select><button class="primary" onclick="clinicalCreateIntervention()">＋ Nova intervenção</button></div><div class="clinical-directory-filters" style="margin-top:14px"><input id="clinicalInterventionSearch" placeholder="Pesquisar paciente, medicamento ou problema" oninput="renderClinicalInterventionRows()"><select id="clinicalInterventionStatus" onchange="renderClinicalInterventionRows()"><option value="">Todos os desfechos</option><option value="aguardando_retorno">Pendente</option><option value="resolvida">Resolvido</option><option value="monitorar">Em acompanhamento</option></select></div><div id="clinicalInterventionStats" class="clinical-directory-stats"></div><div id="clinicalInterventionRows" class="table-wrap"><p class="muted">Carregando intervenções…</p></div></div></div>';
@@ -1694,6 +1857,78 @@ async function multiExportVisitPdf(id){
   body #app .table-wrap, body #app .table-responsive, body #app .multi-table-wrap, body #app .mc-table-wrap,
   body #app .clinical-directory-table-wrap { width:100% !important; max-width:100% !important; overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; }
   body #app input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), body #app select, body #app textarea { min-width:0 !important; max-width:100% !important; box-sizing:border-box !important; }
+}
+</style>
+
+
+<style id="hnss-v48-visita-multi-layout">
+/* V48: refinamento visual isolado da lista de Visita Multiprofissional; sem alterar dados ou fluxos. */
+#page-visita-multi .multi-wrap{display:grid;gap:16px}
+#page-visita-multi .multi-intro{border:1px solid #dfe7f0;background:linear-gradient(135deg,#fff 0%,#f8fbff 100%);border-radius:16px;box-shadow:0 8px 24px rgba(23,32,51,.055)}
+#page-visita-multi .multi-intro h2{color:#132b48;letter-spacing:-.02em}
+#page-visita-multi .multi-note{line-height:1.45}
+#page-visita-multi .multi-kpis{gap:10px;margin:0}
+#page-visita-multi .multi-kpi{padding:15px 16px!important;border-radius:13px!important;border:1px solid #e1e8f0!important;box-shadow:0 4px 14px rgba(23,32,51,.035)!important;position:relative}
+#page-visita-multi .multi-kpi span{display:block;color:#59677b;font-size:12px;line-height:1.35;min-height:30px}
+#page-visita-multi .multi-kpi b{display:block;font-size:28px;line-height:1.15;margin-top:5px;color:#14263d}
+#page-visita-multi .multi-filters{padding:2px 0 12px;border-bottom:1px solid #edf0f4;margin-bottom:12px}
+#page-visita-multi .multi-filters input,#page-visita-multi .multi-filters select{border:1px solid #d8e1eb;border-radius:10px;background:#fff;padding:0 12px;box-shadow:none}
+#page-visita-multi .multi-filters input:focus,#page-visita-multi .multi-filters select:focus{outline:2px solid #b9dcf7;outline-offset:1px;border-color:#5c9fce}
+#page-visita-multi .multi-table{width:100%;min-width:0;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12px}
+#page-visita-multi .multi-table th{background:#f5f8fc;color:#526176;font-size:10px;letter-spacing:.045em;text-transform:uppercase;padding:12px 9px;border-bottom:1px solid #dfe6ef;white-space:normal;line-height:1.35}
+#page-visita-multi .multi-table td{padding:13px 9px;vertical-align:middle;border-bottom:1px solid #e9eef4;white-space:normal;overflow-wrap:anywhere;line-height:1.4}
+#page-visita-multi .multi-table tbody tr:hover{background:#f9fbfe}
+#page-visita-multi .multi-table th:nth-child(1){width:20%}
+#page-visita-multi .multi-table th:nth-child(2){width:14%}
+#page-visita-multi .multi-table th:nth-child(3){width:10%}
+#page-visita-multi .multi-table th:nth-child(4){width:10%}
+#page-visita-multi .multi-table th:nth-child(5){width:12%}
+#page-visita-multi .multi-table th:nth-child(6){width:34%}
+#page-visita-multi .multi-table td:first-child b{display:inline-block;color:#172b45;font-size:12px;margin-bottom:3px}
+#page-visita-multi .multi-table td .muted{font-size:11px;line-height:1.35}
+#page-visita-multi .multi-table td:last-child .multi-action-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;align-items:stretch}
+#page-visita-multi .multi-table td:last-child .multi-action-row button{margin:0;min-width:0;min-height:34px;padding:7px 8px;font-size:11px;line-height:1.2;border-radius:8px;white-space:normal;overflow-wrap:anywhere}
+#page-visita-multi .multi-table td:last-child .multi-action-row button:first-child{background:#edf7ff;border-color:#c8e1f5;color:#145a83}
+#page-visita-multi .multi-table td:last-child .multi-action-row .danger-button{background:#fff7f6;border-color:#f1d2ce;color:#a52c24}
+#page-visita-multi #multiTable{overflow-x:visible!important}
+@media(min-width:701px) and (max-width:1100px){
+ #page-visita-multi .multi-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #page-visita-multi .multi-table{font-size:11px}
+ #page-visita-multi .multi-table th,#page-visita-multi .multi-table td{padding:10px 7px}
+ #page-visita-multi .multi-table th:nth-child(1){width:19%}
+ #page-visita-multi .multi-table th:nth-child(2){width:13%}
+ #page-visita-multi .multi-table th:nth-child(3){width:10%}
+ #page-visita-multi .multi-table th:nth-child(4){width:9%}
+ #page-visita-multi .multi-table th:nth-child(5){width:11%}
+ #page-visita-multi .multi-table th:nth-child(6){width:38%}
+}
+@media(max-width:700px){
+ #page-visita-multi .multi-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #page-visita-multi .multi-kpi{padding:12px!important}
+ #page-visita-multi .multi-kpi span{min-height:0;font-size:11px}
+ #page-visita-multi .multi-kpi b{font-size:24px}
+ #page-visita-multi .multi-filters{border:0;padding:0;margin-bottom:10px}
+ #page-visita-multi #multiTable{overflow:visible!important}
+ #page-visita-multi .multi-table{display:block;min-width:0;width:100%;border:0}
+ #page-visita-multi .multi-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+ #page-visita-multi .multi-table tbody{display:grid;gap:10px;width:100%}
+ #page-visita-multi .multi-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;padding:8px 12px;border:1px solid #e0e7ef;border-radius:13px;background:#fff;box-shadow:0 4px 13px rgba(23,32,51,.04)}
+ #page-visita-multi .multi-table tbody td{display:block;min-width:0;padding:9px 0;border-bottom:1px solid #f0f3f7;font-size:12px}
+ #page-visita-multi .multi-table tbody td:before{display:block;color:#718096;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+ #page-visita-multi .multi-table tbody td:nth-child(1):before{content:'Paciente / prontuário'}
+ #page-visita-multi .multi-table tbody td:nth-child(2):before{content:'Setor / leito'}
+ #page-visita-multi .multi-table tbody td:nth-child(3):before{content:'Data da visita'}
+ #page-visita-multi .multi-table tbody td:nth-child(4):before{content:'Risco'}
+ #page-visita-multi .multi-table tbody td:nth-child(5):before{content:'Status'}
+ #page-visita-multi .multi-table tbody td:nth-child(6){grid-column:1/-1;border-bottom:0;padding-top:10px}
+ #page-visita-multi .multi-table tbody td:nth-child(6):before{content:'Ações'}
+ #page-visita-multi .multi-table td:last-child .multi-action-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #page-visita-multi .multi-table td:last-child .multi-action-row button{min-height:40px;font-size:12px;padding:8px}
+}
+@media(max-width:380px){
+ #page-visita-multi .multi-table tbody tr{grid-template-columns:minmax(0,1fr)}
+ #page-visita-multi .multi-table tbody td:nth-child(6){grid-column:auto}
+ #page-visita-multi .multi-kpi b{font-size:22px}
 }
 </style>
 
@@ -3363,7 +3598,7 @@ async function renderClinicalReports(){
  const dates=clinicalReportDefaultDates();
  sec.innerHTML=`<div class="clinical-directory clinical-report-page"><div class="card panel clinical-report-panel">
  <div class="clinical-report-header"><div class="eyebrow">HNSS · GESTÃO DA FARMÁCIA CLÍNICA</div><h2>Relatórios e indicadores assistenciais</h2>
- <p class="muted">Acompanhe a produção assistencial, os riscos e os resultados das intervenções no período selecionado.</p></div>
+ <p class="muted">Visão rápida dos indicadores, riscos e intervenções do período.</p></div>
  <section class="clinical-report-filters"><div class="clinical-report-filter-title"><strong>Filtros do relatório</strong><span>Defina o período e o perfil dos registros</span></div><div class="form-grid" style="margin:12px 0 0;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end">
  <div class="field"><label for="clinicalReportStart">Data inicial</label><input id="clinicalReportStart" type="date" value="${dates.start}" onchange="clinicalApplyReportFilters()"></div>
  <div class="field"><label for="clinicalReportEnd">Data final</label><input id="clinicalReportEnd" type="date" value="${dates.end}" onchange="clinicalApplyReportFilters()"></div>
@@ -3374,10 +3609,10 @@ async function renderClinicalReports(){
  <div id="clinicalReportStatus" class="process-banner">Carregando registros clínicos…</div>
  <section class="clinical-report-kpi-section"><div class="clinical-report-section-title"><div><span>VISÃO GERAL</span><h3>Indicadores do período</h3></div><small>Atualizados conforme os filtros</small></div><div id="clinicalReportKpis" class="clinical-directory-stats" style="margin-top:14px"></div></section>
  <section class="clinical-report-section clinical-report-charts-section"><div class="clinical-report-section-title"><div><span>PAINEL VISUAL</span><h3>Gráficos gerenciais</h3></div><small>Visualização dos dados registrados e filtrados</small></div><div id="clinicalReportCharts" class="clinical-report-chart-grid"></div></section>
- <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>01 · VISITAS</span><h3>Indicadores de visitas</h3></div><small>Status e risco farmacoterapêutico</small></div><div id="clinicalReportVisitBreakdown" class="table-wrap"></div></section>
- <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>02 · INTERVENÇÕES</span><h3>Intervenções farmacêuticas</h3></div><small>Situação e tipos de problema</small></div><div id="clinicalReportInterventionBreakdown" class="table-wrap"></div></section>
- <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>03 · RESULTADOS</span><h3>Aceitação das recomendações</h3></div><small>Resposta da equipe às recomendações</small></div><div id="clinicalReportAcceptanceBreakdown" class="table-wrap"></div></section>
- <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>04 · SETORES</span><h3>Resumo por setor</h3></div><small>Comparativo da atividade assistencial</small></div><div id="clinicalReportSectorBreakdown" class="table-wrap"></div></section>
+ <details class="clinical-report-section clinical-report-detail"><summary class="clinical-report-section-title"><div><span>DETALHAMENTO 01</span><h3>Indicadores de visitas</h3></div><small>Status e risco farmacoterapêutico</small></summary><div id="clinicalReportVisitBreakdown" class="table-wrap"></div></details>
+ <details class="clinical-report-section clinical-report-detail"><summary class="clinical-report-section-title"><div><span>DETALHAMENTO 02</span><h3>Intervenções farmacêuticas</h3></div><small>Situação e tipos de problema</small></summary><div id="clinicalReportInterventionBreakdown" class="table-wrap"></div></details>
+ <details class="clinical-report-section clinical-report-detail"><summary class="clinical-report-section-title"><div><span>DETALHAMENTO 03</span><h3>Aceitação das recomendações</h3></div><small>Resposta da equipe às recomendações</small></summary><div id="clinicalReportAcceptanceBreakdown" class="table-wrap"></div></details>
+ <details class="clinical-report-section clinical-report-detail"><summary class="clinical-report-section-title"><div><span>DETALHAMENTO 04</span><h3>Resumo por setor</h3></div><small>Comparativo da atividade assistencial</small></summary><div id="clinicalReportSectorBreakdown" class="table-wrap"></div></details>
  <p class="clinical-report-footnote">Os indicadores refletem somente os dados registrados no sistema. A ausência de registro não significa ausência de atividade clínica. Revise os dados antes de utilizá-los em prestação de contas ou decisões assistenciais.</p>
  </div></div>`;
  await clinicalRefreshReports();
@@ -3434,11 +3669,13 @@ function clinicalChartBars(items){
 }
 function clinicalMonthlySvg(monthly){
  if(monthly.length<2)return '<div class="clinical-chart-empty">O gráfico de evolução mensal aparecerá quando houver registros em pelo menos dois meses distintos.</div>';
- const rows=monthly.slice(-8),W=720,H=245,L=42,R=14,T=14,B=44,pw=W-L-R,ph=H-T-B,max=Math.max(1,...rows.flatMap(x=>[x.visitas,x.concluidas,x.intervencoes]));
- const y=v=>T+ph-(v/max)*ph,group=pw/rows.length,bw=Math.min(18,group/5);let svg='';
- for(let j=0;j<5;j++){const val=Math.round(max*j/4),yy=y(val);svg+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#e8eef4"/><text x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="10" fill="#7b8a9a">'+val+'</text>';}
- rows.forEach((m,i)=>{const cx=L+group*(i+.5);[[m.visitas,'#087fbd',-bw-2],[m.concluidas,'#10a3a7',0],[m.intervencoes,'#e9a13a',bw+2]].forEach(([v,c,dx])=>{const yy=y(v),hh=T+ph-yy;svg+='<rect x="'+(cx+dx-bw/2)+'" y="'+yy+'" width="'+bw+'" height="'+Math.max(0,hh)+'" rx="2" fill="'+c+'"><title>'+v+'</title></rect>';});svg+='<text x="'+cx+'" y="'+(H-20)+'" text-anchor="middle" font-size="10" fill="#5c6e80">'+esc(m.mes.slice(5,7)+'/'+m.mes.slice(2,4))+'</text>';});
- return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolução mensal de visitas, visitas concluídas e intervenções">'+svg+'</svg><div class="clinical-chart-legend"><span><i class="clinical-chart-dot" style="background:#087fbd"></i>Visitas</span><span><i class="clinical-chart-dot" style="background:#10a3a7"></i>Concluídas</span><span><i class="clinical-chart-dot" style="background:#e9a13a"></i>Intervenções</span></div>';
+ const rows=monthly.slice(-8),W=760,H=270,L=46,R=22,T=22,B=48,pw=W-L-R,ph=H-T-B,max=Math.max(1,...rows.flatMap(x=>[x.visitas,x.concluidas,x.intervencoes]));
+ const y=v=>T+ph-(Number(v||0)/max)*ph,x=i=>L+(rows.length===1?pw/2:(pw*i/(rows.length-1)));let svg='';
+ for(let j=0;j<5;j++){const val=Math.round(max*j/4),yy=y(val);svg+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#e5edf4" stroke-width="1"/><text x="'+(L-10)+'" y="'+(yy+4)+'" text-anchor="end" font-size="11" fill="#738397">'+val+'</text>';}
+ const series=[['visitas','#087fbd'],['concluidas','#10a3a7'],['intervencoes','#e9a13a']];
+ series.forEach(([key,color])=>{const pts=rows.map((m,i)=>x(i)+','+y(m[key])).join(' ');svg+='<polyline points="'+pts+'" fill="none" stroke="'+color+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>';rows.forEach((m,i)=>{const cx=x(i),cy=y(m[key]),v=Number(m[key]||0);svg+='<circle cx="'+cx+'" cy="'+cy+'" r="4.2" fill="#fff" stroke="'+color+'" stroke-width="2.5"><title>'+v+'</title></circle>';if(rows.length<=5)svg+='<text x="'+cx+'" y="'+(cy-9)+'" text-anchor="middle" font-size="10" font-weight="700" fill="'+color+'">'+v+'</text>';});});
+ rows.forEach((m,i)=>{const cx=x(i),label=String(m.mes||'');svg+='<text x="'+cx+'" y="'+(H-20)+'" text-anchor="middle" font-size="11" fill="#5c6e80">'+esc(label.slice(5,7)+'/'+label.slice(2,4))+'</text>';});
+ return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Gráfico de linhas da evolução mensal de visitas, visitas concluídas e intervenções">'+svg+'</svg><div class="clinical-chart-legend"><span><i class="clinical-chart-dot" style="background:#087fbd"></i>Visitas registradas</span><span><i class="clinical-chart-dot" style="background:#10a3a7"></i>Visitas concluídas</span><span><i class="clinical-chart-dot" style="background:#e9a13a"></i>Intervenções</span></div>';
 }
 function clinicalRenderReportCharts(d,vs,is,completed,open,high,follow,pending,resolved,monitor,acceptanceCounts){
  const root=$('clinicalReportCharts');if(!root)return;
@@ -3452,7 +3689,7 @@ function clinicalRenderReportCharts(d,vs,is,completed,open,high,follow,pending,r
  is.forEach(i=>{const v=vs.find(x=>String(x.id)===String(i.visit_id));if(v){const name=(v.sector||'Não informado').trim();if(sectors.has(name))sectors.get(name).interventions++}});
  const sectorBars=[...sectors.entries()].sort((a,b)=>b[1].visits-a[1].visits).slice(0,7).map(([label,x])=>({label,value:x.visits,color:'#087fbd'}));
  const monthly=clinicalBuildMonthlyRows(clinicalReportExportRows());
- root.innerHTML='<article class="clinical-report-chart-card wide"><h4>📈 Evolução mensal</h4><p>Comparação entre visitas registradas, visitas concluídas e intervenções.</p>'+clinicalMonthlySvg(monthly)+'</article>'+
+ root.innerHTML='<article class="clinical-report-chart-card wide"><h4>📈 Evolução mensal</h4><p>Tendência mensal de visitas registradas, visitas concluídas e intervenções. Cada ponto representa a quantidade registrada no mês.</p>'+clinicalMonthlySvg(monthly)+'</article>'+
  '<article class="clinical-report-chart-card"><h4>Risco farmacoterapêutico</h4><p>Distribuição dos riscos registrados nas visitas filtradas.</p>'+clinicalSvgDonut('Risco farmacoterapêutico',risks)+'</article>'+
  '<article class="clinical-report-chart-card"><h4>Situação das visitas</h4><p>Visão rápida do andamento dos atendimentos.</p>'+clinicalChartBars(status)+'</article>'+
  '<article class="clinical-report-chart-card"><h4>Desfecho das intervenções</h4><p>Acompanhamento das recomendações farmacêuticas registradas.</p>'+clinicalChartBars(outcomes)+'</article>'+
@@ -3572,12 +3809,18 @@ function clinicalExportReportPdf(){
   const gap=3,cw=(CW-gap*3)/4,ch=17;
   cards.forEach((c,i)=>{const col=i%4,row=Math.floor(i/4),x=M+col*(cw+gap),yy=y+row*(ch+2);doc.setFillColor(...pale);doc.roundedRect(x,yy,cw,ch,2,2,'F');doc.setFillColor(...(i===4?teal:blue));doc.roundedRect(x,yy,2,ch,1,1,'F');doc.setFont('helvetica','normal');doc.setFontSize(6.5);doc.setTextColor(...muted);doc.text(doc.splitTextToSize(String(c[0]),cw-7),x+5,yy+5);doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(...navy);doc.text(String(c[1]),x+5,yy+13)});y+=3*(ch+2)+5;
   const monthly=clinicalBuildMonthlyRows(r);
+  if(monthly.length>=2)ensure(72);
   section('EVOLUÇÃO MENSAL');
   if(monthly.length>=2){
-   const chartX=M+3,chartW=CW-6,labelW=25,plotW=chartW-labelW-3,barH=3.1,groupH=17,max=Math.max(1,...monthly.map(x=>Math.max(x.visitas,x.concluidas,x.intervencoes)));
-   const shown=monthly.slice(-6);const legends=[['Visitas',blue],['Concluídas',teal],['Intervenções',[231,151,54]]];
-   let lx=M;legends.forEach(([lab,col])=>{doc.setFillColor(...col);doc.rect(lx,y,3,3,'F');doc.setFontSize(7);doc.setTextColor(...muted);doc.text(lab,lx+4,y+2.7);lx+=36});y+=5;
-   shown.forEach(m=>{ensure(groupH);doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...ink);doc.text(m.mes,M+1,y+7);[[m.visitas,blue],[m.concluidas,teal],[m.intervencoes,[231,151,54]]].forEach(([v,col],j)=>{const yy=y+j*4.1;doc.setFillColor(...pale);doc.rect(chartX+labelW,yy,plotW,barH,'F');if(v){doc.setFillColor(...col);doc.rect(chartX+labelW,yy,Math.max(1,plotW*v/max),barH,'F')}doc.setFont('helvetica','normal');doc.setFontSize(6.5);doc.setTextColor(...muted);doc.text(String(v),chartX+labelW+plotW+2,yy+2.5)});y+=groupH});y+=3;
+   const shown=monthly.slice(-6),chartX=M+7,chartW=CW-14,chartTop=y+5,chartH=46,labelH=7,maxVal=Math.max(1,...shown.flatMap(x=>[x.visitas,x.concluidas,x.intervencoes]));
+   const px=i=>chartX+(shown.length===1?chartW/2:chartW*i/(shown.length-1));
+   const py=v=>chartTop+chartH-(Number(v||0)/maxVal)*chartH;
+   for(let g=0;g<4;g++){const val=Math.round(maxVal*g/3),yy=py(val);doc.setDrawColor(...lineColor);doc.setLineWidth(.15);doc.line(chartX,yy,chartX+chartW,yy);doc.setFont('helvetica','normal');doc.setFontSize(6);doc.setTextColor(...muted);doc.text(String(val),chartX-2,yy+1.5,{align:'right'});}
+   const series=[['visitas',blue],['concluidas',teal],['intervencoes',[231,151,54]]];
+   series.forEach(([key,col])=>{const pts=shown.map((m,i)=>({x:px(i),y:py(m[key]),v:Number(m[key]||0)}));doc.setDrawColor(...col);doc.setLineWidth(.8);for(let i=1;i<pts.length;i++)doc.line(pts[i-1].x,pts[i-1].y,pts[i].x,pts[i].y);pts.forEach((p,i)=>{doc.setFillColor(...col);doc.circle(p.x,p.y,1.15,'F');if(shown.length<=4){doc.setFont('helvetica','bold');doc.setFontSize(6);doc.setTextColor(...col);doc.text(String(p.v),p.x,p.y-2,{align:'center'});}});});
+   shown.forEach((m,i)=>{doc.setFont('helvetica','normal');doc.setFontSize(6.3);doc.setTextColor(...muted);doc.text(String(m.mes||'').slice(5,7)+'/'+String(m.mes||'').slice(2,4),px(i),chartTop+chartH+5,{align:'center'});});
+   let lx=M+3;[['Visitas registradas',blue],['Concluídas',teal],['Intervenções',[231,151,54]]].forEach(([lab,col])=>{doc.setFillColor(...col);doc.circle(lx+1,chartTop+chartH+11,1.1,'F');doc.setFont('helvetica','normal');doc.setFontSize(6.5);doc.setTextColor(...muted);doc.text(lab,lx+4,chartTop+chartH+12.2);lx+=38;});
+   y=chartTop+chartH+17;
   }else{textLine('Histórico mensal insuficiente para comparação. O gráfico será preenchido à medida que houver registros em mais de um mês.',8,muted,3)}
   const riskChart=[{label:'Baixo',value:visits.filter(v=>String(v.Risco||'').toLowerCase()==='baixo').length,color:teal},{label:'Moderado',value:visits.filter(v=>String(v.Risco||'').toLowerCase()==='moderado').length,color:blue},{label:'Alto',value:high,color:[214,91,91]},{label:'Não classificado',value:visits.filter(v=>!v.Risco||v.Risco==='Não classificado').length,color:[154,169,184]}];
   const statusChart=[{label:'Concluídas',value:completed,color:teal},{label:'Em aberto',value:open,color:blue},{label:'Em acompanhamento',value:follow,color:[231,161,58]}];
@@ -7644,6 +7887,58 @@ function rxBuildVisibleClinicalSummary(){
 @media screen and (min-width:701px) and (max-width:900px) and (orientation:portrait) and (prefers-reduced-motion:reduce) {
   body #app.app:not(.hidden) > aside#hnssSidebar.sidebar { transition:none !important; }
 }
+
+/* V44 — compacta a tela de relatórios sem alterar cálculos, registros ou demais módulos */
+#page-relatorios .clinical-report-page{gap:12px}
+#page-relatorios .clinical-report-header{padding-bottom:12px}
+#page-relatorios .clinical-report-header h2{margin:4px 0 5px;font-size:clamp(21px,2vw,26px)}
+#page-relatorios .clinical-report-header p{font-size:13px;line-height:1.45}
+#page-relatorios .clinical-report-filters{margin-top:12px;padding:12px 14px 7px}
+#page-relatorios .clinical-report-actions{gap:7px;margin:10px 0 12px}
+#page-relatorios .clinical-report-actions button{min-height:38px;padding:8px 11px;font-size:12px}
+#page-relatorios .clinical-report-kpi-section,#page-relatorios .clinical-report-section{margin-top:12px;padding:14px;border-radius:14px}
+#page-relatorios .clinical-report-section-title{margin-bottom:10px;padding-bottom:9px}
+#page-relatorios .clinical-report-section-title h3{font-size:15px}
+#page-relatorios .clinical-report-section-title span{font-size:9px}
+#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#page-relatorios .clinical-directory-stat{min-height:68px;padding:11px 10px 10px 14px;border-radius:11px}
+#page-relatorios .clinical-directory-stat span{font-size:11px}
+#page-relatorios .clinical-directory-stat b{font-size:23px;margin-top:5px}
+#page-relatorios .clinical-report-chart-grid{gap:12px}
+#page-relatorios .clinical-report-chart-card,#page-relatorios .clinical-report-chart-card.wide{padding:14px;border-radius:13px}
+#page-relatorios .clinical-report-chart-card svg{max-height:260px}
+#page-relatorios details.clinical-report-detail{padding:0;overflow:hidden}
+#page-relatorios .clinical-report-detail>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:14px 16px;border:0;border-radius:13px;background:#fff}
+#page-relatorios .clinical-report-detail>summary::-webkit-details-marker{display:none}
+#page-relatorios .clinical-report-detail>summary:after{content:'+';display:flex;align-items:center;justify-content:center;flex:0 0 28px;width:28px;height:28px;border-radius:8px;background:#edf7f8;color:#087f8c;font-size:20px;font-weight:600}
+#page-relatorios .clinical-report-detail[open]>summary:after{content:'−'}
+#page-relatorios .clinical-report-detail>summary>div{min-width:0}
+#page-relatorios .clinical-report-detail>summary small{margin-left:auto}
+#page-relatorios .clinical-report-detail>.table-wrap{margin:0 14px 14px}
+#page-relatorios .clinical-report-footnote{margin-top:12px;padding:10px 12px;font-size:11px}
+@media(max-width:1000px){#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#page-relatorios .clinical-report-panel{padding:12px}#page-relatorios .clinical-report-kpi-section,#page-relatorios .clinical-report-section{padding:10px;margin-top:10px}#page-relatorios .clinical-report-detail>summary{padding:12px;gap:8px}#page-relatorios .clinical-report-detail>summary small{display:none}#page-relatorios .clinical-report-actions{grid-template-columns:repeat(2,minmax(0,1fr))}#page-relatorios .clinical-report-chart-card svg{max-height:230px}}
+
+
+/* V47: lista compacta e paginada de pacientes; altera somente a apresentação do diretório. */
+#page-pacientes .clinical-patient-filters{grid-template-columns:minmax(0,1fr) minmax(180px,.32fr) minmax(170px,.28fr)}
+#page-pacientes .clinical-directory-stats{margin-bottom:16px}
+#page-pacientes .clinical-patients-table{min-width:790px;font-size:13px}
+#page-pacientes .clinical-patients-table th{background:#f4f8fb;white-space:nowrap;padding:12px 11px}
+#page-pacientes .clinical-patients-table td{padding:12px 11px;vertical-align:middle}
+#page-pacientes .clinical-patients-table tbody tr:hover{background:#f8fbfd}
+#page-pacientes .clinical-patients-table td small{display:block;margin-top:4px;color:#718297;font-size:11px;line-height:1.35}
+#page-pacientes .clinical-patient-name{font-weight:800;color:#173653;overflow-wrap:anywhere}
+#page-pacientes .clinical-patient-actions button{white-space:nowrap;min-height:36px;padding:7px 10px;border-radius:9px;font-size:12px}
+#page-pacientes .patient-risk-badge.risk-unknown{background:#eef2f6;color:#596b7e}
+#page-pacientes .clinical-patient-list-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:0 2px 10px;color:#6b7d90;font-size:12px}
+#page-pacientes .clinical-patient-list-head label{display:flex;align-items:center;gap:8px}
+#page-pacientes .clinical-patient-list-head select{min-height:34px;border:1px solid #d7e2ed;border-radius:8px;background:#fff;padding:4px 8px;color:#233c55}
+#page-pacientes .clinical-patient-pagination{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 0 2px;color:#5e7185;font-size:13px}
+#page-pacientes .clinical-patient-pagination button{min-height:38px;border-radius:9px;padding:7px 12px}
+#page-pacientes .clinical-patient-pagination button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:900px){#page-pacientes .clinical-patient-filters{grid-template-columns:minmax(0,1fr) minmax(170px,.45fr)}#page-pacientes .clinical-patient-filters input{grid-column:1/-1}}
+@media(max-width:680px){#page-pacientes .clinical-patient-filters{grid-template-columns:1fr}#page-pacientes .clinical-patient-filters input{grid-column:auto}#page-pacientes .clinical-patients-table{min-width:0}#page-pacientes .clinical-patients-table,#page-pacientes .clinical-patients-table tbody,#page-pacientes .clinical-patients-table tr,#page-pacientes .clinical-patients-table td{display:block;width:100%}#page-pacientes .clinical-patients-table thead{display:none}#page-pacientes .clinical-patients-table tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px 12px;padding:13px 10px;border:1px solid #e0e8ef;border-radius:12px;margin-bottom:10px;background:#fff}#page-pacientes .clinical-patients-table td{border:0;padding:3px 2px;min-width:0}#page-pacientes .clinical-patients-table td[data-label]::before{content:attr(data-label);display:block;margin-bottom:4px;color:#718297;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}#page-pacientes .clinical-patients-table td:first-child,#page-pacientes .clinical-patients-table td:last-child{grid-column:1/-1}#page-pacientes .clinical-patient-actions button{width:100%;min-height:40px}#page-pacientes .clinical-patient-pagination{gap:8px;justify-content:space-between;flex-wrap:wrap}#page-pacientes .clinical-patient-list-head{align-items:flex-start}}
 </style>
 <script id="hnss-tablet-portrait-v36-menu">
 (function(){
