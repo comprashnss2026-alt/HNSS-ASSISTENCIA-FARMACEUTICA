@@ -632,6 +632,115 @@ body.hnss-show-pharm-base #page-analise-prescricao #rxLocalPharmBase{display:blo
 }
 @media(min-width:701px){#app .mobile-nav-toggle{display:none!important}}
 </style>
+
+<style id="hnss-v15-desktop-layout-fix">
+/* V15: separa estruturalmente o menu e o conteúdo em telas de computador.
+   Não altera autenticação, scripts, armazenamento ou fluxos funcionais. */
+@media (min-width: 901px) {
+  #app.app:not(.hidden) {
+    display: grid !important;
+    grid-template-columns: 280px minmax(0, 1fr) !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  #app.app:not(.hidden) > .sidebar {
+    position: sticky !important;
+    inset: auto !important;
+    top: 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 2 !important;
+  }
+  #app.app:not(.hidden) > .main {
+    position: relative !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 28px clamp(22px, 3vw, 42px) !important;
+    overflow-x: clip !important;
+    z-index: 1 !important;
+  }
+}
+</style>
+<style id="hnss-v16-modal-sidebar-layer-fix">
+/* V16: detalhes da visita são exibidos em modal. Mantém o modal acima do menu lateral.
+   Corrige apenas a camada visual; não altera login, dados ou ações. */
+.modal { z-index: 10020 !important; }
+.modal .modal-box { position: relative !important; z-index: 10021 !important; }
+</style>
+<style id="hnss-v21-safe-layout-fix">
+/* V19: último override de layout. Não altera login, autenticação, Supabase, Gemini ou regras clínicas. */
+html, body { max-width:100% !important; }
+#app.app:not(.hidden) {
+  width:100% !important; max-width:100% !important; min-width:0 !important;
+  overflow:visible !important; box-sizing:border-box !important;
+}
+#app.app:not(.hidden) > #hnssSidebar.sidebar,
+#app.app:not(.hidden) > aside.sidebar {
+  box-sizing:border-box !important; min-width:0 !important;
+}
+#app.app:not(.hidden) > main.main,
+#app.app:not(.hidden) > .main {
+  box-sizing:border-box !important; min-width:0 !important; max-width:100% !important;
+  transform:none !important; left:auto !important; right:auto !important;
+}
+/* Desktop/tablet landscape: sidebar and content occupy separate columns. */
+@media (min-width:701px) {
+  #app.app:not(.hidden) {
+    display:grid !important; grid-template-columns:minmax(230px,270px) minmax(0,1fr) !important;
+    align-items:start !important; column-gap:0 !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar,
+  #app.app:not(.hidden) > aside.sidebar {
+    grid-column:1 !important; grid-row:1 !important; position:sticky !important;
+    top:0 !important; left:auto !important; bottom:auto !important; right:auto !important;
+    width:100% !important; min-width:0 !important; max-width:none !important;
+    height:100vh !important; max-height:100vh !important; margin:0 !important;
+    overflow-x:hidden !important; overflow-y:auto !important; align-self:start !important;
+    z-index:5 !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main {
+    grid-column:2 !important; grid-row:1 !important; position:relative !important;
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+    margin:0 !important; padding:clamp(16px,2vw,28px) !important;
+    overflow-x:hidden !important;
+  }
+  #app.app:not(.hidden) > #hnssNavBackdrop,
+  #app.app:not(.hidden) > .hnss-nav-backdrop { display:none !important; }
+}
+/* Narrow viewport/large zoom: menu returns to normal document flow so it cannot cover content. */
+@media (max-width:700px) {
+  #app.app:not(.hidden) { display:flex !important; flex-direction:column !important; width:100% !important; }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar,
+  #app.app:not(.hidden) > aside.sidebar {
+    position:relative !important; inset:auto !important; top:auto !important;
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+    height:auto !important; max-height:none !important; overflow:visible !important;
+    grid-column:auto !important; grid-row:auto !important; z-index:1 !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main {
+    position:relative !important; width:100% !important; min-width:0 !important;
+    max-width:100% !important; margin:0 !important; padding:14px !important;
+    grid-column:auto !important; grid-row:auto !important; overflow:visible !important;
+  }
+}
+</style>
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
@@ -3811,6 +3920,109 @@ function printPurchaseOrder(id){const p=cache.purchases.find(x=>String(x.id)===S
 <style id="hnss-fase1054-visita-relatorio-profissional">
 .multi-observations-wrap{margin-top:14px;min-width:0}.multi-observations-title{display:flex;align-items:center;gap:8px;font-size:16px!important;color:#172b4d;margin:18px 0 10px!important}.multi-gemini-report{max-width:100%;border:1px solid #d5dfec;border-radius:14px;overflow:hidden;margin:10px 0 16px;background:#fff;color:#253449;box-shadow:0 5px 18px rgba(22,45,80,.06)}.multi-gemini-report>header{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;background:linear-gradient(120deg,#f0f6ff,#fbfdff);padding:15px 17px;border-bottom:1px solid #dbe5f1;margin:0}.multi-gemini-heading{display:flex;flex-direction:column;gap:3px;min-width:0}.multi-gemini-eyebrow{font-size:10px;font-weight:800;letter-spacing:.1em;color:#55708f}.multi-gemini-heading strong{font-size:17px;line-height:1.3;color:#17365d}.multi-gemini-subtitle{font-size:12px;color:#64748b}.multi-gemini-status{display:inline-flex;align-items:center;justify-content:center;border:1px solid #efd69c;background:#fff7e6;color:#855b13;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:800;letter-spacing:.04em;white-space:normal}.multi-gemini-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 16px;background:#fafcff;border-bottom:1px solid #e8eef5}.multi-gemini-meta>div{display:flex;flex-direction:column;gap:4px;min-width:0;padding:9px 10px;border:1px solid #e4eaf2;border-radius:9px;background:#fff;font-size:12px;overflow-wrap:anywhere}.multi-gemini-meta b{color:#63748b;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.multi-gemini-meta span{line-height:1.45;color:#26364b}.multi-gemini-body{padding:4px 16px 8px;line-height:1.6;overflow-wrap:anywhere}.multi-gemini-section{padding:12px 0;border-bottom:1px solid #edf1f6;break-inside:auto}.multi-gemini-section:last-child{border-bottom:0}.multi-gemini-section h4{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.4;color:#17477c;margin:0 0 7px;text-transform:uppercase;letter-spacing:.045em}.multi-gemini-section h4:before{content:"";display:inline-block;width:4px;height:15px;border-radius:4px;background:#4385d8;flex:0 0 4px}.multi-gemini-section-content p{margin:0 0 8px;font-size:13px;white-space:normal}.multi-gemini-section-content p:last-child{margin-bottom:0}.multi-gemini-section-content ul{margin:3px 0 8px;padding-left:21px}.multi-gemini-section-content li{padding:2px 0 3px;font-size:13px;line-height:1.55}.multi-gemini-footer{padding:11px 16px 13px;border-top:1px solid #e8edf4;background:#f8fafc}.multi-gemini-footer>span{display:block;color:#64748b;font-size:10px;font-weight:700;margin-bottom:5px}.multi-gemini-footer p{margin:0;color:#77551b;font-size:11px;line-height:1.5}.multi-report-empty{display:flex;flex-direction:column;gap:5px;padding:14px;border:1px dashed #cbd5e1;border-radius:10px;background:#f8fafc;color:#334155}.multi-report-empty strong{font-size:13px}.multi-report-empty span{font-size:12px;color:#64748b;line-height:1.5}.multi-observations-plain{margin:8px 0;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;overflow-wrap:anywhere;line-height:1.55;font-size:13px}.multi-plain-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#64748b;margin-bottom:7px}@media(max-width:600px){.multi-gemini-meta{grid-template-columns:minmax(0,1fr);padding:10px}.multi-gemini-report>header{align-items:flex-start;flex-direction:column;padding:13px}.multi-gemini-status{align-self:flex-start}.multi-gemini-body{padding:3px 12px 7px}.multi-gemini-section{padding:10px 0}.multi-gemini-section-content p,.multi-gemini-section-content li{font-size:12.5px}}
 </style>
+
+<style id="hnss-final-layout-overlap-fix-v13">
+/* V13: corrige somente a estrutura visual; preserva o JavaScript e o login originais. */
+@media (min-width: 901px) {
+  #app:not(.hidden) {
+    display: grid !important;
+    grid-template-columns: 270px minmax(0, 1fr) !important;
+    grid-template-rows: minmax(100vh, auto) !important;
+    align-items: start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  #app:not(.hidden) > #hnssSidebar.sidebar {
+    position: sticky !important;
+    inset: auto !important;
+    top: 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: block !important;
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 22px 14px 20px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    border-radius: 0 !important;
+    z-index: 30 !important;
+  }
+  #app:not(.hidden) > #hnssSidebar.sidebar.mobile-collapsed .nav,
+  #app:not(.hidden) > #hnssSidebar.sidebar .nav {
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+  #app:not(.hidden) > #hnssSidebar.sidebar .nav button {
+    width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+  }
+  #app:not(.hidden) > #hnssSidebar.sidebar .logout-side {
+    width: calc(100% - 20px) !important;
+    margin: 18px 10px !important;
+  }
+  #app:not(.hidden) > #hnssNavBackdrop {
+    display: none !important;
+  }
+  #app:not(.hidden) > main.main {
+    position: relative !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: stretch !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 24px clamp(18px, 2.2vw, 34px) !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+}
+@media (max-width: 900px) {
+  #app:not(.hidden) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  #app:not(.hidden) > #hnssSidebar.sidebar {
+    position: sticky !important;
+    inset: auto !important;
+    top: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+  #app:not(.hidden) > main.main {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 16px 12px 28px !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
 </head><body><h1>HNSS — PEDIDO DE COMPRA</h1><p><b>Pedido:</b> ${esc(p.order_number||'-')}<br><b>Requisição:</b> ${esc(p.number||'-')}<br><b>Fornecedor:</b> ${esc(sup?.name||'-')}<br><b>Data:</b> ${new Date().toLocaleDateString('pt-BR')}</p><table><thead><tr><th>Código</th><th>Item</th><th>Un.</th><th>Qtd.</th><th>Unitário</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table><div class="total">Total: ${money(p.total_value)}</div><p>Pedido gerado pelo Sistema de Compras HNSS a partir da cotação aprovada.</p><script>window.onload=()=>window.print()<\/script><div aria-hidden="true" style="display:none" data-hnss-version="5.3.0"></div>
 <style id="hnss-phase1016-compact-report">
 /* Fase 10.16: keep the prescription report calm and readable by default. */
@@ -5190,4 +5402,202 @@ function rxBuildVisibleClinicalSummary(){
 #app .nav-group {margin-bottom:10px!important}
 #app .nav button {min-height:44px}
 </style>
+
+<style id="hnss-layout-structural-v14">
+/* Correção estrutural: menu e conteúdo como colunas irmãs, sem sobreposição. */
+@media (min-width: 701px) {
+  #app.app:not(.hidden) {
+    display: grid !important;
+    grid-template-columns: minmax(245px, 285px) minmax(0, 1fr) !important;
+    align-items: start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  #app.app:not(.hidden) > .sidebar,
+  #app.app:not(.hidden) > aside.sidebar {
+    position: sticky !important;
+    inset: auto !important;
+    top: 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 / span 20 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    align-self: start !important;
+    z-index: 20 !important;
+  }
+  #app.app:not(.hidden) > .main,
+  #app.app:not(.hidden) > main.main {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
+  }
+  #app.app:not(.hidden) > #hnssNavBackdrop {
+    display: none !important;
+  }
+}
+@media (max-width: 700px) {
+  #app.app:not(.hidden) { display: block !important; width: 100% !important; }
+  #app.app:not(.hidden) > .sidebar,
+  #app.app:not(.hidden) > aside.sidebar {
+    position: sticky !important; inset: auto !important; top: 0 !important;
+    width: 100% !important; max-width: 100% !important; height: auto !important;
+    max-height: none !important; grid-column: auto !important; grid-row: auto !important;
+  }
+  #app.app:not(.hidden) > .main,
+  #app.app:not(.hidden) > main.main {
+    margin: 0 !important; width: 100% !important; max-width: 100% !important;
+    min-width: 0 !important; box-sizing: border-box !important;
+  }
+}
+</style>
+
+<style id="hnss-v18-layout-fix-only">
+/* V18: correção isolada de layout desktop; não altera HTML de login nem scripts/autenticação. */
+@media (min-width: 901px) {
+  #app.app:not(.hidden) {
+    display: grid !important;
+    grid-template-columns: 270px minmax(0, 1fr) !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar {
+    position: sticky !important;
+    inset: 0 auto auto 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    height: 100vh !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    z-index: 20 !important;
+  }
+  #app.app:not(.hidden) > #hnssNavBackdrop { display: none !important; }
+  #app.app:not(.hidden) > main.main {
+    position: relative !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 25px !important;
+    overflow-x: clip !important;
+  }
+}
+</style>
+
+<!-- V24: correção isolada de visibilidade do login e rolagem independente do menu -->
+<style id="hnss-v24-login-sidebar-fix">
+/* Garantir que os campos de autenticação permaneçam visíveis e utilizáveis. */
+#login, #login .login-card, #login form, #login .field {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#login .field { display: block !important; }
+#login .login-card .field input,
+#login input#email,
+#login input#password {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  color: #172033 !important;
+  -webkit-text-fill-color: #172033 !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+}
+@media (min-width: 701px) {
+  /* Neutraliza os grids/posicionamentos anteriores apenas após autenticação. */
+  #app.app:not(.hidden) {
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    right: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    inset: 0 auto 0 0 !important;
+    float: none !important;
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    z-index: 10000 !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main {
+    display: block !important;
+    position: relative !important;
+    float: none !important;
+    margin: 0 0 0 270px !important;
+    width: calc(100% - 270px) !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 270px) !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
+  }
+  #app.app:not(.hidden) > #hnssNavBackdrop { display: none !important; }
+}
+@media (max-width: 700px) {
+  #app.app:not(.hidden) { display: block !important; }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+</style>
+
 </body></html>
