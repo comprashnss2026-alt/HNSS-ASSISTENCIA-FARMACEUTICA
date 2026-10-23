@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HNSS · Assistência Farmacêutica · Relatórios V41 Layout</title>
+<title>HNSS · Assistência Farmacêutica · V57 Layout Análise</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -1240,12 +1240,142 @@ html, body { max-width:100% !important; }
 @media(max-width:680px){#page-pacientes .clinical-directory>.card.panel{padding:14px;border-radius:15px}#page-pacientes .clinical-directory-head{align-items:stretch}#page-pacientes .clinical-directory-head>button{width:100%}#page-pacientes .clinical-directory-filters{grid-template-columns:1fr;gap:9px}#page-pacientes .clinical-directory-stats{grid-template-columns:1fr;gap:9px;margin-bottom:15px}#page-pacientes .clinical-directory-stat{min-height:72px;padding:13px 15px 12px 18px}#page-pacientes .clinical-directory-stat b{font-size:25px;margin-top:5px}#page-pacientes .patient-record-card{padding:14px;border-radius:14px}#page-pacientes .patient-record-top{gap:8px}#page-pacientes .patient-record-avatar{flex-basis:36px;width:36px;height:36px}#page-pacientes .patient-record-identity h3{font-size:14px}#page-pacientes .patient-status-badge{max-width:125px;font-size:10px}#page-pacientes .patient-record-details{gap:13px 8px;padding:13px 0}#page-pacientes .patient-detail>span:first-child{font-size:9px}#page-pacientes .patient-record-actions button{width:100%}}
 @media(min-width:681px) and (max-width:900px){#page-pacientes .patient-record-list{grid-template-columns:1fr}#page-pacientes .clinical-directory-filters{grid-template-columns:minmax(0,1fr) minmax(190px,.45fr)}}
 </style>
+
+<style id="hnss-v56-analysis-layout-only">
+/* V56: refinamento exclusivamente visual da tela Análise de Prescrição; sem alterações de lógica. */
+#page-analise-prescricao{max-width:1500px;margin:0 auto;padding-bottom:28px;color:#1f2937}
+#page-analise-prescricao .rx-photo-wrap{gap:16px}
+#page-analise-prescricao .rx-photo-hero{padding:22px 24px;border:1px solid #dbe3ea;border-left:4px solid #168b91;border-radius:16px;background:#fff;box-shadow:0 3px 14px rgba(16,35,63,.045)}
+#page-analise-prescricao .rx-photo-hero .eyebrow{font-size:11px;letter-spacing:.09em;font-weight:800;color:#14777e;text-transform:uppercase}
+#page-analise-prescricao .rx-photo-hero h2{font-size:clamp(23px,2.2vw,30px);line-height:1.2;letter-spacing:-.025em;color:#172b43}
+#page-analise-prescricao .rx-photo-hero>p{max-width:900px;line-height:1.65;margin:8px 0 0}
+#page-analise-prescricao .rx-flow-steps{gap:8px;margin-top:16px}
+#page-analise-prescricao .rx-flow-steps span{border-radius:8px;background:#f5f7f9;border-color:#e2e8ef;color:#596779;padding:8px 12px}
+#page-analise-prescricao .rx-flow-steps .rx-flow-active{background:#e5f5f4;color:#116b70;border-color:#a8dcd8}
+#page-analise-prescricao .rx-photo-wrap>.rx-photo-warning{border:1px solid #ead9aa;background:#fffaf0;color:#72531a;border-radius:12px;padding:13px 16px;line-height:1.6}
+#page-analise-prescricao .rx-photo-grid{gap:14px}
+#page-analise-prescricao .rx-photo-card.card{border:1px solid #dfe6ed;border-radius:14px;background:#fff;box-shadow:0 2px 9px rgba(16,35,63,.035);padding:18px 20px}
+#page-analise-prescricao .rx-photo-card h3{font-size:17px;line-height:1.35;color:#20354b;margin:0 0 12px}
+#page-analise-prescricao .rx-photo-drop{min-height:128px;border:1.5px dashed #aebfce;border-radius:12px;background:#f8fafc;padding:20px;line-height:1.55}
+#page-analise-prescricao .rx-photo-drop strong{display:block;color:#253a50;font-size:15px}
+#page-analise-prescricao .rx-photo-drop input{display:block;margin:12px auto 0;max-width:100%;font-size:13px}
+#page-analise-prescricao .rx-photo-preview{display:block;max-height:300px;margin:14px auto 0;background:#f8fafc;border:1px solid #e2e8f0;padding:4px}
+#page-analise-prescricao .rx-photo-actions{gap:9px;margin-top:12px;align-items:center}
+#page-analise-prescricao .rx-photo-actions button{border-radius:9px;min-height:40px;padding:9px 14px;font-weight:650;white-space:normal}
+#page-analise-prescricao #rxGeminiCard{border:1px solid #cbdedc!important;border-radius:14px!important;background:#fff!important;padding:18px 20px!important;box-shadow:0 3px 12px rgba(16,35,63,.04)}
+#page-analise-prescricao #rxGeminiCard h3{font-size:18px;color:#183b45;margin-bottom:8px}
+#page-analise-prescricao #rxGeminiStatus,#page-analise-prescricao #rxPhotoStatus{border-radius:10px;padding:12px 14px;line-height:1.6;overflow-wrap:anywhere}
+#page-analise-prescricao #rxGeminiStatus{background:#f5f8fa;border:1px solid #e1e7ec;color:#465569}
+#page-analise-prescricao #rxGeminiResults{margin-top:14px;min-width:0;overflow-wrap:anywhere}
+#page-analise-prescricao #rxGeminiResults h1,#page-analise-prescricao #rxGeminiResults h2,#page-analise-prescricao #rxGeminiResults h3,#page-analise-prescricao #rxGeminiResults h4{color:#20354b;line-height:1.35;margin:18px 0 8px;letter-spacing:-.01em}
+#page-analise-prescricao #rxGeminiResults h2{font-size:19px;border-bottom:1px solid #e4e9ee;padding-bottom:7px}
+#page-analise-prescricao #rxGeminiResults h3{font-size:16px;border-left:3px solid #168b91;padding-left:10px}
+#page-analise-prescricao #rxGeminiResults p{line-height:1.7;margin:8px 0;color:#344256}
+#page-analise-prescricao #rxGeminiResults ul,#page-analise-prescricao #rxGeminiResults ol{padding-left:22px;margin:8px 0 14px}
+#page-analise-prescricao #rxGeminiResults li{line-height:1.65;margin:4px 0;color:#344256}
+#page-analise-prescricao #rxGeminiResults table{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:13px}
+#page-analise-prescricao #rxGeminiResults th{background:#f0f4f7;color:#2b3e50;text-align:left;font-weight:750}
+#page-analise-prescricao #rxGeminiResults th,#page-analise-prescricao #rxGeminiResults td{border:1px solid #dfe5eb;padding:9px 10px;vertical-align:top;overflow-wrap:anywhere}
+#page-analise-prescricao #rxGeminiButton{min-height:44px;border-radius:10px;padding:11px 17px;font-weight:750}
+#page-analise-prescricao .rx-photo-note{line-height:1.6;color:#687587}
+#page-analise-prescricao .rx-advanced{border:1px solid #e0e6ed;border-radius:12px;background:#fff;padding:14px 16px}
+#page-analise-prescricao .rx-advanced>summary{cursor:pointer;font-weight:700;color:#34475a;line-height:1.5}
+@media(max-width:800px){
+ #page-analise-prescricao{padding-bottom:18px}
+ #page-analise-prescricao .rx-photo-hero{padding:17px 16px;border-radius:13px}
+ #page-analise-prescricao .rx-photo-hero>p{font-size:14px}
+ #page-analise-prescricao .rx-flow-steps{display:grid;grid-template-columns:1fr;gap:6px}
+ #page-analise-prescricao .rx-flow-steps span{border-radius:8px}
+ #page-analise-prescricao .rx-photo-card.card,#page-analise-prescricao #rxGeminiCard{padding:15px!important}
+ #page-analise-prescricao .rx-photo-actions{display:grid;grid-template-columns:1fr}
+ #page-analise-prescricao .rx-photo-actions button{width:100%;min-height:44px}
+ #page-analise-prescricao #rxGeminiResults table{display:block;overflow-x:auto;max-width:100%;white-space:normal}
+ #page-analise-prescricao #rxGeminiResults th,#page-analise-prescricao #rxGeminiResults td{min-width:115px}
+ #page-analise-prescricao #rxGeminiResults h2{font-size:17px}
+}
+</style>
+
+
+<style id="hnss-v57-analysis-visual-polish">
+/* V57 — refinamento visual apenas. Mantém intactos handlers, integrações e conteúdo clínico. */
+#page-analise-prescricao{max-width:1440px;margin-inline:auto;padding:4px 0 34px;color:#243244}
+#page-analise-prescricao .rx-photo-wrap{gap:18px}
+#page-analise-prescricao .rx-photo-hero{position:relative;overflow:hidden;padding:25px 27px;border:1px solid #dbe5e8;border-left:5px solid #168b88;border-radius:18px;background:linear-gradient(115deg,#fff 0%,#fbfdfd 72%,#f0f8f7 100%);box-shadow:0 5px 20px rgba(22,45,62,.055)}
+#page-analise-prescricao .rx-photo-hero .eyebrow{display:inline-flex;align-items:center;gap:7px;color:#147774;font-size:11px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+#page-analise-prescricao .rx-photo-hero h2{margin:8px 0 10px!important;font-size:clamp(25px,2.3vw,32px);line-height:1.18;letter-spacing:-.035em;color:#142c40}
+#page-analise-prescricao .rx-photo-hero>p{max-width:920px;font-size:15px;line-height:1.7;color:#566477}
+#page-analise-prescricao .rx-flow-steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:19px}
+#page-analise-prescricao .rx-flow-steps span{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border:1px solid #dce5e8;border-radius:10px;background:#fff;color:#526274;font-size:12px;font-weight:750;line-height:1.35}
+#page-analise-prescricao .rx-flow-steps .rx-flow-active{background:#e5f5f3;color:#116b68;border-color:#9fd5d0;box-shadow:inset 0 0 0 1px #d5efec}
+#page-analise-prescricao .rx-photo-warning{border:1px solid #eadbb6;border-radius:12px;background:#fffaf0;color:#6f541f;padding:13px 16px;font-size:13px;line-height:1.65}
+#page-analise-prescricao .rx-photo-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+#page-analise-prescricao .rx-photo-card.card,#page-analise-prescricao .rx-photo-card.rx-advanced{padding:20px 22px;border:1px solid #dfe7eb;border-radius:16px;background:#fff;box-shadow:0 3px 14px rgba(24,48,66,.035)}
+#page-analise-prescricao .rx-photo-card h3{display:flex;align-items:center;gap:9px;margin:0 0 14px;font-size:17px;line-height:1.4;color:#1b3548}
+#page-analise-prescricao .rx-photo-drop{min-height:155px;border:2px dashed #a9c9c7;border-radius:14px;background:#f7fbfb;padding:24px 20px;line-height:1.6;transition:background .15s,border-color .15s}
+#page-analise-prescricao .rx-photo-drop:hover{background:#f0f8f7;border-color:#168b88}
+#page-analise-prescricao .rx-photo-drop strong{font-size:16px;color:#213d4d}
+#page-analise-prescricao .rx-photo-drop p{max-width:760px;margin:8px auto!important;font-size:13px;line-height:1.6}
+#page-analise-prescricao .rx-photo-drop input{display:block;width:min(100%,420px);margin:14px auto 0;padding:9px;border:1px solid #d6e1e5;border-radius:10px;background:#fff;font-size:13px}
+#page-analise-prescricao .rx-photo-drop input::file-selector-button{margin-right:10px;padding:8px 12px;border:0;border-radius:7px;background:#e4f3f1;color:#145f5c;font-weight:750;cursor:pointer}
+#page-analise-prescricao .rx-photo-preview{max-width:100%;max-height:330px;object-fit:contain;border:1px solid #dfe7eb;border-radius:12px;background:#f7f9fa;padding:6px}
+#page-analise-prescricao .rx-photo-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:14px}
+#page-analise-prescricao .rx-photo-actions button{min-height:42px;padding:10px 15px;border-radius:10px;font-weight:750;line-height:1.35;transition:transform .12s,box-shadow .12s}
+#page-analise-prescricao .rx-photo-actions button:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(23,55,70,.1)}
+#page-analise-prescricao .rx-photo-actions .primary,#page-analise-prescricao #rxGeminiButton{border:1px solid #117b78!important;background:#138783!important;color:#fff!important;box-shadow:0 3px 0 #0d6b68;font-weight:800}
+#page-analise-prescricao .rx-photo-actions .primary:hover,#page-analise-prescricao #rxGeminiButton:hover{background:#0f7774!important}
+#page-analise-prescricao #rxPhotoStatus,#page-analise-prescricao #rxGeminiStatus{padding:13px 15px;border-radius:11px;font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+#page-analise-prescricao #rxPhotoStatus{background:#f6f9fa;border:1px solid #dfe7eb;color:#526274}
+#page-analise-prescricao #rxGeminiCard{margin-top:0!important;padding:22px!important;border:1px solid #cfe0df!important;border-top:4px solid #168b88!important;border-radius:16px!important;background:#fff!important;box-shadow:0 5px 18px rgba(22,45,62,.05)}
+#page-analise-prescricao #rxGeminiCard h3{margin:0 0 9px;font-size:20px;line-height:1.35;color:#17394a}
+#page-analise-prescricao #rxGeminiCard>.rx-photo-note{max-width:1000px;font-size:13px;line-height:1.65;color:#5d6d7e}
+#page-analise-prescricao #rxGeminiStatus{background:#f6f9fa;border:1px solid #dfe7eb;color:#526274}
+#page-analise-prescricao #rxGeminiButton{min-height:48px;padding:12px 20px;border-radius:11px;font-size:14px}
+#page-analise-prescricao #rxGeminiResults{margin-top:18px;min-width:0;overflow-wrap:anywhere;color:#29394b;font-size:14px;line-height:1.7}
+#page-analise-prescricao #rxGeminiResults h1,#page-analise-prescricao #rxGeminiResults h2,#page-analise-prescricao #rxGeminiResults h3,#page-analise-prescricao #rxGeminiResults h4{color:#1c3548;line-height:1.4;letter-spacing:-.015em}
+#page-analise-prescricao #rxGeminiResults h2{margin:24px 0 10px;padding:0 0 9px;border-bottom:1px solid #dfe8eb;font-size:19px}
+#page-analise-prescricao #rxGeminiResults h3{margin:20px 0 9px;padding:9px 12px;border-left:4px solid #168b88;border-radius:0 8px 8px 0;background:#f4f9f8;font-size:16px}
+#page-analise-prescricao #rxGeminiResults h4{margin:16px 0 7px;font-size:14px}
+#page-analise-prescricao #rxGeminiResults p{margin:8px 0;color:#344256;line-height:1.72}
+#page-analise-prescricao #rxGeminiResults ul,#page-analise-prescricao #rxGeminiResults ol{margin:9px 0 16px;padding-left:24px}
+#page-analise-prescricao #rxGeminiResults li{margin:5px 0;padding-left:2px;color:#344256;line-height:1.65}
+#page-analise-prescricao #rxGeminiResults table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0 18px;font-size:13px;line-height:1.55;border:1px solid #dfe7eb;border-radius:10px;overflow:hidden}
+#page-analise-prescricao #rxGeminiResults th{background:#edf4f4;color:#26444f;text-align:left;font-weight:800}
+#page-analise-prescricao #rxGeminiResults th,#page-analise-prescricao #rxGeminiResults td{padding:10px 12px;border-right:1px solid #e3eaed;border-bottom:1px solid #e3eaed;vertical-align:top;overflow-wrap:anywhere}
+#page-analise-prescricao #rxGeminiResults tr:last-child td{border-bottom:0}
+#page-analise-prescricao #rxGeminiResults th:last-child,#page-analise-prescricao #rxGeminiResults td:last-child{border-right:0}
+#page-analise-prescricao .rx-photo-note{font-size:12px;line-height:1.65;color:#667587}
+#page-analise-prescricao .rx-advanced{border:1px solid #dfe7eb;border-radius:12px;background:#fbfcfd;padding:14px 16px}
+#page-analise-prescricao .rx-advanced>summary{cursor:pointer;font-weight:750;color:#425568;line-height:1.5}
+#page-analise-prescricao input:focus-visible,#page-analise-prescricao select:focus-visible,#page-analise-prescricao button:focus-visible,#page-analise-prescricao summary:focus-visible{outline:3px solid #8bcac6;outline-offset:2px}
+@media(max-width:800px){
+ #page-analise-prescricao{padding:0 0 22px}
+ #page-analise-prescricao .rx-photo-wrap{gap:12px}
+ #page-analise-prescricao .rx-photo-hero{padding:19px 16px;border-radius:14px}
+ #page-analise-prescricao .rx-photo-hero h2{font-size:25px}
+ #page-analise-prescricao .rx-photo-hero>p{font-size:14px;line-height:1.6}
+ #page-analise-prescricao .rx-flow-steps{display:grid;grid-template-columns:1fr;gap:6px;margin-top:14px}
+ #page-analise-prescricao .rx-flow-steps span{padding:9px 11px}
+ #page-analise-prescricao .rx-photo-warning{font-size:12px;padding:11px 12px}
+ #page-analise-prescricao .rx-photo-card.card,#page-analise-prescricao .rx-photo-card.rx-advanced,#page-analise-prescricao #rxGeminiCard{padding:15px!important;border-radius:13px!important}
+ #page-analise-prescricao .rx-photo-drop{min-height:140px;padding:18px 12px}
+ #page-analise-prescricao .rx-photo-actions{display:grid;grid-template-columns:1fr;gap:8px}
+ #page-analise-prescricao .rx-photo-actions button,#page-analise-prescricao #rxGeminiButton{width:100%;min-height:45px;white-space:normal}
+ #page-analise-prescricao #rxGeminiCard h3{font-size:18px}
+ #page-analise-prescricao #rxGeminiResults{font-size:13px;line-height:1.65}
+ #page-analise-prescricao #rxGeminiResults h2{font-size:17px}
+ #page-analise-prescricao #rxGeminiResults h3{font-size:15px}
+ #page-analise-prescricao #rxGeminiResults table{display:block;overflow-x:auto;max-width:100%;white-space:normal}
+ #page-analise-prescricao #rxGeminiResults th,#page-analise-prescricao #rxGeminiResults td{min-width:125px;padding:9px}
+}
+@media(prefers-reduced-motion:reduce){#page-analise-prescricao *{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
-  HNSS 6.1.33 TESTE | Fase 10.55 — Relatório PDF legível | Banco preservado
+  HNSS 6.1.33 TESTE | Fase 10.56 — Layout Análise (teste) | Banco preservado
 </div>
-<div class="hnss603-tag">HNSS 6.1.33 TESTE | Fase 10.55 — Relatório PDF legível</div>
+<div class="hnss603-tag">HNSS 6.1.33 TESTE | Fase 10.56 — Layout Análise (teste)</div>
 <div id="login" class="login"><div class="card login-card"><div class="brand">🏥 HNSS · Assistência Farmacêutica</div><div class="muted">Sistema de apoio à Farmácia Clínica</div><form id="loginForm"><div class="field"><label>E-mail</label><input id="email" type="email" required autocomplete="email"></div><div class="field"><label>Senha</label><input id="password" type="password" required autocomplete="current-password"></div><button class="primary" style="width:100%">Entrar</button></form><div style="text-align:center;margin:14px 0;color:#697386;font-size:12px">OU</div><button id="googleLogin" type="button" class="secondary" style="width:100%">Continuar com Google</button><p id="loginMsg" class="muted" style="font-size:13px;margin-top:14px"></p></div></div>
 <div id="app" class="app hidden">
 <aside class="sidebar mobile-collapsed" id="hnssSidebar">
@@ -1423,7 +1553,8 @@ async function boot(){
     sb.auth.onAuthStateChange((event,s)=>{
       session=s;
       if(event==='SIGNED_OUT'){profile=null;cache={items:[],suppliers:[],purchases:[],requestItems:[],orders:[],quotes:[],consultations:[],audit:[],profiles:[]};showLogin();return}
-      if(s&&(event==='INITIAL_SESSION'||event==='SIGNED_IN'||event==='TOKEN_REFRESHED'))afterLogin();
+      // TOKEN_REFRESHED apenas atualiza a sessão: não reinicializar a tela nem voltar para Visita Multi.
+      if(s&&(event==='INITIAL_SESSION'||event==='SIGNED_IN'))afterLogin();
     });
     const r=await sb.auth.getSession();
     if(r.error)throw r.error;
@@ -1479,7 +1610,7 @@ async function retryInitialLoad(){
   const b=document.getElementById('hnssDataWarning');if(b)b.querySelector('button').disabled=true;
   try{await refresh();renderDashboard();mountExecutivePanel();clearDataLoadWarning();toast(`Estoque carregado: ${cache.items.length} itens.`)}catch(e){console.error('[HNSS] Retry:',e);showDataLoadWarning('Falha ao carregar o estoque: '+(e.message||'erro de conexão'))}
 }
-function showLogin(){$('login').classList.remove('hidden');$('app').classList.add('hidden')} function showApp(){ $('login').classList.add('hidden'); $('app').classList.remove('hidden'); const email=session?.user?.email||'Usuário autenticado';$('userInfo').textContent=email;const initials=email.split('@')[0].split(/[._ -]+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('')||'HN';if($('hnssUserAvatar'))$('hnssUserAvatar').textContent=initials;go('visita-multi'); renderPrescriptionPhoto(); }
+function showLogin(){$('login').classList.remove('hidden');$('app').classList.add('hidden')} function showApp(){ const wasAlreadyVisible=!$('app').classList.contains('hidden'); $('login').classList.add('hidden'); $('app').classList.remove('hidden'); const email=session?.user?.email||'Usuário autenticado';$('userInfo').textContent=email;const initials=email.split('@')[0].split(/[._ -]+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('')||'HN';if($('hnssUserAvatar'))$('hnssUserAvatar').textContent=initials;if(!wasAlreadyVisible){go('visita-multi');renderPrescriptionPhoto();} }
 $('loginForm').onsubmit=async e=>{e.preventDefault();if(!sb){$('loginMsg').textContent='Sistema indisponível. Tente novamente em instantes.';return}let {error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error)$('loginMsg').textContent=error.message};$('googleLogin').onclick=async()=>{if(!sb){$('loginMsg').textContent='Sistema indisponível. Tente novamente em instantes.';return}$('loginMsg').textContent='Redirecionando para o Google...';const redirectTo=window.location.origin+window.location.pathname;const {error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo}});if(error)$('loginMsg').textContent='Google indisponível: '+error.message};async function logout(){if(!sb){showLogin();return}const r=await sb.auth.signOut();if(r.error){console.error(r.error);toast('Não foi possível encerrar a sessão. Tente novamente.');return}profile=null;session=null;showLogin();$('email').value='';$('password').value='';$('loginMsg').textContent='Sessão encerrada com segurança.'} $('logout').onclick=logout;$('logoutTop').onclick=logout;
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
 const mobileNavToggle=document.getElementById('mobileNavToggle'); const mobileSidebar=document.querySelector('.sidebar'); if(mobileNavToggle&&mobileSidebar){mobileNavToggle.onclick=()=>{const open=mobileSidebar.classList.toggle('mobile-collapsed')===false; mobileNavToggle.setAttribute('aria-expanded',String(open)); mobileNavToggle.textContent=open?'✕ Fechar':'☰ Menu'}; document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{if(window.innerWidth<=700){mobileSidebar.classList.add('mobile-collapsed');mobileNavToggle.setAttribute('aria-expanded','false');mobileNavToggle.textContent='☰ Menu'}}));}
