@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HNSS · Assistência Farmacêutica</title>
+<title>HNSS · Assistência Farmacêutica · Relatórios V41 Layout</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -76,6 +76,65 @@ textarea{width:100%;box-sizing:border-box;padding:11px;border:1px solid #d6dce5;
 .base-pharm-detail-source{border-top:1px solid #e5ebf1;margin-top:16px;padding-top:12px;color:#66768a;font-size:12px;overflow-wrap:anywhere}
 .base-pharm-detail-source p{margin:5px 0}
 @media(max-width:700px){.base-pharm-grid{grid-template-columns:1fr}.base-pharm-item{padding:13px}.base-pharm-name{font-size:16px}.base-pharm-detail-grid{grid-template-columns:1fr}.base-pharm-detail-top{display:block}.base-pharm-detail-top .base-pharm-badge{margin-top:10px;max-width:100%}.modal{padding:8px}.modal-box{width:100%;max-width:100%;max-height:96vh;padding:16px}.base-pharm-card-foot{align-items:flex-start}.base-pharm-status-text{max-width:52%}}
+
+/* V41 — aprimoramento visual exclusivo da tela de relatórios clínicos */
+#page-relatorios .clinical-report-page{gap:18px}
+#page-relatorios .clinical-report-panel{padding:clamp(16px,2.2vw,28px);border:1px solid #dfe7ef;border-radius:20px;background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);box-shadow:0 12px 32px rgba(20,48,78,.07)}
+#page-relatorios .clinical-report-header{padding:0 0 18px;border-bottom:1px solid #e7edf4}
+#page-relatorios .clinical-report-header .eyebrow{color:#087f8c;font-weight:800;letter-spacing:.09em;font-size:11px}
+#page-relatorios .clinical-report-header h2{font-size:clamp(22px,2vw,29px);letter-spacing:-.035em;margin:7px 0 8px;color:#102b49}
+#page-relatorios .clinical-report-header p{max-width:760px;line-height:1.6;margin:0;color:#607186}
+#page-relatorios .clinical-report-filters{margin-top:18px;padding:16px 18px 10px;border:1px solid #e1e9f1;border-radius:15px;background:#f7fafc}
+#page-relatorios .clinical-report-filter-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#173b5b}
+#page-relatorios .clinical-report-filter-title strong{font-size:14px}
+#page-relatorios .clinical-report-filter-title span,#page-relatorios .clinical-report-section-title small{font-size:12px;color:#718096}
+#page-relatorios .clinical-report-filters .field{margin:0 0 8px}
+#page-relatorios .clinical-report-filters .field label{font-size:12px;color:#4a5c70}
+#page-relatorios .clinical-report-filters input,#page-relatorios .clinical-report-filters select{min-height:43px;border-color:#d5e0ea;border-radius:10px}
+#page-relatorios .clinical-report-actions{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 16px}
+#page-relatorios .clinical-report-actions button{min-height:42px;border-radius:10px;font-size:13px;font-weight:750;padding:10px 14px}
+#page-relatorios .clinical-report-actions .primary{background:linear-gradient(135deg,#087e8b,#0c9ca5);box-shadow:0 4px 10px rgba(8,126,139,.15)}
+#page-relatorios .clinical-report-actions .secondary{border-color:#d6e1eb;color:#25435f;background:#fff}
+#page-relatorios #clinicalReportStatus{border-radius:11px;background:#f0f8fa;border-color:#d5ebee;color:#426071;font-size:13px}
+#page-relatorios .clinical-report-kpi-section,#page-relatorios .clinical-report-section{margin-top:18px;padding:18px;border:1px solid #e2eaf2;border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(25,54,82,.035)}
+#page-relatorios .clinical-report-section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #edf1f5}
+#page-relatorios .clinical-report-section-title span{display:block;color:#07838d;font-size:10px;font-weight:850;letter-spacing:.12em;margin-bottom:4px}
+#page-relatorios .clinical-report-section-title h3{font-size:17px;color:#163653;margin:0;letter-spacing:-.02em}
+#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+#page-relatorios .clinical-directory-stat{position:relative;min-height:82px;padding:15px 15px 13px 18px;border:1px solid #e3eaf1;border-radius:13px;background:linear-gradient(135deg,#fff,#f9fbfd);overflow:hidden}
+#page-relatorios .clinical-directory-stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#0b91a0}
+#page-relatorios .clinical-directory-stat span{font-size:12px;line-height:1.4;color:#64758a;font-weight:650}
+#page-relatorios .clinical-directory-stat b{font-size:27px;line-height:1.15;margin-top:8px;color:#102b49;font-variant-numeric:tabular-nums}
+#page-relatorios .clinical-report-section .table-wrap{border:1px solid #e6edf3;border-radius:11px;overflow:auto}
+#page-relatorios .clinical-directory-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+#page-relatorios .clinical-directory-table th{padding:12px 14px;background:#eef5fa;color:#36536e;font-size:10px;letter-spacing:.075em;border-bottom:1px solid #dce6ee;white-space:normal}
+#page-relatorios .clinical-directory-table td{padding:11px 14px;border-bottom:1px solid #edf1f5;color:#34495e;font-size:13px;font-variant-numeric:tabular-nums}
+#page-relatorios .clinical-directory-table tbody tr:nth-child(even){background:#fafcfe}
+#page-relatorios .clinical-directory-table tbody tr:last-child td{border-bottom:0}
+#page-relatorios .clinical-directory-table tbody tr:hover{background:#f0f8fa}
+#page-relatorios .clinical-report-footnote{margin:16px 2px 0;padding:13px 15px;border-left:3px solid #7aaeb8;border-radius:0 10px 10px 0;background:#f4f8fa;color:#607186;font-size:12px;line-height:1.6}
+@media(min-width:1250px){#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#page-relatorios .clinical-report-panel{padding:17px}#page-relatorios .clinical-report-kpi-section,#page-relatorios .clinical-report-section{padding:14px}}
+@media(max-width:600px){#page-relatorios .clinical-directory-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#page-relatorios .clinical-directory-stat{min-height:76px;padding:12px 10px 10px 14px}#page-relatorios .clinical-directory-stat span{font-size:11px}#page-relatorios .clinical-directory-stat b{font-size:23px}#page-relatorios .clinical-report-actions{display:grid;grid-template-columns:1fr 1fr}#page-relatorios .clinical-report-actions button{width:100%;font-size:12px;padding:10px 8px}#page-relatorios .clinical-report-filter-title span{width:100%}#page-relatorios .clinical-report-section-title small{width:100%}#page-relatorios .clinical-report-section .table-wrap{overflow:visible}#page-relatorios .clinical-directory-table{font-size:12px}#page-relatorios .clinical-directory-table th,#page-relatorios .clinical-directory-table td{padding:9px 8px}}
+#page-relatorios .clinical-report-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#page-relatorios .clinical-report-chart-card{min-width:0;padding:16px;border:1px solid #e3eaf1;border-radius:14px;background:linear-gradient(180deg,#fff,#fbfdff)}
+#page-relatorios .clinical-report-chart-card.wide{grid-column:1/-1}
+#page-relatorios .clinical-report-chart-card h4{margin:0 0 5px;color:#173b5b;font-size:14px}
+#page-relatorios .clinical-report-chart-card p{margin:0 0 12px;color:#718096;font-size:11px;line-height:1.45}
+#page-relatorios .clinical-report-chart-card svg{display:block;width:100%;height:auto;max-height:290px;overflow:visible}
+#page-relatorios .clinical-chart-legend{display:flex;gap:8px 14px;flex-wrap:wrap;margin-top:10px}
+#page-relatorios .clinical-chart-legend span{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#52657a}
+#page-relatorios .clinical-chart-dot{width:9px;height:9px;border-radius:3px;display:inline-block;flex:none}
+#page-relatorios .clinical-chart-empty{padding:25px 12px;text-align:center;background:#f7fafc;border:1px dashed #d5e0ea;border-radius:10px;color:#718096;font-size:12px}
+#page-relatorios .clinical-chart-bars{display:grid;gap:11px}
+#page-relatorios .clinical-chart-bar-row{display:grid;grid-template-columns:minmax(90px,34%) minmax(0,1fr) 30px;align-items:center;gap:9px}
+#page-relatorios .clinical-chart-bar-label{font-size:11px;color:#4c6075;overflow-wrap:anywhere}
+#page-relatorios .clinical-chart-bar-track{height:10px;border-radius:20px;background:#edf2f7;overflow:hidden}
+#page-relatorios .clinical-chart-bar-fill{height:100%;border-radius:20px;min-width:0}
+#page-relatorios .clinical-chart-bar-value{font-size:11px;font-weight:800;color:#173b5b;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:700px){#page-relatorios .clinical-report-chart-grid{grid-template-columns:1fr}#page-relatorios .clinical-report-chart-card.wide{grid-column:auto}#page-relatorios .clinical-report-chart-card{padding:13px}#page-relatorios .clinical-report-chart-card svg{max-height:none}#page-relatorios .clinical-chart-bar-row{grid-template-columns:minmax(82px,38%) minmax(0,1fr) 24px;gap:7px}}
+
+
 </style><style id="hnss-rx-local-flow-fix">
 .rx-local-flow-status{margin-top:10px;padding:12px 14px;border:1px solid #d7e5f8;border-radius:12px;background:#f7faff;line-height:1.55;font-size:13px}
 .rx-local-flow-status strong{display:block;margin-bottom:5px}
@@ -3287,9 +3346,268 @@ function renderClinicalDashboard(){
   <div class="hnss-clinical-note"><div class="hnss-clinical-note-icon">✓</div><div><strong>Ambiente de Assistência Farmacêutica</strong><p>Os módulos clínicos existentes foram mantidos. Use os atalhos acima para navegar pelo sistema.</p></div></div>
  </div>`;
 }
-function renderClinicalReports(){
+let clinicalReportVisits=[];
+let clinicalReportInterventions=[];
+let clinicalReportReady=false;
+function clinicalReportDate(d){
+ if(!d)return '';
+ const x=String(d).slice(0,10);
+ return /^\d{4}-\d{2}-\d{2}$/.test(x)?x:'';
+}
+function clinicalReportDefaultDates(){
+ const now=new Date(),end=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);
+ const start=end.slice(0,8)+'01';return {start,end};
+}
+async function renderClinicalReports(){
  const sec=$('page-relatorios'); if(!sec)return;
- sec.innerHTML=`<div class="card panel"><div class="eyebrow">HNSS · FARMÁCIA CLÍNICA</div><h2>Relatórios clínicos</h2><p class="muted">Os relatórios disponíveis neste ambiente estão vinculados aos registros da análise de prescrição e das visitas multiprofissionais. Não há relatórios de estoque ou compras nesta área.</p><div class="toolbar"><button class="primary" onclick="go('visita-multi')">Consultar visitas e acompanhamentos</button><button class="secondary" onclick="go('analise-prescricao')">Consultar análise de prescrição</button></div><div class="process-banner process-incomplete"><strong>Nota:</strong> esta tela organiza os acessos clínicos; não cria nem altera registros do banco de dados.</div></div>`;
+ const dates=clinicalReportDefaultDates();
+ sec.innerHTML=`<div class="clinical-directory clinical-report-page"><div class="card panel clinical-report-panel">
+ <div class="clinical-report-header"><div class="eyebrow">HNSS · GESTÃO DA FARMÁCIA CLÍNICA</div><h2>Relatórios e indicadores assistenciais</h2>
+ <p class="muted">Acompanhe a produção assistencial, os riscos e os resultados das intervenções no período selecionado.</p></div>
+ <section class="clinical-report-filters"><div class="clinical-report-filter-title"><strong>Filtros do relatório</strong><span>Defina o período e o perfil dos registros</span></div><div class="form-grid" style="margin:12px 0 0;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end">
+ <div class="field"><label for="clinicalReportStart">Data inicial</label><input id="clinicalReportStart" type="date" value="${dates.start}" onchange="clinicalApplyReportFilters()"></div>
+ <div class="field"><label for="clinicalReportEnd">Data final</label><input id="clinicalReportEnd" type="date" value="${dates.end}" onchange="clinicalApplyReportFilters()"></div>
+ <div class="field"><label for="clinicalReportSector">Setor</label><select id="clinicalReportSector" onchange="clinicalApplyReportFilters()"><option value="">Todos os setores</option></select></div>
+ <div class="field"><label for="clinicalReportRisk">Risco farmacoterapêutico</label><select id="clinicalReportRisk" onchange="clinicalApplyReportFilters()"><option value="">Todos os riscos</option><option value="alto">Alto</option><option value="moderado">Moderado</option><option value="baixo">Baixo</option></select></div>
+ </div></section>
+ <div class="clinical-report-actions"><button class="primary" onclick="clinicalRefreshReports()">↻ Atualizar indicadores</button><button class="secondary" onclick="clinicalExportReportPdf()">▤ Exportar relatório PDF</button><button class="secondary" onclick="clinicalExportReportXlsx()">▦ Exportar Excel</button><button class="secondary" onclick="go('visita-multi')">Abrir visitas</button><button class="secondary" onclick="go('intervencoes')">Abrir intervenções</button></div>
+ <div id="clinicalReportStatus" class="process-banner">Carregando registros clínicos…</div>
+ <section class="clinical-report-kpi-section"><div class="clinical-report-section-title"><div><span>VISÃO GERAL</span><h3>Indicadores do período</h3></div><small>Atualizados conforme os filtros</small></div><div id="clinicalReportKpis" class="clinical-directory-stats" style="margin-top:14px"></div></section>
+ <section class="clinical-report-section clinical-report-charts-section"><div class="clinical-report-section-title"><div><span>PAINEL VISUAL</span><h3>Gráficos gerenciais</h3></div><small>Visualização dos dados registrados e filtrados</small></div><div id="clinicalReportCharts" class="clinical-report-chart-grid"></div></section>
+ <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>01 · VISITAS</span><h3>Indicadores de visitas</h3></div><small>Status e risco farmacoterapêutico</small></div><div id="clinicalReportVisitBreakdown" class="table-wrap"></div></section>
+ <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>02 · INTERVENÇÕES</span><h3>Intervenções farmacêuticas</h3></div><small>Situação e tipos de problema</small></div><div id="clinicalReportInterventionBreakdown" class="table-wrap"></div></section>
+ <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>03 · RESULTADOS</span><h3>Aceitação das recomendações</h3></div><small>Resposta da equipe às recomendações</small></div><div id="clinicalReportAcceptanceBreakdown" class="table-wrap"></div></section>
+ <section class="clinical-report-section"><div class="clinical-report-section-title"><div><span>04 · SETORES</span><h3>Resumo por setor</h3></div><small>Comparativo da atividade assistencial</small></div><div id="clinicalReportSectorBreakdown" class="table-wrap"></div></section>
+ <p class="clinical-report-footnote">Os indicadores refletem somente os dados registrados no sistema. A ausência de registro não significa ausência de atividade clínica. Revise os dados antes de utilizá-los em prestação de contas ou decisões assistenciais.</p>
+ </div></div>`;
+ await clinicalRefreshReports();
+}
+async function clinicalRefreshReports(){
+ const status=$('clinicalReportStatus');if(status)status.textContent='Atualizando registros do Supabase…';
+ try{
+  if(!sb||!session)throw new Error('Entre no sistema para gerar os relatórios.');
+  await ensureFreshSession(false);
+  const [vr,ir]=await Promise.all([
+   sb.from('pharmacy_multi_visits').select('*').order('visit_date',{ascending:false}),
+   sb.from('pharmacy_multi_interventions').select('*').order('created_at',{ascending:false})
+  ]);
+  if(vr.error)throw vr.error;
+  if(ir.error)throw ir.error;
+  clinicalReportVisits=vr.data||[];clinicalReportInterventions=ir.data||[];clinicalReportReady=true;
+  const sector=$('clinicalReportSector');if(sector){const old=sector.value;const vals=[...new Set(clinicalReportVisits.map(v=>(v.sector||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));sector.innerHTML='<option value="">Todos os setores</option>'+vals.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');sector.value=vals.includes(old)?old:'';}
+  if(status)status.className='process-banner';
+  clinicalApplyReportFilters();
+ }catch(e){clinicalReportReady=false;if(status){status.className='alert critical';status.textContent='Não foi possível gerar os indicadores: '+(e.message||'verifique a conexão e as permissões do Supabase.')}console.error('[Relatórios Farmácia Clínica]',e)}
+}
+function clinicalReportFiltered(){
+ const start=$('clinicalReportStart')?.value||'',end=$('clinicalReportEnd')?.value||'',sector=$('clinicalReportSector')?.value||'',risk=$('clinicalReportRisk')?.value||'';
+ const visits=clinicalReportVisits.filter(v=>{const d=clinicalReportDate(v.visit_date);return (!start||!d||d>=start)&&(!end||!d||d<=end)&&(!sector||(v.sector||'').trim()===sector)&&(!risk||v.risk_level===risk)});
+ const ids=new Set(visits.map(v=>String(v.id)));
+ const interventions=clinicalReportInterventions.filter(i=>{
+  const v=clinicalReportVisits.find(x=>String(x.id)===String(i.visit_id));
+  const d=clinicalReportDate(i.created_at)||clinicalReportDate(v?.visit_date);
+  return ids.has(String(i.visit_id))&&(!start||(!!d&&d>=start))&&(!end||(!!d&&d<=end));
+ });
+ return {visits,interventions,start,end,sector,risk};
+}
+function clinicalAcceptanceCategory(value){
+ const raw=String(value||'').trim();
+ if(!raw)return 'Pendente / sem resposta';
+ const v=raw.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[_-]+/g,' ').trim();
+ if(!v||/pendente|aguardando|sem resposta|nao informado/.test(v))return 'Pendente / sem resposta';
+ if(/parcial/.test(v))return 'Parcialmente aceita';
+ if(/nao aceita|recus|rejeit|nao ac/.test(v))return 'Não aceita';
+ if(/^aceita?$/.test(v)||/recomendacao aceita/.test(v))return 'Aceita';
+ return 'Outro / revisar';
+}
+function clinicalSvgDonut(title,items){
+ const total=items.reduce((a,x)=>a+Number(x.value||0),0);if(!total)return '<div class="clinical-chart-empty">Sem dados suficientes para este gráfico no período selecionado.</div>';
+ const colors=['#087fbd','#10a3a7','#e9a13a','#6478a8','#9aa9b8','#b2c5d4'];let offset=0;const circumference=2*Math.PI*43;
+ const circles=items.map((x,i)=>{const val=Math.max(0,Number(x.value||0)),len=circumference*val/total,el='<circle cx="60" cy="60" r="43" fill="none" stroke="'+colors[i%colors.length]+'" stroke-width="17" stroke-dasharray="'+len+' '+(circumference-len)+'" stroke-dashoffset="'+(-offset)+'" transform="rotate(-90 60 60)" />';offset+=len;return el}).join('');
+ const legend=items.map((x,i)=>'<span><i class="clinical-chart-dot" style="background:'+colors[i%colors.length]+'"></i>'+esc(x.label)+' <b>'+x.value+'</b> · '+Math.round(Number(x.value||0)/total*100)+'%</span>').join('');
+ return '<div style="display:grid;grid-template-columns:minmax(115px,42%) minmax(0,1fr);align-items:center;gap:12px"><svg viewBox="0 0 120 120" role="img" aria-label="'+esc(title)+'">'+circles+'<text x="60" y="57" text-anchor="middle" font-size="20" font-weight="800" fill="#173b5b">'+total+'</text><text x="60" y="72" text-anchor="middle" font-size="8" fill="#718096">registros</text></svg><div class="clinical-chart-legend" style="display:grid;gap:8px;margin:0">'+legend+'</div></div>';
+}
+function clinicalChartBars(items){
+ if(!items.length||!items.some(x=>Number(x.value)>0))return '<div class="clinical-chart-empty">Sem registros para comparar neste período.</div>';
+ const max=Math.max(1,...items.map(x=>Number(x.value)||0));
+ return '<div class="clinical-chart-bars">'+items.map(x=>'<div class="clinical-chart-bar-row"><div class="clinical-chart-bar-label">'+esc(x.label)+'</div><div class="clinical-chart-bar-track"><div class="clinical-chart-bar-fill" style="width:'+Math.max(0,Number(x.value)||0)/max*100+'%;background:'+(x.color||'#087fbd')+'"></div></div><div class="clinical-chart-bar-value">'+(Number(x.value)||0)+'</div></div>').join('')+'</div>';
+}
+function clinicalMonthlySvg(monthly){
+ if(monthly.length<2)return '<div class="clinical-chart-empty">O gráfico de evolução mensal aparecerá quando houver registros em pelo menos dois meses distintos.</div>';
+ const rows=monthly.slice(-8),W=720,H=245,L=42,R=14,T=14,B=44,pw=W-L-R,ph=H-T-B,max=Math.max(1,...rows.flatMap(x=>[x.visitas,x.concluidas,x.intervencoes]));
+ const y=v=>T+ph-(v/max)*ph,group=pw/rows.length,bw=Math.min(18,group/5);let svg='';
+ for(let j=0;j<5;j++){const val=Math.round(max*j/4),yy=y(val);svg+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#e8eef4"/><text x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="10" fill="#7b8a9a">'+val+'</text>';}
+ rows.forEach((m,i)=>{const cx=L+group*(i+.5);[[m.visitas,'#087fbd',-bw-2],[m.concluidas,'#10a3a7',0],[m.intervencoes,'#e9a13a',bw+2]].forEach(([v,c,dx])=>{const yy=y(v),hh=T+ph-yy;svg+='<rect x="'+(cx+dx-bw/2)+'" y="'+yy+'" width="'+bw+'" height="'+Math.max(0,hh)+'" rx="2" fill="'+c+'"><title>'+v+'</title></rect>';});svg+='<text x="'+cx+'" y="'+(H-20)+'" text-anchor="middle" font-size="10" fill="#5c6e80">'+esc(m.mes.slice(5,7)+'/'+m.mes.slice(2,4))+'</text>';});
+ return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolução mensal de visitas, visitas concluídas e intervenções">'+svg+'</svg><div class="clinical-chart-legend"><span><i class="clinical-chart-dot" style="background:#087fbd"></i>Visitas</span><span><i class="clinical-chart-dot" style="background:#10a3a7"></i>Concluídas</span><span><i class="clinical-chart-dot" style="background:#e9a13a"></i>Intervenções</span></div>';
+}
+function clinicalRenderReportCharts(d,vs,is,completed,open,high,follow,pending,resolved,monitor,acceptanceCounts){
+ const root=$('clinicalReportCharts');if(!root)return;
+ const risks=[{label:'Baixo',value:vs.filter(v=>v.risk_level==='baixo').length},{label:'Moderado',value:vs.filter(v=>v.risk_level==='moderado').length},{label:'Alto',value:high},{label:'Não classificado',value:vs.filter(v=>!v.risk_level).length}];
+ const status=[{label:'Concluídas',value:completed,color:'#10a3a7'},{label:'Em aberto',value:open,color:'#087fbd'},{label:'Em acompanhamento',value:follow,color:'#e9a13a'}];
+ const outcomes=[{label:'Pendentes',value:pending,color:'#e9a13a'},{label:'Em acompanhamento',value:monitor,color:'#087fbd'},{label:'Resolvidas',value:resolved,color:'#10a3a7'},{label:'Outros desfechos',value:Math.max(0,is.length-pending-monitor-resolved),color:'#7d8ca0'}];
+ const acceptance=[...acceptanceCounts.entries()].map(([label,value],i)=>({label,value,color:['#10a3a7','#087fbd','#d65b5b','#e9a13a','#7d8ca0'][i]}));
+ const types=new Map();is.forEach(i=>{const label=(i.problem_type||'Não classificado').trim();types.set(label,(types.get(label)||0)+1)});
+ const typeBars=[...types.entries()].sort((a,b)=>b[1]-a[1]).slice(0,6).map(([label,value])=>({label,value,color:'#087fbd'}));
+ const sectors=new Map();vs.forEach(v=>{const name=(v.sector||'Não informado').trim();if(!sectors.has(name))sectors.set(name,{visits:0,interventions:0});sectors.get(name).visits++});
+ is.forEach(i=>{const v=vs.find(x=>String(x.id)===String(i.visit_id));if(v){const name=(v.sector||'Não informado').trim();if(sectors.has(name))sectors.get(name).interventions++}});
+ const sectorBars=[...sectors.entries()].sort((a,b)=>b[1].visits-a[1].visits).slice(0,7).map(([label,x])=>({label,value:x.visits,color:'#087fbd'}));
+ const monthly=clinicalBuildMonthlyRows(clinicalReportExportRows());
+ root.innerHTML='<article class="clinical-report-chart-card wide"><h4>📈 Evolução mensal</h4><p>Comparação entre visitas registradas, visitas concluídas e intervenções.</p>'+clinicalMonthlySvg(monthly)+'</article>'+
+ '<article class="clinical-report-chart-card"><h4>Risco farmacoterapêutico</h4><p>Distribuição dos riscos registrados nas visitas filtradas.</p>'+clinicalSvgDonut('Risco farmacoterapêutico',risks)+'</article>'+
+ '<article class="clinical-report-chart-card"><h4>Situação das visitas</h4><p>Visão rápida do andamento dos atendimentos.</p>'+clinicalChartBars(status)+'</article>'+
+ '<article class="clinical-report-chart-card"><h4>Desfecho das intervenções</h4><p>Acompanhamento das recomendações farmacêuticas registradas.</p>'+clinicalChartBars(outcomes)+'</article>'+
+ '<article class="clinical-report-chart-card"><h4>Aceitação das recomendações</h4><p>Distribuição das respostas registradas para as intervenções.</p>'+clinicalSvgDonut('Aceitação das recomendações',acceptance)+'</article>'+
+ '<article class="clinical-report-chart-card"><h4>Tipos de problema</h4><p>Principais categorias registradas nas intervenções.</p>'+clinicalChartBars(typeBars)+'</article>'+
+ '<article class="clinical-report-chart-card wide"><h4>Atividade por setor</h4><p>Quantidade de visitas registradas por setor. O resumo detalhado permanece na tabela abaixo.</p>'+clinicalChartBars(sectorBars)+'</article>';
+}
+function clinicalApplyReportFilters(){
+ const k=$('clinicalReportKpis'),vb=$('clinicalReportVisitBreakdown'),ib=$('clinicalReportInterventionBreakdown'),ab=$('clinicalReportAcceptanceBreakdown'),sbx=$('clinicalReportSectorBreakdown'),status=$('clinicalReportStatus');if(!k||!vb||!ib||!sbx)return;
+ if(!clinicalReportReady){k.innerHTML='';if(ab)ab.innerHTML='';return}
+ const d=clinicalReportFiltered(),vs=d.visits,is=d.interventions;
+ const completed=vs.filter(v=>v.status==='avaliado').length,open=vs.filter(v=>v.status!=='avaliado').length,high=vs.filter(v=>v.risk_level==='alto').length,follow=vs.filter(v=>v.status==='reavaliar').length;
+ const pending=is.filter(i=>!i.outcome||i.outcome==='aguardando_retorno').length,resolved=is.filter(i=>i.outcome==='resolvida').length,monitor=is.filter(i=>i.outcome==='monitorar').length;
+ const acceptanceCounts=new Map([['Aceita',0],['Parcialmente aceita',0],['Não aceita',0],['Pendente / sem resposta',0],['Outro / revisar',0]]);
+ is.forEach(i=>{const c=clinicalAcceptanceCategory(i.acceptance);acceptanceCounts.set(c,(acceptanceCounts.get(c)||0)+1)});
+ const knownAcceptance=is.filter(i=>!['Pendente / sem resposta','Outro / revisar'].includes(clinicalAcceptanceCategory(i.acceptance))).length;
+ const accepted=is.filter(i=>['Aceita','Parcialmente aceita'].includes(clinicalAcceptanceCategory(i.acceptance))).length;
+ const cards=[['Visitas registradas',vs.length],['Visitas concluídas',completed],['Taxa de conclusão',vs.length?Math.round(completed/vs.length*100)+'%':'Não calculável'],['Visitas em aberto',open],['Risco alto',high],['Percentual de risco alto',vs.length?Math.round(high/vs.length*100)+'%':'Não calculável'],['Em acompanhamento',follow],['Intervenções registradas',is.length],['Intervenções pendentes',pending],['Intervenções resolvidas',resolved],['Taxa de resolução',is.length?Math.round(resolved/is.length*100)+'%':'Não calculável'],['Recomendações aceitas/parcialmente aceitas',accepted]];
+ k.innerHTML=cards.map(([label,n])=>'<div class="clinical-directory-stat"><span>'+label+'</span><b>'+n+'</b></div>').join('');
+ const riskRows=[['Baixo',vs.filter(v=>v.risk_level==='baixo').length],['Moderado',vs.filter(v=>v.risk_level==='moderado').length],['Alto',high],['Não classificado',vs.filter(v=>!v.risk_level).length]];
+ const statusRows=[['Concluída',completed],['Em andamento / pendente',vs.filter(v=>['pendente','em_avaliacao'].includes(v.status)||!v.status).length],['Em acompanhamento',follow],['Outros status',vs.filter(v=>!['avaliado','pendente','em_avaliacao','reavaliar',''].includes(v.status||'')).length]];
+ const table=(headers,rows)=>'<table class="clinical-directory-table"><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+esc(c??'—')+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ clinicalRenderReportCharts(d,vs,is,completed,open,high,follow,pending,resolved,monitor,acceptanceCounts);
+ vb.innerHTML=table(['Indicador','Quantidade'],[...statusRows,...riskRows]);
+ const typeMap=new Map();is.forEach(i=>{const t=(i.problem_type||'Não classificado').trim();typeMap.set(t,(typeMap.get(t)||0)+1)});
+ const outcomeRows=[['Pendente',pending],['Em acompanhamento',monitor],['Resolvido',resolved],['Outros desfechos',is.length-pending-monitor-resolved]];
+ ib.innerHTML=table(['Indicador','Quantidade'],[...outcomeRows,...[...typeMap.entries()].sort((a,b)=>b[1]-a[1]).map(([t,n])=>['Tipo de problema: '+t,n])]);
+ if(ab)ab.innerHTML=table(['Situação da recomendação','Quantidade','Percentual das intervenções'],[...([...acceptanceCounts.entries()].map(([label,n])=>[label,n,is.length?Math.round(n/is.length*100)+'%':'Não calculável'])),['Aceitação entre respostas registradas',knownAcceptance,knownAcceptance?Math.round(accepted/knownAcceptance*100)+'%':'Sem dados suficientes']]);
+ const sectors=new Map();vs.forEach(v=>{const name=(v.sector||'Não informado').trim();if(!sectors.has(name))sectors.set(name,{visits:0,high:0,completed:0,interventions:0});const x=sectors.get(name);x.visits++;if(v.risk_level==='alto')x.high++;if(v.status==='avaliado')x.completed++});
+ is.forEach(i=>{const v=vs.find(x=>String(x.id)===String(i.visit_id));if(v){const name=(v.sector||'Não informado').trim();if(sectors.has(name))sectors.get(name).interventions++}});
+ sbx.innerHTML=sectors.size?table(['Setor','Visitas','Concluídas','Risco alto','Intervenções'],[...sectors.entries()].sort((a,b)=>b[1].visits-a[1].visits).map(([name,x])=>[name,x.visits,x.completed,x.high,x.interventions])):'<p class="muted">Nenhum registro no período selecionado.</p>';
+ if(status){status.className='process-banner';status.textContent='Dados atualizados · '+vs.length+' visitas e '+is.length+' intervenções no período selecionado. Confirme os registros antes de exportar.'}
+}
+function clinicalReportExportRows(){
+ const d=clinicalReportFiltered(),vs=d.visits,is=d.interventions;
+ const summary=[
+  ['HNSS — Gestão da Farmácia Clínica'],['Período inicial',d.start||'Sem limite'],['Período final',d.end||'Sem limite'],['Setor',d.sector||'Todos'],['Risco',d.risk||'Todos'],['Visitas registradas',vs.length],['Visitas concluídas',vs.filter(v=>v.status==='avaliado').length],['Visitas em aberto',vs.filter(v=>v.status!=='avaliado').length],['Visitas com risco alto',vs.filter(v=>v.risk_level==='alto').length],['Visitas em acompanhamento',vs.filter(v=>v.status==='reavaliar').length],['Intervenções registradas',is.length],['Intervenções pendentes',is.filter(i=>!i.outcome||i.outcome==='aguardando_retorno').length],['Intervenções em acompanhamento',is.filter(i=>i.outcome==='monitorar').length],['Intervenções resolvidas',is.filter(i=>i.outcome==='resolvida').length]
+ ];
+ const visitRows=vs.map(v=>({'Paciente':v.patient_name||'', 'Prontuário':v.medical_record||'', 'Setor':v.sector||'', 'Leito':v.bed||'', 'Data da visita':v.visit_date||'', 'Risco':v.risk_level||'Não classificado','Status':multiStatusLabel(v.status)}));
+ const interventionRows=is.map(i=>{const v=vs.find(x=>String(x.id)===String(i.visit_id));return {'Paciente':v?.patient_name||'','Setor':v?.sector||'','Data da visita':v?.visit_date||'','Data do registro':clinicalReportDate(i.created_at),'Medicamento':i.medication_name||'','Tipo de problema':i.problem_type||'','Descrição':i.description||'','Conduta':i.conduct||'','Aceitação':i.acceptance||'Pendente','Desfecho':multiOutcomeLabel(i.outcome)}});
+ return {summary,visitRows,interventionRows,dates:d};
+}
+function clinicalBuildMonthlyRows(r){
+ const map=new Map();
+ const ensure=(key)=>{if(!map.has(key))map.set(key,{mes:key,visitas:0,concluidas:0,risco_alto:0,intervencoes:0});return map.get(key)};
+ r.visitRows.forEach(v=>{const d=clinicalReportDate(v['Data da visita']);if(!d)return;const m=d.slice(0,7),x=ensure(m);x.visitas++;if(v.Status==='Concluída')x.concluidas++;if(String(v.Risco||'').toLowerCase()==='alto')x.risco_alto++});
+ r.interventionRows.forEach(i=>{const d=clinicalReportDate(i['Data do registro'])||clinicalReportDate(i['Data da visita']);if(d)ensure(d.slice(0,7)).intervencoes++});
+ return [...map.values()].sort((a,b)=>a.mes.localeCompare(b.mes));
+}
+function clinicalBuildSectorRows(r){
+ const map=new Map();
+ r.visitRows.forEach(v=>{const name=(v['Setor']||'Não informado').trim();if(!map.has(name))map.set(name,{setor:name,visitas:0,concluidas:0,risco_alto:0,intervencoes:0});const x=map.get(name);x.visitas++;if(v.Status==='Concluída')x.concluidas++;if(String(v.Risco||'').toLowerCase()==='alto')x.risco_alto++});
+ r.interventionRows.forEach(i=>{const name=(i['Setor']||'Não informado').trim();if(!map.has(name))map.set(name,{setor:name,visitas:0,concluidas:0,risco_alto:0,intervencoes:0});map.get(name).intervencoes++});
+ return [...map.values()].sort((a,b)=>b.visitas-a.visitas||a.setor.localeCompare(b.setor,'pt-BR'));
+}
+function clinicalExportReportXlsx(){
+ try{
+  if(!clinicalReportReady)throw new Error('Atualize os indicadores antes de exportar.');
+  if(!window.XLSX)throw new Error('Biblioteca Excel indisponível.');
+  const r=clinicalReportExportRows(),wb=XLSX.utils.book_new();
+  const vs=r.visitRows,is=r.interventionRows,completed=vs.filter(v=>v.Status==='Concluída').length,high=vs.filter(v=>v.Risco==='alto').length;
+  const accepted=is.filter(i=>['Aceita','Parcialmente aceita','aceita','parcialmente_aceita'].includes(i['Aceitação'])).length;
+  const acceptanceKnown=is.filter(i=>i['Aceitação']&&i['Aceitação']!=='Pendente').length;
+  const resolvedCount=is.filter(i=>/resolvid/i.test(i['Desfecho']||'')).length;
+  const summary=[...r.summary,['Taxa de conclusão das visitas',vs.length?Math.round(completed/vs.length*100)+'%':'Não calculável'],['Taxa de risco alto',vs.length?Math.round(high/vs.length*100)+'%':'Não calculável'],['Taxa de resolução das intervenções',is.length?Math.round(resolvedCount/is.length*100)+'%':'Não calculável'],['Aceitação das recomendações (registros com resposta)',acceptanceKnown?Math.round(accepted/acceptanceKnown*100)+'%':'Sem dados suficientes'],['Data de emissão',new Date().toLocaleString('pt-BR')]];
+  const wsSummary=XLSX.utils.aoa_to_sheet(summary);wsSummary['!cols']=[{wch:54},{wch:26}];XLSX.utils.book_append_sheet(wb,wsSummary,'Resumo executivo');
+  const wsVisits=XLSX.utils.json_to_sheet(vs.length?vs:[{'Mensagem':'Nenhuma visita no período'}]);wsVisits['!cols']=[{wch:30},{wch:18},{wch:22},{wch:12},{wch:16},{wch:18},{wch:20}];XLSX.utils.book_append_sheet(wb,wsVisits,'Visitas');
+  const wsInts=XLSX.utils.json_to_sheet(is.length?is:[{'Mensagem':'Nenhuma intervenção no período'}]);wsInts['!cols']=[{wch:28},{wch:20},{wch:16},{wch:18},{wch:28},{wch:28},{wch:48},{wch:40},{wch:24},{wch:24}];XLSX.utils.book_append_sheet(wb,wsInts,'Intervenções');
+  const sectors=clinicalBuildSectorRows(r).map(x=>({'Setor':x.setor,'Visitas':x.visitas,'Concluídas':x.concluidas,'Risco alto':x.risco_alto,'Intervenções':x.intervencoes}));
+  const wsSectors=XLSX.utils.json_to_sheet(sectors.length?sectors:[{'Mensagem':'Nenhum registro no período'}]);wsSectors['!cols']=[{wch:28},{wch:14},{wch:16},{wch:14},{wch:16}];XLSX.utils.book_append_sheet(wb,wsSectors,'Resumo por setor');
+  const monthly=clinicalBuildMonthlyRows(r).map(x=>({'Mês':x.mes,'Visitas':x.visitas,'Concluídas':x.concluidas,'Risco alto':x.risco_alto,'Intervenções':x.intervencoes}));
+  const wsMonthly=XLSX.utils.json_to_sheet(monthly.length?monthly:[{'Mensagem':'Histórico mensal insuficiente no período'}]);wsMonthly['!cols']=[{wch:16},{wch:14},{wch:16},{wch:14},{wch:16}];XLSX.utils.book_append_sheet(wb,wsMonthly,'Evolução mensal');
+  const acceptanceCounts=new Map([['Aceita',0],['Parcialmente aceita',0],['Não aceita',0],['Pendente / sem resposta',0],['Outro / revisar',0]]);
+  is.forEach(i=>{const category=clinicalAcceptanceCategory(i['Aceitação']);acceptanceCounts.set(category,(acceptanceCounts.get(category)||0)+1)});
+  const acceptanceRows=[...acceptanceCounts.entries()].map(([status,count])=>({'Situação da recomendação':status,'Quantidade':count,'Percentual das intervenções':is.length?Math.round(count/is.length*100)+'%':'Não calculável'}));
+  acceptanceRows.push({'Situação da recomendação':'Aceitação entre respostas registradas','Quantidade':acceptanceKnown,'Percentual das intervenções':acceptanceKnown?Math.round(accepted/acceptanceKnown*100)+'%':'Sem dados suficientes'});
+  const wsAcceptance=XLSX.utils.json_to_sheet(acceptanceRows);wsAcceptance['!cols']=[{wch:36},{wch:16},{wch:28}];XLSX.utils.book_append_sheet(wb,wsAcceptance,'Aceitação recomendações');
+  const stamp=new Date().toISOString().slice(0,10);XLSX.writeFile(wb,'HNSS_Gestao_Farmacia_Clinica_'+stamp+'.xlsx');toast('Relatório Excel gerado com resumo, visitas, intervenções, setor e evolução mensal. Proteja o arquivo por conter dados assistenciais.');
+ }catch(e){toast(e.message||'Não foi possível exportar Excel.')}
+}
+function clinicalExportReportPdf(){
+ try{
+  if(!clinicalReportReady)throw new Error('Atualize os indicadores antes de exportar.');
+  const api=window.jspdf;if(!api?.jsPDF)throw new Error('Biblioteca PDF indisponível.');
+  const r=clinicalReportExportRows(),doc=new api.jsPDF({unit:'mm',format:'a4',orientation:'portrait'}),W=210,H=297,M=14,CW=W-M*2;
+  const visits=r.visitRows,ints=r.interventionRows,completed=visits.filter(v=>v.Status==='Concluída').length,open=visits.length-completed,high=visits.filter(v=>String(v.Risco||'').toLowerCase()==='alto').length,follow=visits.filter(v=>['Acompanhamento','Em acompanhamento'].includes(v.Status)).length;
+  const pending=ints.filter(i=>!i['Desfecho']||/pendente|aguardando/i.test(i['Desfecho'])).length,resolved=ints.filter(i=>/resolvid/i.test(i['Desfecho'])).length;
+  const accepted=ints.filter(i=>['Aceita','Parcialmente aceita','aceita','parcialmente_aceita'].includes(i['Aceitação'])).length,known=ints.filter(i=>i['Aceitação']&&i['Aceitação']!=='Pendente').length;
+  let y=0,page=1;
+  const navy=[12,43,83],blue=[0,132,190],teal=[15,159,166],pale=[239,246,251],ink=[35,48,64],muted=[91,108,126],lineColor=[218,228,237];
+  function header(first=false){
+   if(first){doc.setFillColor(...navy);doc.rect(0,0,W,39,'F');doc.setFillColor(...teal);doc.rect(0,37,W,2,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text('HNSS',M,13);doc.setFontSize(12);doc.text('GESTÃO DA FARMÁCIA CLÍNICA',M,22);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text('Relatório gerencial de indicadores assistenciais',M,30);y=48;}
+   else{doc.setFillColor(...navy);doc.rect(0,0,W,13,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text('HNSS  |  GESTÃO DA FARMÁCIA CLÍNICA',M,8.5);y=21;}
+  }
+  function newPage(){doc.addPage();page++;header(false)}
+  function ensure(h){if(y+h>H-17)newPage()}
+  function textLine(text,size=9,color=ink,step=5){doc.setFont('helvetica','normal');doc.setFontSize(size);doc.setTextColor(...color);const lines=doc.splitTextToSize(String(text??'—'),CW);ensure(lines.length*4.3+step);doc.text(lines,M,y);y+=lines.length*4.3+step;}
+  function section(title){ensure(13);y+=3;doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(...navy);doc.text(title,M,y);y+=3;doc.setDrawColor(...teal);doc.setLineWidth(.7);doc.line(M,y,W-M,y);y+=6;}
+  function table(headers,rows,widths){
+   const rowH=(cells,font=7.5)=>{doc.setFont('helvetica','normal');doc.setFontSize(font);return Math.max(7,...cells.map((c,i)=>doc.splitTextToSize(String(c??'—'),widths[i]-3).length*3.6+3.5))};
+   function drawHead(){ensure(9);doc.setFillColor(...navy);doc.rect(M,y,CW,8,'F');doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(255,255,255);let x=M;headers.forEach((h,i)=>{doc.text(String(h),x+1.5,y+5.2);x+=widths[i]});y+=8;}
+   drawHead();
+   if(!rows.length)rows=[['Nenhum registro no período',...headers.slice(1).map(()=> '—')]];
+   rows.forEach((cells,idx)=>{let h=rowH(cells);if(y+h>H-17){newPage();drawHead();h=rowH(cells)}doc.setFillColor(...(idx%2?[255,255,255]:pale));doc.rect(M,y,CW,h,'F');doc.setDrawColor(...lineColor);doc.setLineWidth(.15);doc.line(M,y+h,W-M,y+h);doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(...ink);let x=M;cells.forEach((c,i)=>{const ls=doc.splitTextToSize(String(c??'—'),widths[i]-3);doc.text(ls,x+1.5,y+4.1);x+=widths[i]});y+=h});y+=4;
+  }
+  function drawBarChart(title,items,color=blue){
+   section(title);
+   const usable=CW-49,max=Math.max(1,...items.map(x=>Number(x.value)||0));
+   if(!items.length||!items.some(x=>Number(x.value)>0)){textLine('Sem dados suficientes para comparação no período selecionado.',8,muted,3);return;}
+   items.forEach(item=>{ensure(8);const label=String(item.label||'Não classificado');doc.setFont('helvetica','normal');doc.setFontSize(7.2);doc.setTextColor(...ink);const lines=doc.splitTextToSize(label,39).slice(0,2);doc.text(lines,M,y+3.2);const barY=y+.3,barX=M+41;doc.setFillColor(...pale);doc.roundedRect(barX,barY,usable,4,1,1,'F');const val=Math.max(0,Number(item.value)||0);if(val){doc.setFillColor(...(item.color||color));doc.roundedRect(barX,barY,Math.max(1,usable*val/max),4,1,1,'F')}doc.setFont('helvetica','bold');doc.setFontSize(7.2);doc.setTextColor(...navy);doc.text(String(val),W-M,y+3.4,{align:'right'});y+=Math.max(7,lines.length*3.4+1)});y+=2;
+  }
+  header(true);
+  doc.setTextColor(...muted);doc.setFont('helvetica','normal');doc.setFontSize(8.5);
+  const period='Período: '+(r.dates.start||'sem limite inicial')+' a '+(r.dates.end||'sem limite final');doc.text(period,M,y);y+=5;doc.text('Setor: '+(r.dates.sector||'Todos os setores')+'   |   Risco: '+(r.dates.risk||'Todos os riscos'),M,y);y+=8;
+  section('RESUMO EXECUTIVO');
+  const cards=[['Visitas registradas',visits.length],['Visitas concluídas',completed],['Taxa de conclusão',visits.length?Math.round(completed/visits.length*100)+'%':'N/C'],['Visitas em aberto',open],['Risco alto',high],['Percentual de risco alto',visits.length?Math.round(high/visits.length*100)+'%':'N/C'],['Em acompanhamento',follow],['Intervenções registradas',ints.length],['Intervenções pendentes',pending],['Intervenções resolvidas',resolved],['Taxa de resolução',ints.length?Math.round(resolved/ints.length*100)+'%':'N/C'],['Aceitação registrada',known?Math.round(accepted/known*100)+'%':'Sem dados']];
+  const gap=3,cw=(CW-gap*3)/4,ch=17;
+  cards.forEach((c,i)=>{const col=i%4,row=Math.floor(i/4),x=M+col*(cw+gap),yy=y+row*(ch+2);doc.setFillColor(...pale);doc.roundedRect(x,yy,cw,ch,2,2,'F');doc.setFillColor(...(i===4?teal:blue));doc.roundedRect(x,yy,2,ch,1,1,'F');doc.setFont('helvetica','normal');doc.setFontSize(6.5);doc.setTextColor(...muted);doc.text(doc.splitTextToSize(String(c[0]),cw-7),x+5,yy+5);doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(...navy);doc.text(String(c[1]),x+5,yy+13)});y+=3*(ch+2)+5;
+  const monthly=clinicalBuildMonthlyRows(r);
+  section('EVOLUÇÃO MENSAL');
+  if(monthly.length>=2){
+   const chartX=M+3,chartW=CW-6,labelW=25,plotW=chartW-labelW-3,barH=3.1,groupH=17,max=Math.max(1,...monthly.map(x=>Math.max(x.visitas,x.concluidas,x.intervencoes)));
+   const shown=monthly.slice(-6);const legends=[['Visitas',blue],['Concluídas',teal],['Intervenções',[231,151,54]]];
+   let lx=M;legends.forEach(([lab,col])=>{doc.setFillColor(...col);doc.rect(lx,y,3,3,'F');doc.setFontSize(7);doc.setTextColor(...muted);doc.text(lab,lx+4,y+2.7);lx+=36});y+=5;
+   shown.forEach(m=>{ensure(groupH);doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.setTextColor(...ink);doc.text(m.mes,M+1,y+7);[[m.visitas,blue],[m.concluidas,teal],[m.intervencoes,[231,151,54]]].forEach(([v,col],j)=>{const yy=y+j*4.1;doc.setFillColor(...pale);doc.rect(chartX+labelW,yy,plotW,barH,'F');if(v){doc.setFillColor(...col);doc.rect(chartX+labelW,yy,Math.max(1,plotW*v/max),barH,'F')}doc.setFont('helvetica','normal');doc.setFontSize(6.5);doc.setTextColor(...muted);doc.text(String(v),chartX+labelW+plotW+2,yy+2.5)});y+=groupH});y+=3;
+  }else{textLine('Histórico mensal insuficiente para comparação. O gráfico será preenchido à medida que houver registros em mais de um mês.',8,muted,3)}
+  const riskChart=[{label:'Baixo',value:visits.filter(v=>String(v.Risco||'').toLowerCase()==='baixo').length,color:teal},{label:'Moderado',value:visits.filter(v=>String(v.Risco||'').toLowerCase()==='moderado').length,color:blue},{label:'Alto',value:high,color:[214,91,91]},{label:'Não classificado',value:visits.filter(v=>!v.Risco||v.Risco==='Não classificado').length,color:[154,169,184]}];
+  const statusChart=[{label:'Concluídas',value:completed,color:teal},{label:'Em aberto',value:open,color:blue},{label:'Em acompanhamento',value:follow,color:[231,161,58]}];
+  drawBarChart('DISTRIBUIÇÃO DE RISCO FARMACOTERAPÊUTICO',riskChart);
+  drawBarChart('SITUAÇÃO DAS VISITAS',statusChart);
+  const pdfAcceptance=new Map([['Aceita',0],['Parcialmente aceita',0],['Não aceita',0],['Pendente / sem resposta',0],['Outro / revisar',0]]);
+  ints.forEach(i=>{const c=clinicalAcceptanceCategory(i['Aceitação']);pdfAcceptance.set(c,(pdfAcceptance.get(c)||0)+1)});
+  drawBarChart('ACEITAÇÃO DAS RECOMENDAÇÕES',[...pdfAcceptance.entries()].map(([label,value],i)=>({label,value,color:[teal,blue,[214,91,91],[231,161,58],[125,140,160]][i]})));
+  const pdfTypes=new Map();ints.forEach(i=>{const t=(i['Tipo de problema']||'Não classificado').trim();pdfTypes.set(t,(pdfTypes.get(t)||0)+1)});
+  drawBarChart('PRINCIPAIS TIPOS DE PROBLEMA',[...pdfTypes.entries()].sort((a,b)=>b[1]-a[1]).slice(0,6).map(([label,value])=>({label,value,color:blue})));
+  const pdfSectorRows=clinicalBuildSectorRows(r);
+  drawBarChart('VISITAS POR SETOR',pdfSectorRows.slice(0,7).map(x=>({label:x.setor,value:x.visitas,color:teal})));
+  section('INDICADORES POR SITUAÇÃO E RISCO');
+  const riskCounts=[['Risco baixo',visits.filter(v=>v.Risco==='baixo').length],['Risco moderado',visits.filter(v=>v.Risco==='moderado').length],['Risco alto',high],['Risco não classificado',visits.filter(v=>!v.Risco||v.Risco==='Não classificado').length]];
+  table(['Indicador','Quantidade','Indicador','Quantidade'],[['Visitas concluídas',completed,'Visitas em aberto',open],['Em acompanhamento',follow,'Risco alto',high],...riskCounts.map((x,i)=>[x[0],x[1],i===0?'Intervenções pendentes':i===1?'Intervenções em acompanhamento':i===2?'Intervenções resolvidas':'Recomendações aceitas',i===0?pending:i===1?ints.filter(v=>/monitor/i.test(v['Desfecho']||'')).length:i===2?resolved:accepted])],[61,30,61,30]);
+  section('VISITAS REGISTRADAS');
+  table(['Paciente','Setor / leito','Data','Risco','Status'],visits.map(v=>[v.Paciente||'Não informado',(v.Setor||'Não informado')+' / '+(v.Leito||'—'),v['Data da visita']||'—',v.Risco||'Não classificado',v.Status||'—']),[47,42,27,28,38]);
+  section('INTERVENÇÕES FARMACÊUTICAS');
+  table(['Paciente / setor','Medicamento','Problema identificado','Aceitação','Desfecho'],ints.map(i=>[(i.Paciente||'Não identificado')+' / '+(i.Setor||'—'),i.Medicamento||'Não informado',i['Tipo de problema']||'Não classificado',i['Aceitação']||'Pendente',i['Desfecho']||'Pendente']),[39,31,47,31,34]);
+  section('ACEITAÇÃO DAS RECOMENDAÇÕES');
+  const acceptanceCounts=new Map([['Aceita',0],['Parcialmente aceita',0],['Não aceita',0],['Pendente / sem resposta',0],['Outro / revisar',0]]);
+  ints.forEach(i=>{const c=clinicalAcceptanceCategory(i['Aceitação']);acceptanceCounts.set(c,(acceptanceCounts.get(c)||0)+1)});
+  table(['Situação','Quantidade','Situação','Quantidade'],[['Aceita',acceptanceCounts.get('Aceita'),'Parcialmente aceita',acceptanceCounts.get('Parcialmente aceita')],['Não aceita',acceptanceCounts.get('Não aceita'),'Pendente / sem resposta',acceptanceCounts.get('Pendente / sem resposta')],['Outro / revisar',acceptanceCounts.get('Outro / revisar'),'Aceitação entre respostas',known?Math.round(accepted/known*100)+'%':'Sem dados']],[61,30,61,30]);
+  section('RESUMO POR SETOR');
+  const sectors=clinicalBuildSectorRows(r);
+  table(['Setor','Visitas','Concluídas','Risco alto','Intervenções'],sectors.map(x=>[x.setor,x.visitas,x.concluidas,x.risco_alto,x.intervencoes]),[72,24,28,27,31]);
+  ensure(15);doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(...muted);doc.text(doc.splitTextToSize('Nota metodológica: os indicadores refletem exclusivamente os registros existentes no sistema e os filtros selecionados. Ausência de registro não comprova ausência de atividade clínica. Confira os dados antes de utilizar este relatório em decisões assistenciais ou prestação de contas.',CW),M,y);y+=8;
+  const total=doc.getNumberOfPages();for(let i=1;i<=total;i++){doc.setPage(i);doc.setDrawColor(...lineColor);doc.line(M,H-12,W-M,H-12);doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(...muted);doc.text('HNSS · Uso interno · Dados assistenciais confidenciais',M,H-7);doc.text('Página '+i+' de '+total,W-M,H-7,{align:'right'});}
+  doc.save('HNSS_Gestao_Farmacia_Clinica_'+new Date().toISOString().slice(0,10)+'.pdf');toast('Relatório gerencial PDF gerado. Confira os indicadores e proteja o arquivo por conter dados assistenciais.');
+ }catch(e){console.error('[PDF Gestão Farmácia Clínica]',e);toast(e.message||'Não foi possível exportar PDF.')}
 }
 function renderDedicatedPharmBase(){
  const root=$('page-base-farmacologica');if(!root)return;
