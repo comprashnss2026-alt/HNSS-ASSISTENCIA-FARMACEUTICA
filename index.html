@@ -43,6 +43,7 @@ textarea{width:100%;box-sizing:border-box;padding:11px;border:1px solid #d6dce5;
 
 
 /* Base Farmacológica: navegação por cartões, sem tabela horizontal */
+.base-pharm-pagination{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;padding:12px;border-top:1px solid #e8edf3}.base-pharm-pagination button{min-width:94px}.base-pharm-page-label{font-size:13px;color:#52657c;font-weight:700;text-align:center;min-width:115px}.base-pharm-search-main{flex:1 1 360px;min-width:min(100%,260px)!important}.base-pharm-search-main input{width:100%;font-size:16px}
 .base-pharm-tools{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
 .base-pharm-tools input,.base-pharm-tools select{min-height:44px}
 .base-pharm-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -3106,19 +3107,27 @@ function renderClinicalReports(){
 function renderDedicatedPharmBase(){
  const root=$('page-base-farmacologica');if(!root)return;
  const rows=typeof rxLoadPharmBase==='function'?rxLoadPharmBase():[];
- root.innerHTML=`<div class="card panel"><div class="eyebrow">HNSS · FARMÁCIA CLÍNICA</div><h2>Base Farmacológica</h2><p class="muted">Consulta técnica de medicamentos e gerenciamento da base. A análise de prescrições com Gemini permanece exclusivamente na tela Análise de Prescrição.</p>
+ root.innerHTML=`<div class="card panel"><div class="eyebrow">HNSS · FARMÁCIA CLÍNICA</div><h2>Base Farmacológica</h2><p class="muted">Pesquise um medicamento para abrir sua ficha completa. A análise com Gemini fica na tela Análise de Prescrição.</p>
  <div class="process-banner process-incomplete"><strong>Atenção:</strong> os registros iniciais são referências de identificação e ainda precisam de revisão farmacêutica. Não representam uma base completa/validada de doses ou interações.</div>
  <div class="toolbar" style="flex-wrap:wrap"><button class="primary" type="button" onclick="rxImportPharmBase();setTimeout(renderDedicatedPharmBase,700)">Atualizar base (Excel/CSV/JSON)</button><button class="secondary" type="button" onclick="rxExportPharmBase()">Exportar backup JSON</button><button class="secondary" type="button" onclick="rxDownloadBaseTemplate()">Baixar modelo CSV</button></div>
  <div class="base-pharm-tools">
-   <div class="field" style="margin:14px 0;flex:1;min-width:240px"><label for="basePharmSearch">Pesquisar medicamento, princípio ativo ou sinônimo</label><input id="basePharmSearch" type="search" placeholder="Ex.: dipirona, ceftriaxona…" oninput="renderDedicatedPharmBaseTable()"></div>
-   <div class="field" style="margin:14px 0;min-width:190px"><label for="basePharmReviewFilter">Situação da revisão</label><select id="basePharmReviewFilter" onchange="renderDedicatedPharmBaseTable()"><option value="all">Todos os medicamentos</option><option value="pending">Pendentes de revisão</option><option value="reviewed">Com data de conferência</option></select></div>
+   <div class="field" style="margin:14px 0;flex:1;min-width:240px"><label for="basePharmSearch">Pesquisar medicamento, princípio ativo ou sinônimo</label><input id="basePharmSearch" type="search" placeholder="Ex.: dipirona, ceftriaxona…" oninput="basePharmPage=1;renderDedicatedPharmBaseTable()"></div>
+   <div class="field" style="margin:14px 0;min-width:190px"><label for="basePharmReviewFilter">Situação da revisão</label><select id="basePharmReviewFilter" onchange="basePharmPage=1;renderDedicatedPharmBaseTable()"><option value="all">Todos os medicamentos</option><option value="pending">Pendentes de revisão</option><option value="reviewed">Com data de conferência</option></select></div>
  </div>
- <div id="basePharmSummary" class="rx-photo-status"></div><div id="basePharmEntries" class="base-pharm-grid" style="margin-top:12px"></div>
+ <div id="basePharmSummary" class="rx-photo-status"></div><div id="basePharmEntries" class="base-pharm-grid" style="margin-top:12px"></div><div id="basePharmPagination" class="base-pharm-pagination"></div>
  <div class="process-banner" style="margin-top:14px"><strong>Como atualizar:</strong> revise a planilha, importe o arquivo e confira a quantidade de registros. Faça backup antes de substituir a base. Os dados são armazenados neste navegador e não sincronizam automaticamente com o Supabase.</div></div>`;
  renderDedicatedPharmBaseTable();
 }
+let basePharmPage=1;
+const BASE_PHARM_PAGE_SIZE=8;
+function basePharmChangePage(delta){
+ const sum=$('basePharmSummary');
+ const pages=Math.max(1,Math.ceil(Number(sum?.dataset?.filteredCount||0)/BASE_PHARM_PAGE_SIZE));
+ basePharmPage=Math.min(pages,Math.max(1,basePharmPage+delta));
+ renderDedicatedPharmBaseTable();
+}
 function renderDedicatedPharmBaseTable(){
- const out=$('basePharmEntries'),sum=$('basePharmSummary');if(!out||!sum)return;
+ const out=$('basePharmEntries'),sum=$('basePharmSummary'),pager=$('basePharmPagination');if(!out||!sum)return;
  const all=typeof rxLoadPharmBase==='function'?rxLoadPharmBase():[];
  const q=($('basePharmSearch')?.value||'').trim().toLocaleLowerCase('pt-BR');
  const reviewFilter=$('basePharmReviewFilter')?.value||'all';
@@ -3129,14 +3138,22 @@ function renderDedicatedPharmBaseTable(){
    return text.includes(q)&&(reviewFilter==='all'||(reviewFilter==='reviewed'?reviewed:!reviewed));
  });
  const reviewedCount=all.filter(x=>x.reviewed_at).length;
- sum.innerHTML='<div class="base-pharm-summary-row"><div><strong>'+all.length+' medicamentos cadastrados</strong><div class="muted">Exibindo '+filtered.length+' resultado(s) · '+reviewedCount+' com data de conferência · '+(all.length-reviewedCount)+' sem data de conferência</div></div><span class="base-pharm-tip">Selecione “Ver detalhes” para abrir a ficha completa</span></div>';
- out.innerHTML=filtered.length?filtered.map(x=>{
+ const pageCount=Math.max(1,Math.ceil(filtered.length/BASE_PHARM_PAGE_SIZE));
+ basePharmPage=Math.min(Math.max(1,basePharmPage),pageCount);
+ const start=(basePharmPage-1)*BASE_PHARM_PAGE_SIZE;
+ const visible=filtered.slice(start,start+BASE_PHARM_PAGE_SIZE);
+ sum.dataset.filteredCount=String(filtered.length);
+ sum.innerHTML='<div class="base-pharm-summary-row"><div><strong>'+all.length+' medicamentos cadastrados</strong><div class="muted">Encontrados: '+filtered.length+' · Exibindo '+(filtered.length?start+1:0)+'–'+Math.min(start+BASE_PHARM_PAGE_SIZE,filtered.length)+' · '+reviewedCount+' com data de conferência</div></div><span class="base-pharm-tip">Pesquise e abra “Ver detalhes”</span></div>';
+ out.innerHTML=visible.length?visible.map(x=>{
    const c=x.clinical||{};const ix=all.indexOf(x);
    const presentation=c['Apresentações vinculadas']||c['Apresentação']||'Apresentação não informada';
    const status=c['Status de revisão original']||c['Status da consolidação']||(x.reviewed_at?'Com data de conferência':'Pendente de revisão');
    const reviewed=!!x.reviewed_at;
    return '<article class="base-pharm-item"><div class="base-pharm-item-head"><div class="base-pharm-name">'+rxEscapeHtml(x.name||'Medicamento sem nome')+'</div><span class="base-pharm-badge '+(reviewed?'reviewed':'pending')+'">'+(reviewed?'Conferência registrada':'Revisão pendente')+'</span></div><div class="base-pharm-ingredient"><span>Princípio ativo</span><strong>'+rxEscapeHtml(x.ingredient||'A confirmar')+'</strong></div><div class="base-pharm-presentation"><span>Apresentação</span><div>'+rxEscapeHtml(presentation)+'</div></div><div class="base-pharm-card-foot"><span class="base-pharm-status-text">'+rxEscapeHtml(status)+'</span><button class="primary" type="button" onclick="rxShowPharmDetail('+ix+')">Ver detalhes <span aria-hidden="true">→</span></button></div></article>';
- }).join(''):'<div class="base-pharm-empty"><strong>Nenhum medicamento encontrado.</strong><p class="muted">Tente outro nome, princípio ativo ou altere o filtro de revisão.</p></div>';
+ }).join(''):'<div class="base-pharm-empty"><strong>Nenhum medicamento encontrado.</strong><p class="muted">Tente outro nome ou altere o filtro de revisão.</p></div>';
+ if(pager){
+   pager.innerHTML=filtered.length>BASE_PHARM_PAGE_SIZE?'<button class="secondary" type="button" '+(basePharmPage===1?'disabled':'')+' onclick="basePharmChangePage(-1)">← Anterior</button><span class="base-pharm-page-label">Página '+basePharmPage+' de '+pageCount+'</span><button class="secondary" type="button" '+(basePharmPage===pageCount?'disabled':'')+' onclick="basePharmChangePage(1)">Próxima →</button>':'';
+ }
 }
 function rxShowPharmDetail(index){
  const all=rxLoadPharmBase();const x=all[index];if(!x)return;
