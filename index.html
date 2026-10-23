@@ -741,6 +741,153 @@ html, body { max-width:100% !important; }
   }
 }
 </style>
+
+<style id="hnss-v27-mobile-app-design">
+/* V27: camada visual responsiva inspirada na referência enviada.
+   Preserva scripts, autenticação, banco, Gemini e ações existentes. */
+@media (max-width:700px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden!important;background:#eef3f8!important}
+  #app.app:not(.hidden){display:block!important;width:100%!important;min-height:100dvh!important;overflow-x:clip!important}
+  #app.app:not(.hidden)>main.main,#app.app:not(.hidden)>.main{
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    margin:0!important;padding:0 14px 24px!important;overflow:visible!important;
+    box-sizing:border-box!important
+  }
+  /* Header compacto, fixo no topo */
+  #app .main>.top{
+    position:sticky!important;top:0!important;z-index:900!important;
+    display:flex!important;align-items:center!important;gap:10px!important;
+    margin:0 -14px 18px!important;padding:12px 14px!important;
+    min-height:78px!important;background:linear-gradient(135deg,#0b2038,#123d5b)!important;
+    color:#fff!important;border-radius:0 0 18px 18px!important;
+    box-shadow:0 8px 24px rgba(6,25,44,.16)!important
+  }
+  #app .hnss-menu-launcher{
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    flex:0 0 42px!important;width:42px!important;height:42px!important;
+    border:0!important;border-radius:12px!important;background:#164e70!important;
+    color:#fff!important;font-size:22px!important;padding:0!important
+  }
+  #app .hnss-top-title{flex:1!important;min-width:0!important}
+  #app .hnss-top-title h1,#app #pageTitle{
+    color:#fff!important;font-size:clamp(16px,4.7vw,21px)!important;
+    line-height:1.2!important;margin:0!important;overflow-wrap:anywhere!important
+  }
+  #app #userInfo{color:#d4e4ef!important;font-size:11px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  #app .hnss-top-actions{display:flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important}
+  #app #newBtn{max-width:94px!important;white-space:normal!important;font-size:11px!important;padding:9px 10px!important}
+  #app .hnss-avatar{width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:50%!important}
+  #app .logout-top{display:none!important}
+  /* Menu vira gaveta independente com rolagem própria */
+  #app.app:not(.hidden)>#hnssSidebar.sidebar,
+  #app.app:not(.hidden)>aside.sidebar{
+    position:fixed!important;left:0!important;top:0!important;bottom:0!important;
+    inset-block:auto 0!important;z-index:10010!important;
+    display:flex!important;flex-direction:column!important;
+    width:min(82vw,300px)!important;max-width:300px!important;height:100dvh!important;
+    min-width:0!important;max-height:100dvh!important;margin:0!important;
+    padding:18px 12px 14px!important;overflow-x:hidden!important;overflow-y:auto!important;
+    overscroll-behavior:contain!important;background:linear-gradient(180deg,#0c2139,#103b58)!important;
+    box-shadow:12px 0 32px rgba(3,18,32,.24)!important;
+    transform:translateX(0)!important;transition:transform .22s ease!important
+  }
+  #app #hnssSidebar.mobile-collapsed{transform:translateX(-105%)!important;visibility:hidden!important;pointer-events:none!important}
+  #app #hnssSidebar .brand{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:4px 8px 20px!important;font-size:20px!important}
+  #app #hnssSidebar .brand small{font-size:11px!important;color:#c8d8e7!important}
+  #app #hnssSidebar .mobile-nav-toggle{display:none!important}
+  #app #hnssSidebar .nav{display:block!important;flex:1 1 auto!important;min-height:0!important;overflow:visible!important}
+  #app #hnssSidebar .nav button{display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:48px!important;white-space:normal!important;text-align:left!important;padding:12px 10px!important;border-radius:11px!important;color:#dce9f5!important;font-size:14px!important}
+  #app #hnssSidebar .nav button.active{background:#087f95!important;color:#fff!important;box-shadow:inset 3px 0 #38d4df!important}
+  #app #hnssSidebar #logout{margin-top:16px!important;flex:0 0 auto!important}
+  #app .hnss-nav-backdrop{display:none!important;position:fixed!important;inset:0!important;z-index:10000!important;background:rgba(4,17,30,.56)!important}
+  #app #hnssSidebar:not(.mobile-collapsed)+.hnss-nav-backdrop{display:block!important}
+  /* Cartões e formulários fluidos */
+  #app .card,#app .panel,#app .dash-card,#app .dash-kpi,#app .kpi,
+  #app .abc-kpi,#app .abc-chart{max-width:100%!important;min-width:0!important;border-radius:16px!important}
+  #app .kpis,#app .dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  #app .grid,#app .dash-grid,#app .abc-layout{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+  #app .form-grid{grid-template-columns:minmax(0,1fr)!important}
+  #app input,#app select,#app textarea,#app button{max-width:100%}
+  #app input,#app select,#app textarea{min-width:0!important}
+  #app .toolbar{align-items:stretch!important}
+  #app .toolbar input{width:100%!important;min-width:0!important}
+  #app .table-wrap,#app .abc-table{max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important}
+  #app .modal{padding:8px!important;place-items:center!important}
+  #app .modal-box{width:100%!important;max-width:100%!important;max-height:94dvh!important;padding:16px!important}
+  #app .dash-head{align-items:flex-start!important;gap:10px!important;flex-direction:column!important}
+  #app section{min-width:0!important;max-width:100%!important}
+}
+@media (max-width:390px){
+  #app.app:not(.hidden)>main.main,#app.app:not(.hidden)>.main{padding-left:10px!important;padding-right:10px!important}
+  #app .main>.top{margin-left:-10px!important;margin-right:-10px!important;padding-left:10px!important;padding-right:10px!important;gap:7px!important}
+  #app .kpis,#app .dash-kpis{grid-template-columns:minmax(0,1fr)!important}
+  #app #newBtn{max-width:74px!important}
+}
+</style>
+
+
+<style id="hnss-mobile-flow-fix-v28">
+/* V28: corrigir somente o fluxo visual em celulares. Desktop e lógica do app permanecem inalterados. */
+@media screen and (max-width: 760px) {
+  html, body { width:100% !important; max-width:100% !important; overflow-x:hidden !important; }
+  #app.app:not(.hidden) {
+    display:block !important; position:relative !important;
+    width:100% !important; max-width:100% !important; min-width:0 !important;
+    margin:0 !important; padding:0 !important; overflow:visible !important;
+  }
+  /* O menu sai do fluxo normal para não empurrar o conteúdo para baixo. */
+  #app.app:not(.hidden) > #hnssSidebar.sidebar {
+    position:fixed !important; inset:0 auto 0 0 !important;
+    width:min(86vw, 300px) !important; min-width:0 !important; max-width:300px !important;
+    height:100vh !important; height:100dvh !important; min-height:0 !important; max-height:100dvh !important;
+    margin:0 !important; padding:14px 10px 24px !important;
+    overflow-x:hidden !important; overflow-y:auto !important;
+    transform:translateX(-105%) !important; transition:transform .22s ease !important;
+    pointer-events:none !important; z-index:10002 !important;
+    box-sizing:border-box !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar.mobile-collapsed {
+    transform:translateX(-105%) !important; pointer-events:none !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar:not(.mobile-collapsed) {
+    transform:translateX(0) !important; pointer-events:auto !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar .nav {
+    display:block !important; width:100% !important; overflow:visible !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar .nav button {
+    display:block !important; width:100% !important; min-width:0 !important;
+    min-height:44px !important; text-align:left !important; white-space:normal !important;
+    overflow-wrap:anywhere !important; box-sizing:border-box !important;
+  }
+  #app.app:not(.hidden) > .hnss-nav-backdrop,
+  #app.app:not(.hidden) > #hnssNavBackdrop {
+    display:none !important; position:fixed !important; inset:0 !important;
+    width:100vw !important; height:100dvh !important;
+    background:rgba(5,19,32,.55) !important; z-index:10001 !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar:not(.mobile-collapsed) + .hnss-nav-backdrop,
+  #app.app:not(.hidden) > #hnssSidebar.sidebar:not(.mobile-collapsed) + #hnssNavBackdrop {
+    display:block !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main {
+    display:block !important; position:relative !important; inset:auto !important;
+    float:none !important; transform:none !important;
+    margin:0 !important; padding:12px 12px 28px !important;
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+    box-sizing:border-box !important; overflow-x:hidden !important;
+  }
+  #app .top { min-width:0 !important; max-width:100% !important; flex-wrap:wrap !important; }
+  #app .hnss-top-title { min-width:0 !important; max-width:100% !important; overflow-wrap:anywhere !important; }
+  #app .hnss-top-title h1, #app #pageTitle { font-size:clamp(22px, 6vw, 32px) !important; line-height:1.15 !important; overflow-wrap:anywhere !important; }
+  #app .hnss-top-actions { min-width:0 !important; max-width:100% !important; flex-wrap:wrap !important; }
+  #app .card, #app .panel, #app .section, #app .form-section,
+  #app .grid, #app .form-grid, #app .kpis, #app .dash-kpis {
+    min-width:0 !important; max-width:100% !important; box-sizing:border-box !important;
+  }
+}
+</style>
 </head>
 <body data-hnss-version="6.1.33-FASE9.3.1-TESTE" data-environment="production">
 <div id="hnss60Banner" style="position:fixed;bottom:12px;left:12px;z-index:99999;background:#10233f;color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;box-shadow:0 8px 20px #0003">
@@ -1088,6 +1235,11 @@ function multiDeleteVisit(id){const v=multiVisits.find(x=>String(x.id)===String(
 async function multiConfirmDeleteVisit(id){const v=multiVisits.find(x=>String(x.id)===String(id));if(!v){toast('Visita não encontrada. Atualize a lista.');closeModal();return}if($('multiDeleteConfirmText')?.value.trim()!=='EXCLUIR'){toast('Digite EXCLUIR para confirmar.');return}const btn=$('multiDeleteConfirmBtn');if(btn){btn.disabled=true;btn.textContent='Excluindo…'}try{await ensureFreshSession(false);const r=await sb.from('pharmacy_multi_visits').delete().eq('id',id).select('id,patient_name').single();if(r.error)throw r.error;if(!r.data)throw new Error('O banco não confirmou a exclusão. Verifique as permissões e tente novamente.');closeModal();toast('Visita e registros associados excluídos.');await loadMultiVisits()}catch(e){if(btn){btn.disabled=false;btn.textContent='Excluir definitivamente'}multiErr(e)}}
 function multiFormatObservations(raw){
  const text=String(raw||'').trim();
+ // Proteção: versões de teste podem ter persistido fragmentos do código HTML/JavaScript
+ // no campo de observações. Nunca exibir código-fonte como se fosse relatório clínico.
+ if(/function\s+mcSelect\s*\(|printWin\.document\.close\(\)|\$\{esc\(v\.patient_name|\$\{mcEscVal\(/i.test(text)){
+  return '<div class="multi-report-empty"><strong>Conteúdo inválido ocultado</strong><span>Este registro contém código-fonte em vez de observações clínicas. O conteúdo original foi preservado no banco; registre novamente a avaliação farmacêutica válida.</span></div>';
+ }
  if(!text)return '<div class="multi-report-empty"><strong>Nenhum relatório registrado</strong><span>Registre uma avaliação ou vincule uma análise Gemini a esta visita.</span></div>';
  const markerRe=/\[RELATÓRIO GEMINI\s*[^\]]*\]/gi;
  const markers=[...text.matchAll(markerRe)];
@@ -1140,7 +1292,10 @@ function multiFormatObservations(raw){
 async function multiExportVisitPdf(id){
  const printWin=window.open('about:blank','_blank');
  if(!printWin){toast('O navegador bloqueou a janela do PDF. Permita pop-ups para este arquivo e tente novamente.');return;}
- printWin.document.open();printWin.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Relatório farmacêutico</title></head><body style="font:14px Arial;padding:24px">Preparando relatório para impressão/PDF…</body></html>');printWin.document.close();
+ // iOS Safari: manter a janela aberta, mas evitar document.write no documento inicial.
+ // Em alguns cenários do Safari móvel, document.write durante o fluxo assíncrono
+ // pode misturar o documento de origem com o relatório.
+ try { printWin.document.title='Preparando relatório farmacêutico…'; } catch (_) {}
  try{
   const v=multiVisits.find(x=>String(x.id)===String(id));if(!v)throw new Error('Visita não encontrada.');
   await ensureFreshSession(false);
@@ -1155,12 +1310,32 @@ async function multiExportVisitPdf(id){
   @page{size:A4;margin:12mm}*{box-sizing:border-box}body{font:10.5pt Arial,Helvetica,sans-serif;color:#172033;line-height:1.35;margin:0}h1{font-size:19pt;margin:0 0 4px;color:#17365d}h2{font-size:13pt;margin:13px 0 6px;border-bottom:1px solid #d7deea;padding-bottom:5px;color:#17365d}h3{font-size:11pt;margin:14px 0 6px}p{margin:3px 0 6px}header{border-bottom:2px solid #244a7c;padding-bottom:12px;margin-bottom:14px}.sub{color:#526176;font-size:9pt}.meta{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:8px 0}.cell{border:1px solid #d9e0ea;border-radius:6px;padding:6px}.cell b{display:block;font-size:8.5pt;color:#536174;margin-bottom:2px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:4px}.check{border:1px solid #e0e5ec;border-radius:5px;padding:4px;display:flex;gap:7px;break-inside:avoid}.mark{font-size:13pt}.multi-gemini-report{margin-top:8px;border:1px solid #d5dfec;border-radius:9px;overflow:hidden;color:#253449}.multi-gemini-report>header{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f0f6ff;border-bottom:1px solid #dbe5f1;padding:10px 12px;margin:0}.multi-gemini-heading{display:flex;flex-direction:column;gap:2px}.multi-gemini-eyebrow{font-size:7pt;font-weight:bold;letter-spacing:.08em;color:#55708f}.multi-gemini-heading strong{font-size:12pt;color:#17365d}.multi-gemini-subtitle{font-size:8pt;color:#64748b}.multi-gemini-status{font-size:7pt;font-weight:bold;color:#855b13;border:1px solid #efd69c;background:#fff7e6;border-radius:12px;padding:4px 6px}.multi-gemini-meta{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:8px 10px;background:#fafcff;border-bottom:1px solid #e8eef5}.multi-gemini-meta>div{border:1px solid #e0e7f0;padding:8px 9px;border-radius:5px;background:#fff;overflow-wrap:anywhere}.multi-gemini-meta b{display:block;font-size:7pt;color:#536174;margin-bottom:2px}.multi-gemini-meta span{font-size:9pt;line-height:1.45}.multi-gemini-body{padding:3px 10px 6px}.multi-gemini-section{margin:0;border-bottom:1px solid #edf1f6;padding:11px 0;break-inside:auto;page-break-inside:auto}.multi-gemini-section:last-child{border-bottom:0}.multi-gemini-section h4{font-size:8.5pt;color:#17477c;margin:0 0 4px;break-after:avoid;text-transform:uppercase;letter-spacing:.03em}.multi-gemini-section-content p{margin:0 0 9px;font-size:10pt;line-height:1.55;orphans:3;widows:3;break-inside:avoid;page-break-inside:avoid;overflow-wrap:anywhere}.multi-gemini-section-content p:last-child{margin-bottom:0}.multi-gemini-section-content .rx-report-points{margin:4px 0 8px;padding-left:22px}.multi-gemini-section-content .rx-report-points li{font-size:9.8pt;line-height:1.5;margin:0 0 6px;break-inside:avoid;page-break-inside:avoid}.multi-gemini-section-content ul{margin:2px 0 5px;padding-left:18px}.multi-gemini-section-content li{font-size:9pt;line-height:1.4;margin:2px 0}.multi-gemini-footer{padding:8px 10px;border-top:1px solid #e8edf4;background:#f8fafc}.multi-gemini-footer>span{display:block;color:#64748b;font-size:7.5pt;font-weight:bold;margin-bottom:3px}.multi-gemini-footer p{margin:0;color:#77551b;font-size:8pt;line-height:1.4}.multi-report-empty{padding:8px;border:1px dashed #cbd5e1;border-radius:5px}.multi-report-empty strong,.multi-report-empty span{display:block}.multi-report-empty strong{font-size:9pt}.multi-report-empty span{font-size:8pt;color:#64748b}.multi-observations-plain{margin:8px 0;padding:8px;background:#f7f9fc;border:1px solid #e2e8f0;border-radius:5px;overflow-wrap:anywhere}.multi-plain-label{font-size:7.5pt;font-weight:bold;color:#64748b;margin-bottom:4px}.muted{color:#68758a}table{width:100%;border-collapse:collapse;font-size:9pt}thead{display:table-header-group}th,td{border:1px solid #d9e0ea;text-align:left;vertical-align:top;padding:7px}th{background:#f0f4f9}tr{break-inside:avoid}footer{margin-top:18px;border-top:1px solid #d9e0ea;padding-top:8px;font-size:8.5pt;color:#68758a;break-inside:avoid}.toolbar{position:sticky;top:0;background:#fff;padding:10px 0;border-bottom:1px solid #ddd;margin-bottom:16px;display:flex;gap:8px}.toolbar button{border:0;border-radius:5px;padding:9px 13px;background:#1d5fa7;color:#fff;cursor:pointer}.toolbar .close{background:#667085}@media print{.toolbar{display:none}body{font-size:10.5pt;line-height:1.45}h2{break-after:avoid;page-break-after:avoid}.meta,.checks{break-inside:avoid;page-break-inside:avoid}.check,.cell{break-inside:avoid;page-break-inside:avoid}.multi-gemini-meta>div{break-inside:avoid;page-break-inside:avoid}.multi-gemini-report{overflow:visible!important;break-inside:auto;page-break-inside:auto}.multi-gemini-section{break-inside:auto;page-break-inside:auto}.multi-gemini-section-content p,.multi-gemini-section-content li{break-inside:avoid;page-break-inside:avoid}.multi-gemini-section h4{break-after:avoid;page-break-after:avoid}.multi-gemini-section-content p,.multi-gemini-section-content li{orphans:3;widows:3}.multi-gemini-footer{break-inside:avoid;page-break-inside:avoid}a{color:inherit;text-decoration:none}}
   </style></head><body><div class="toolbar"><button onclick="window.print()">Salvar como PDF / Imprimir</button><button class="close" onclick="window.close()">Fechar</button></div><header><h1>Relatório farmacêutico</h1><div class="sub">HNSS · Farmácia Clínica — Visita Multi</div></header><h2>Identificação do paciente e da visita</h2><div class="meta"><div class="cell"><b>Paciente</b>${esc(v.patient_name||'Não informado')}</div><div class="cell"><b>Prontuário</b>${esc(v.medical_record||'—')}</div><div class="cell"><b>Setor / leito</b>${esc(v.sector||'—')} · ${esc(v.bed||'—')}</div><div class="cell"><b>Data da visita</b>${date}</div><div class="cell"><b>Risco</b>${esc(v.risk_level||'Não classificado')}</div><div class="cell"><b>Status da visita</b>${esc(multiStatusLabel(v.status))}</div></div><h2>Checklist de avaliação farmacêutica</h2>${checklistHtml}<h2>Relatório farmacêutico e observações</h2>${reportHtml}<h2>Intervenções farmacêuticas registradas (${ints.length})</h2>${interventionsHtml}<footer>Documento de apoio à avaliação farmacêutica. A análise automatizada é preliminar; o farmacêutico deve conferir a prescrição original e validar os achados. Nenhuma prescrição foi aprovada ou alterada automaticamente.<br>Gerado em ${new Date().toLocaleString('pt-BR')}.</footer>
 </body></html>`;
-  printWin.document.open();printWin.document.write(html);printWin.document.close();
+  // Renderização isolada do relatório: Blob URL evita inserir o HTML no documento
+  // que abriu o relatório, especialmente no Safari do iPhone.
+  const reportBlob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const reportUrl=URL.createObjectURL(reportBlob);
+  printWin.location.replace(reportUrl);
+  // Liberar a URL depois que o usuário fechar/navegar para fora do relatório.
+  printWin.addEventListener('pagehide',()=>URL.revokeObjectURL(reportUrl),{once:true});
  }catch(e){try{printWin.document.body.innerHTML='<p>Não foi possível preparar o relatório: '+String(e?.message||e)+'</p><button onclick="window.close()">Fechar</button>';}catch(_){}multiErr(e)}
 }
 
 
 function mcEscVal(v){return esc(v==null?'':String(v))}
+function mcCleanFormData(value){
+ if(!value||typeof value!=='object'||Array.isArray(value))return {};
+ const bad=/function\s+mcSelect\s*\(|printWin\.document\.close\(\)|\$\{mcEscVal\(|\$\{esc\(v\.patient_name/i;
+ const clean={};
+ for(const [key,val] of Object.entries(value)){
+  if(typeof val==='string'&&bad.test(val))continue;
+  if(Array.isArray(val)){
+   clean[key]=val.filter(row=>!row||typeof row!=='object'||!Object.values(row).some(x=>typeof x==='string'&&bad.test(x)));
+  }else if(val&&typeof val==='object'){
+   clean[key]=mcCleanFormData(val);
+  }else clean[key]=val;
+ }
+ return clean;
+}
 function mcInput(label,id,value='',type='text',placeholder=''){return `<div class="mc-field"><label for="${id}">${label}</label><input id="${id}" type="${type}" value="${mcEscVal(value)}" placeholder="${mcEscVal(placeholder)}"></div>`}
 function mcSelect(label,id,value,options){return `<div class="mc-field"><label for="${id}">${label}</label><select id="${id}">${options.map(o=>`<option value="${mcEscVal(o[0])}" ${String(value||'')===String(o[0])?'selected':''}>${mcEscVal(o[1])}</option>`).join('')}</select></div>`}
 function mcTextarea(label,id,value='',rows=2){return `<div class="mc-field"><label for="${id}">${label}</label><textarea id="${id}" rows="${rows}">${mcEscVal(value)}</textarea></div>`}
@@ -1193,7 +1368,7 @@ async function multiConciliationForm(id){
   await ensureFreshSession(false);
   const r=await sb.from('pharmacy_multi_reconciliations').select('form_data').eq('visit_id',id).maybeSingle();
   if(r.error)throw r.error;
-  d=r.data?.form_data||{};
+  d=mcCleanFormData(r.data?.form_data||{});
  }catch(e){
   console.error('[Conciliação medicamentosa]',e);
   const msg=String(e?.message||e);
@@ -5597,6 +5772,106 @@ function rxBuildVisibleClinicalSummary(){
     max-width: 100% !important;
     min-width: 0 !important;
   }
+}
+</style>
+
+
+<style id="hnss-mobile-v26-only">
+/* Ajustes exclusivos para celular: não altera autenticação nem lógica JavaScript. */
+@media (max-width: 760px) {
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  #app.app:not(.hidden) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  #app.app:not(.hidden) > #hnssSidebar.sidebar,
+  #app.app:not(.hidden) > .sidebar,
+  #hnssSidebar.sidebar {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    z-index: 5 !important;
+  }
+  #hnssSidebar .nav,
+  .sidebar .nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+  #hnssSidebar .nav button,
+  .sidebar .nav button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 8px 5px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+  #app.app:not(.hidden) > main.main,
+  #app.app:not(.hidden) > .main,
+  .main {
+    position: relative !important;
+    inset: auto !important;
+    margin: 0 !important;
+    padding: 14px 12px 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  .main > *, .main section, .main .card, .main .panel,
+  .main .grid, .main .form-grid, .main .kpis {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .grid, .form-grid, .kpis {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .table-wrap, .table-responsive, .overflow-x-auto {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  table {
+    max-width: 100% !important;
+  }
+  input, select, textarea, button {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 420px) {
+  #hnssSidebar .nav,
+  .sidebar .nav {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .main { padding: 12px 10px 24px !important; }
 }
 </style>
 
