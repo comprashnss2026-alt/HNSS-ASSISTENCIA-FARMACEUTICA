@@ -1818,7 +1818,7 @@ function multiFormatObservations(raw){
   .replace(/\s+(?=Status\s*[:：]?)/gi,'\n')
   .replace(/\s+(?=Esta análise\b|Análise técnica farmacêutica\b)/gi,'\n')
   .replace(/\s+(?=\d+\s*[.)-]\s*(?:IDENTIFICAÇÃO|RESUMO|MEDICAMENTOS|CAMPOS ILEGÍVEIS|QUALIDADE VISUAL|PROBLEMAS FARMACOTERAPÊUTICOS|ALERTAS FARMACÊUTICOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS|REGISTRO DA CONDUTA|VERIFICAÇÕES EFETIVAMENTE|CONCLUSÃO|FONTES CONSULTADAS)\b)/gi,'\n')
-  .replace(/\s+(?=(?:IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS PRIORITÁRIOS|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES EFETIVAMENTE REALIZADAS|CONCLUSÃO|FONTES CONSULTADAS)\b)/gi,'\n');
+  .replace(/\s+(?=(?:IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS(?:\s+PRIORITÁRIOS|\s+PRIORIZADOS)|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES EFETIVAMENTE REALIZADAS|CONCLUSÃO|FONTES CONSULTADAS)\b)/gi,'\n');
  const meta=[];
  const metaDefs=[
   ['Origem',/(?:^|\n)\s*Origem(?:\s+da\s+análise)?\s*[:：]?\s*([\s\S]*?)(?=\s*(?:Modelo\s*[:：]?|Data\s*(?:\/|e)\s*hora\s*[:：]?|Status\s*[:：]?|$))/i],
@@ -1832,11 +1832,11 @@ function multiFormatObservations(raw){
  body=body.replace(/Nenhuma prescrição foi aprovada ou alterada automaticamente\.?/gi,'');
  body=body.replace(/\*\*(.*?)\*\*/g,'$1').replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g,'$1').replace(/^\s*---+\s*$/gm,'\n').replace(/\\\$\\ge\$/g,'≥').replace(/\\\$\\le\$/g,'≤');
  body=body.replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
- const known=/^(?:\d+\s*[.)-]?\s*)?(IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS PRIORITÁRIOS|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES EFETIVAMENTE REALIZADAS E NÃO REALIZADAS|CONCLUSÃO|FONTES CONSULTADAS)(?:\s*[:—-]\s*(.*))?$/i;
+ const known=/^(?:\d+\s*[.)-]?\s*)?(IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS(?:\s+PRIORITÁRIOS|\s+PRIORIZADOS)|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES(?: E LIMITAÇÕES| EFETIVAMENTE REALIZADAS E NÃO REALIZADAS)|CONCLUSÃO|FONTES CONSULTADAS)(?:\s*[:—-]\s*(.*))?$/i;
  // Corrige títulos que o Gemini por vezes escreve no meio do mesmo parágrafo.
- body=body.replace(/\s+(?=(?:\d+\s*[.)-]\s*)?(?:IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS PRIORITÁRIOS|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES EFETIVAMENTE REALIZADAS E NÃO REALIZADAS|CONCLUSÃO|FONTES CONSULTADAS)\b)/gi,'\n');
+ body=body.replace(/\s+(?=(?:\d+\s*[.)-]\s*)?(?:IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS(?:\s+PRIORITÁRIOS|\s+PRIORIZADOS)|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES(?: E LIMITAÇÕES| EFETIVAMENTE REALIZADAS E NÃO REALIZADAS)|CONCLUSÃO|FONTES CONSULTADAS)\b)/gi,'\n');
  // Títulos podem vir seguidos de subtítulos em negrito na mesma linha (ex.: IDENTIFICAÇÃO E CONTEXTO Dados lidos...).
- body=body.replace(/(^|\n)\s*(\d+\s*[.)-]?\s*)?(IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS PRIORITÁRIOS|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES EFETIVAMENTE REALIZADAS E NÃO REALIZADAS|CONCLUSÃO|FONTES CONSULTADAS)(?=\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/gim,'$1$2$3\n');
+ body=body.replace(/(^|\n)\s*(\d+\s*[.)-]?\s*)?(IDENTIFICAÇÃO E CONTEXTO|RESUMO(?: DA ANÁLISE| EXECUTIVO)?|MEDICAMENTOS(?: VISUALMENTE IDENTIFICADOS| IDENTIFICADOS)?(?:\s*\(PÁGINA\s*\d+\))?|CAMPOS ILEGÍVEIS\s*\/\s*INCERTOS|QUALIDADE VISUAL E LIMITAÇÕES|PROBLEMAS FARMACOTERAPÊUTICOS(?:\s+PRIORITÁRIOS|\s+PRIORIZADOS)|ALERTAS FARMACÊUTICOS PRIORIZADOS|INTERAÇÕES POTENCIAIS|DUPLICIDADES\s*\/\s*CONTRAINDICAÇÕES\s*\/\s*PRECAUÇÕES|AVALIAÇÃO DE SEGURANÇA|PENDÊNCIAS(?: MANUAIS)? PRIORITÁRIAS|REGISTRO DA CONDUTA FARMACÊUTICA|VERIFICAÇÕES(?: E LIMITAÇÕES| EFETIVAMENTE REALIZADAS E NÃO REALIZADAS)|CONCLUSÃO|FONTES CONSULTADAS)(?=\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/gim,'$1$2$3\n');
  // Separa dados de identificação e itens de medicamentos sem alterar o texto salvo.
  body=body.replace(/\s+(?=(?:Paciente|Idade|Data de internação|Data da internação|Data da prescrição|Médica|Diagnóstico\/Hipóteses|Diagnóstico|Histórico Clínico Relevante|Achados de Exames|Dados laboratoriais|Dados do formulário)\s*[:(])/gi,'\n');
  // Converte listas que chegaram em linha corrida em itens visuais separados.
@@ -1854,7 +1854,52 @@ function multiFormatObservations(raw){
   if(current)current.lines.push(line);else loose.push(line);
  }
  flushLoose();
- const renderLines=(items)=>{let html='',paragraph=[],bullets=[];const flushParagraph=()=>{const t=paragraph.join(' ').replace(/\s+/g,' ').trim();if(t){const pieces=t.split(/\s*;\s*(?=(?:\S))/).map(x=>x.trim()).filter(Boolean);if(pieces.length>1&&pieces.every(x=>x.length>8)){html+='<ul class=\"rx-report-points\">'+pieces.map(x=>'<li>'+esc(x.replace(/^[-•]\s*/,''))+'</li>').join('')+'</ul>';}else{html+='<p>'+esc(t)+'</p>';}}paragraph=[]};const flushBullets=()=>{if(bullets.length){html+='<ul>'+bullets.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';bullets=[]}};for(const raw of items){const line=String(raw||'').trim();if(!line){flushParagraph();flushBullets();continue}const bm=line.match(/^(?:[-*•▪]\s+|\[\s*[xX ]\s*\]\s*)(.*)$/);if(bm){flushParagraph();bullets.push(bm[1].trim());continue}flushBullets();paragraph.push(line)}flushParagraph();flushBullets();return html};
+ const renderLines=(items)=>{
+  let html='',paragraph=[],bullets=[],tableRows=[];
+  const flushParagraph=()=>{
+   const t=paragraph.join(' ').replace(/\s+/g,' ').trim();
+   if(t)html+='<p>'+esc(t)+'</p>';
+   paragraph=[];
+  };
+  const flushBullets=()=>{
+   if(bullets.length){html+='<ul class="multi-report-list">'+bullets.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';bullets=[];}
+  };
+  const parseCells=(row)=>row.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>x.trim());
+  const isSeparator=(row)=>/^\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?$/.test(row.trim());
+  const flushTable=()=>{
+   if(!tableRows.length)return;
+   const rows=tableRows.filter(row=>!isSeparator(row)).map(parseCells);tableRows=[];
+   if(!rows.length)return;
+   const headers=rows[0],data=rows.slice(1);
+   html+='<div class="multi-report-table-wrap"><table class="multi-report-table"><thead><tr>'+headers.map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+
+    data.map(row=>'<tr>'+headers.map((_,i)=>'<td>'+esc(row[i]||'—')+'</td>').join('')+'</tr>').join('')+
+    '</tbody></table></div>';
+  };
+  const flushAll=()=>{flushParagraph();flushBullets();flushTable();};
+  for(const raw of items){
+   const line=String(raw||'').trim();
+   if(!line){flushAll();continue;}
+   if(/^\|.*\|$/.test(line)){
+    flushParagraph();flushBullets();tableRows.push(line);continue;
+   }
+   flushTable();
+   const clean=line.replace(/^#{1,6}\s*/,'').replace(/^\*+|\*+$/g,'').replace(/\*\*/g,'').trim();
+   const subhead=/^(?:(?:\d+\.\d+\s+)?(?:PARÂMETROS FARMACOTERAPÊUTICOS GERAIS|ROTEIRO FASTHUG-MAIDENS|FASTHUG(?:-MAIDENS)?|MAIDENS|DADOS LIDOS DIRETAMENTE NO DOCUMENTO ORIGINAL|DADOS INFORMADOS NO FORMULÁRIO DO CONTEXTO|CONCILIAÇÃO DAS FONTES|MEDICAMENTOS DOMICILIARES(?: RELATADOS)?|MEDICAMENTOS DE USO DOMICILIAR(?: RELATADOS)?|PROBLEMA\s+\d+\s*:\s*.+)|(?:\d+\.\d+\s+).+)$/i;
+   if(subhead.test(clean) && clean.length<150 && !/[.!?]$/.test(clean)){
+    flushAll();html+='<h5 class="multi-report-subheading">'+esc(clean.replace(/^\d+\.\d+\s+/,'$&'))+'</h5>';continue;
+   }
+   const bm=clean.match(/^(?:[-*•▪]\s+|\[\s*[xX ]\s*\]\s*)(.*)$/);
+   if(bm){flushParagraph();bullets.push(bm[1].trim());continue;}
+   const ordered=clean.match(/^\d+[.)]\s+(.*)$/);
+   if(ordered){flushParagraph();bullets.push(ordered[0].trim());continue;}
+   flushBullets();
+   // Separate common FASTHUG/MAIDENS labels visually while keeping the exact wording.
+   const label=clean.match(/^((?:[A-N]\s*[—–-]\s*)?(?:Feeding|Analgesia|Sedação|Sedation|Thromboembolism|Profilaxia de TEV|Head up|Delirium|Ulcer|Profilaxia de Úlcera de Estresse|Glucose|Controle Glicêmico|Medication Reconciliation|Reconciliação|Antimicrobials|Antimicrobianos|Indication|Indicação|Dose|Electrolytes|Eletrólitos|No Interactions|Interações|Stop Dates|Datas de Suspensão)[^:]{0,90}:)\s*(.*)$/i);
+   if(label){flushParagraph();html+='<p class="multi-report-labeled"><strong>'+esc(label[1])+'</strong> '+esc(label[2]||'')+'</p>';continue;}
+   paragraph.push(clean);
+  }
+  flushAll();return html;
+ };
  const renderSection=(sec)=>{const content=renderLines(sec.lines);return '<section class="multi-gemini-section"><h4>'+esc(sec.title)+'</h4><div class="multi-gemini-section-content">'+(content||'<p>Consultar a prescrição original e validar manualmente.</p>')+'</div></section>';};
  const rendered=sections.map(renderSection).join('');
  // Visão compacta para registro e PDF: prioriza o resumo, os problemas, as pendências e a conclusão.
@@ -1961,7 +2006,42 @@ async function multiExportVisitPdf(id){
   td,th,table,footer{border-color:#d0d3d8!important}
   .multi-gemini-section,.multi-gemini-meta{border-color:#d8dadd!important}
 }
-  </style></head><body><div class="toolbar"><button onclick="window.print()">Salvar como PDF / Imprimir</button><button class="close" onclick="window.close()">Fechar</button></div><header><h1>Relatório farmacêutico</h1><div class="sub">HNSS · Farmácia Clínica — Visita Multi</div></header><h2>Identificação do paciente e da visita</h2><div class="meta"><div class="cell"><b>Paciente</b>${esc(v.patient_name||'Não informado')}</div><div class="cell"><b>Prontuário</b>${esc(v.medical_record||'—')}</div><div class="cell"><b>Setor / leito</b>${esc(v.sector||'—')} · ${esc(v.bed||'—')}</div><div class="cell"><b>Data da visita</b>${date}</div><div class="cell"><b>Risco</b>${esc(v.risk_level||'Não classificado')}</div><div class="cell"><b>Status da visita</b>${esc(multiStatusLabel(v.status))}</div></div><h2>Checklist de avaliação farmacêutica</h2>${checklistHtml}<h2>Relatório farmacêutico e observações</h2>${reportHtml}<h2>Intervenções farmacêuticas registradas (${ints.length})</h2>${interventionsHtml}<footer>Documento de apoio à avaliação farmacêutica. A análise automatizada é preliminar; o farmacêutico deve conferir a prescrição original e validar os achados. Nenhuma prescrição foi aprovada ou alterada automaticamente.<br>Gerado em ${new Date().toLocaleString('pt-BR')}.</footer>
+  /* Formatação aprimorada do relatório: hierarquia visual, espaçamento e tabelas responsivas; conteúdo clínico inalterado. */
+.multi-gemini-report{border:1px solid #d6e0ec!important;border-radius:10px!important;background:#fff!important}
+.multi-gemini-report>header{padding:12px 14px!important;background:#f4f8fd!important;border-bottom:1px solid #dce5f0!important}
+.multi-gemini-heading strong{font-size:13pt!important;line-height:1.25!important}
+.multi-gemini-body{padding:8px 14px 12px!important}
+.multi-gemini-section{padding:13px 0!important;border-bottom:1px solid #e8edf4!important}
+.multi-gemini-section h4{font-size:10.5pt!important;line-height:1.35!important;text-transform:none!important;letter-spacing:0!important;margin:0 0 9px!important;padding:8px 10px!important;border-left:4px solid #3478b8!important;border-radius:4px!important;background:#f2f6fb!important;color:#17365d!important}
+.multi-gemini-section-content p{font-size:10pt!important;line-height:1.55!important;margin:0 0 9px!important;overflow-wrap:anywhere!important}
+.multi-gemini-section-content p:last-child{margin-bottom:0!important}
+.multi-gemini-section-content h5,.multi-report-subheading{display:block;font-size:9.7pt!important;line-height:1.4!important;font-weight:700!important;color:#2b4e72!important;margin:13px 0 6px!important;padding:0 0 4px!important;border-bottom:1px solid #e5ebf2!important}
+.multi-gemini-section-content ul,.multi-gemini-section-content ol{margin:5px 0 10px!important;padding-left:24px!important}
+.multi-gemini-section-content li{font-size:9.8pt!important;line-height:1.5!important;margin:0 0 5px!important;overflow-wrap:anywhere!important}
+.multi-gemini-section-content .multi-report-list{padding-left:24px!important}
+.multi-gemini-section-content .multi-report-labeled{margin:4px 0 9px!important;padding:7px 9px!important;border-left:3px solid #cbd9e8!important;background:#f8fafc!important;border-radius:3px!important}
+.multi-report-table-wrap{width:100%;max-width:100%;overflow-x:auto;margin:9px 0 13px!important}
+.multi-report-table{width:100%!important;min-width:520px;border-collapse:collapse!important;table-layout:auto!important;font-size:8.5pt!important;margin:0!important}
+.multi-report-table th{background:#edf3fa!important;color:#24476c!important;font-weight:700!important;text-align:left!important}
+.multi-report-table th,.multi-report-table td{border:1px solid #d4deea!important;padding:7px 8px!important;vertical-align:top!important;line-height:1.4!important;overflow-wrap:anywhere!important;word-break:normal!important}
+.multi-report-table tbody tr:nth-child(even){background:#fafbfd!important}
+@media(max-width:700px){.multi-gemini-body{padding:7px 10px 10px!important}.multi-gemini-section{padding:10px 0!important}.multi-gemini-section h4{font-size:10pt!important;padding:7px 8px!important}.multi-report-table{min-width:600px!important}}
+@media print{
+ .multi-gemini-report{border:0!important;border-radius:0!important}
+ .multi-gemini-report>header{padding:4px 6px!important}
+ .multi-gemini-body{padding:3px 6px!important}
+ .multi-gemini-section{padding:7px 0!important}
+ .multi-gemini-section h4{font-size:9.4pt!important;line-height:1.25!important;margin:0 0 5px!important;padding:5px 7px!important;background:#f1f3f5!important;border-left:3px solid #7b8189!important;break-after:avoid!important;page-break-after:avoid!important}
+ .multi-gemini-section-content p{font-size:8.7pt!important;line-height:1.35!important;margin:0 0 5px!important}
+ .multi-gemini-section-content h5,.multi-report-subheading{font-size:8.8pt!important;margin:7px 0 4px!important;padding-bottom:2px!important;break-after:avoid!important;page-break-after:avoid!important}
+ .multi-gemini-section-content li{font-size:8.5pt!important;line-height:1.3!important;margin-bottom:3px!important}
+ .multi-report-table-wrap{overflow:visible!important;break-inside:auto!important;page-break-inside:auto!important}
+ .multi-report-table{min-width:0!important;width:100%!important;table-layout:auto!important;font-size:7pt!important}
+ .multi-report-table th,.multi-report-table td{padding:3px 4px!important;line-height:1.2!important}
+ .multi-report-table th{background:#f0f1f2!important}
+ .multi-gemini-section-content .multi-report-labeled{padding:4px 6px!important;margin:3px 0 5px!important;background:#f7f7f8!important}
+}
+</style></head><body><div class="toolbar"><button onclick="window.print()">Salvar como PDF / Imprimir</button><button class="close" onclick="window.close()">Fechar</button></div><header><h1>Relatório farmacêutico</h1><div class="sub">HNSS · Farmácia Clínica — Visita Multi</div></header><h2>Identificação do paciente e da visita</h2><div class="meta"><div class="cell"><b>Paciente</b>${esc(v.patient_name||'Não informado')}</div><div class="cell"><b>Prontuário</b>${esc(v.medical_record||'—')}</div><div class="cell"><b>Setor / leito</b>${esc(v.sector||'—')} · ${esc(v.bed||'—')}</div><div class="cell"><b>Data da visita</b>${date}</div><div class="cell"><b>Risco</b>${esc(v.risk_level||'Não classificado')}</div><div class="cell"><b>Status da visita</b>${esc(multiStatusLabel(v.status))}</div></div><h2>Checklist de avaliação farmacêutica</h2>${checklistHtml}<h2>Relatório farmacêutico e observações</h2>${reportHtml}<h2>Intervenções farmacêuticas registradas (${ints.length})</h2>${interventionsHtml}<footer>Documento de apoio à avaliação farmacêutica. A análise automatizada é preliminar; o farmacêutico deve conferir a prescrição original e validar os achados. Nenhuma prescrição foi aprovada ou alterada automaticamente.<br>Gerado em ${new Date().toLocaleString('pt-BR')}.</footer>
 
 <style id="hnss-tablet-layout-final-v37">
 /* V37 — camada final e isolada de responsividade para tablets; não altera lógica clínica nem integrações. */
@@ -2418,7 +2498,7 @@ function renderPrescriptionPhoto(){
 <p class="rx-photo-note" style="margin-top:8px">A correspondência será feita por número de registro exato. A descrição de apresentação ajuda na conferência, mas não confirma equivalência clínica, dose nem vigência da bula.</p>
 </div></details>
 <div id="rxAnvisaClinicalMatch" class="rx-review-section" style="margin-top:12px"><p class="rx-photo-note">Após conferir o texto extraído, cruze os medicamentos com o catálogo Anvisa para visualizar possíveis correspondências cadastrais.</p></div>
-<div id="rxGeminiCard" class="rx-review-section" style="margin-top:16px;border:2px solid #8bb7ed;background:#f8fbff;padding:16px;border-radius:14px"><h3 style="margin:0 0 8px">Análise farmacêutica integrada — Gemini</h3><p class="rx-photo-note">O Gemini produz a única análise técnica farmacêutica desta tela, analisando diretamente a imagem/PDF original da prescrição, sem OCR intermediário, e considerando o contexto clínico informado. Não são executadas nem exibidas outras análises automáticas. Evite identificadores pessoais e valide os achados na prescrição original antes de qualquer decisão.</p><div id="rxGeminiStatus" class="rx-photo-warning">Selecione o documento original e execute a análise visual do Gemini, sem OCR intermediário.</div><div id="rxGeminiResults" style="margin-top:12px"></div><div class="rx-photo-actions"><button class="primary" id="rxGeminiButton" type="button" onclick="rxRunGeminiAnalysis()">Analisar documento original com Gemini</button><button class="secondary" id="rxGeminiQuotaCheckButton" type="button" onclick="rxCheckGeminiQuotaAvailability()">Verificar disponibilidade dos modelos (teste)</button></div><div id="rxGeminiQuotaStatus" class="rx-photo-note" role="status" aria-live="polite" style="margin-top:8px"></div><p class="rx-photo-note" style="margin-top:8px"><strong>Limitação:</strong> o Gemini fornece uma análise técnica preliminar. Esta execução não consulta automaticamente bases externas nem lê a bula oficial completa; confirme os achados em fontes clínicas confiáveis. A validação do farmacêutico continua obrigatória.</p></div>
+<div id="rxGeminiCard" class="rx-review-section" style="margin-top:16px;border:2px solid #8bb7ed;background:#f8fbff;padding:16px;border-radius:14px"><h3 style="margin:0 0 8px">Análise farmacêutica integrada — Gemini</h3><p class="rx-photo-note">O Gemini produz a única análise técnica farmacêutica desta tela, analisando diretamente a imagem/PDF original da prescrição, sem OCR intermediário, e considerando o contexto clínico informado. Não são executadas nem exibidas outras análises automáticas. Evite identificadores pessoais e valide os achados na prescrição original antes de qualquer decisão.</p><div id="rxGeminiStatus" class="rx-photo-warning">Selecione o documento original e execute a análise visual do Gemini, sem OCR intermediário.</div><div id="rxGeminiResults" style="margin-top:12px"></div><div class="rx-photo-actions"><button class="primary" id="rxGeminiButton" type="button" onclick="rxRunGeminiAnalysis()">Analisar documento original com Gemini</button></div><p class="rx-photo-note" style="margin-top:8px"><strong>Limitação:</strong> o Gemini fornece uma análise técnica preliminar. Esta execução não consulta automaticamente bases externas nem lê a bula oficial completa; confirme os achados em fontes clínicas confiáveis. A validação do farmacêutico continua obrigatória.</p></div>
 <details class="rx-advanced" style="display:none"><summary>Ferramentas auxiliares</summary><div class="rx-photo-actions"><button class="primary" onclick="rxDownloadAutoReview()">Baixar relatório auxiliar (.txt)</button><button class="secondary" onclick="rxRunAutomaticReview()">Atualizar triagem auxiliar</button></div><p class="rx-photo-note" style="margin-top:10px"><strong>Limite:</strong> a triagem local é documental e não substitui a avaliação clínica.</p></details>
 </div>
 <details class="card rx-photo-card rx-advanced"><summary>Revisão farmacêutica e referências <span>Checklist, Bulário Anvisa e base local</span></summary><div class="rx-advanced-content"><h3>Checklist de revisão farmacêutica</h3><p class="rx-photo-note">Marque após conferência profissional. Esta lista é apenas um apoio de processo; não significa que a prescrição foi aprovada automaticamente.</p><div class="multi-checks"><label class="multi-check"><input type="checkbox"> Identidade do paciente conferida no sistema institucional</label><label class="multi-check"><input type="checkbox"> Medicamento, apresentação e concentração conferidos</label><label class="multi-check"><input type="checkbox"> Dose, unidade, via e frequência conferidas</label><label class="multi-check"><input type="checkbox"> Alergias e medicamentos em uso consultados</label><label class="multi-check"><input type="checkbox"> Duplicidades e interações avaliadas em fonte clínica</label><label class="multi-check"><input type="checkbox"> Função renal/hepática e exames avaliados quando pertinentes</label></div><p class="rx-photo-note" style="margin-top:12px">Esta etapa é um apoio documental. A validação final permanece com o farmacêutico clínico; nenhuma recomendação clínica automática é emitida.</p></div>
@@ -3279,75 +3359,24 @@ function rxGeminiCoverageMarkup(meta){
  return `<section class="rx-gemini-coverage"><h4>Verificações desta execução</h4><p>O estado abaixo descreve o que foi efetivamente enviado ou consultado. “Parcial” significa que a IA fez triagem, não que o achado foi confirmado clinicamente.</p>${source.join('')}<div class="rx-gemini-manual"><strong>Validação manual necessária</strong><p>${missing.length?'Dados não informados: '+esc(missing.join(', '))+'. ':''}Conferir cada medicamento, dose, unidade, via, frequência, duplicidade, interação, alergia, contraindicação e ajuste pertinente contra a prescrição original, prontuário, exames e fonte clínica/bula aplicável.</p><p><strong>Decisão:</strong> nenhuma prescrição é aprovada, alterada ou interrompida automaticamente.</p></div></section>`;
 }
 
-async function rxCheckGeminiQuotaAvailability(){
- const button=$('rxGeminiQuotaCheckButton'),output=$('rxGeminiQuotaStatus');
- if(button){button.disabled=true;button.textContent='Verificando modelos…';}
- if(output)output.textContent='Testando chamadas curtas aos modelos configurados. Nenhuma prescrição ou dado de paciente será enviado.';
- try{
-  const current=await ensureFreshSession(false);
-  const response=await fetch(`${CONFIG.url}/functions/v1/hnss-gemini-quota-check-test`,{
-   method:'POST',
-   headers:{'Content-Type':'application/json','apikey':CONFIG.anonKey,'Authorization':`Bearer ${current.access_token}`},
-   body:JSON.stringify({}),
-   signal:AbortSignal.timeout(45000)
-  });
-  let data={};try{data=await response.json();}catch{}
-  if(!response.ok)throw new Error(data.error||`Falha no teste de disponibilidade (HTTP ${response.status}).`);
-  const esc=typeof rxEscapeHtml==='function'?rxEscapeHtml:(v=>String(v??''));
-  const results=Array.isArray(data.results)?data.results:[];
-  const lines=results.map(item=>{
-   const model=esc(item.model||'Modelo desconhecido');
-   const status=Number(item.http_status||0);
-   if(item.available===true)return `<li><strong>${model}</strong>: respondeu ao teste curto (HTTP 200).</li>`;
-   if(status===429||item.provider_status==='RESOURCE_EXHAUSTED')return `<li><strong>${model}</strong>: limite/cota atingido (HTTP 429).</li>`;
-   if(status===404)return `<li><strong>${model}</strong>: modelo não disponível para esta chave (HTTP 404).</li>`;
-   if(status===401||status===403)return `<li><strong>${model}</strong>: verificar chave ou permissão (HTTP ${status}).</li>`;
-   return `<li><strong>${model}</strong>: não respondeu ao teste (HTTP ${status||'sem resposta'}; ${esc(item.provider_status||'sem detalhe')}).</li>`;
-  }).join('');
-  if(output)output.innerHTML='<strong>Resultado do teste de disponibilidade (sem prescrição):</strong><ul style="margin:6px 0 0;padding-left:20px">'+(lines||'<li>Nenhum resultado foi retornado.</li>')+'</ul><p style="margin:6px 0 0">Este teste usa solicitações mínimas. Uma análise completa ainda pode atingir limites de tokens ou de pesquisa; não altera o modelo principal nem publica uma nova análise.</p>';
- }catch(error){
-  if(output)output.textContent='Não foi possível concluir o teste de disponibilidade: '+(error?.message||'verifique a sessão e tente novamente.');
- }finally{
-  if(button){button.disabled=false;button.textContent='Verificar disponibilidade dos modelos (teste)';}
- }
-}
-
 async function rxRunGeminiAnalysis(){
  const analysisStartedAt=performance.now();
  const statusEl=$('rxGeminiStatus'),out=$('rxGeminiResults'),button=$('rxGeminiButton');
- // Mantém o último relatório válido em memória e na tela até uma nova análise concluir com sucesso.
- const removeAttemptNotice=()=>out?.querySelector('#rxGeminiAttemptNotice')?.remove();
- const setAttemptNotice=(kind,message,detail='')=>{
-  const esc=typeof rxEscapeHtml==='function'?rxEscapeHtml:(v=>String(v??''));
-  if(statusEl)statusEl.innerHTML='<strong>'+esc(kind)+'</strong><br>'+esc(message)+(detail?'<br>'+esc(detail):'');
-  if(!out)return;
-  removeAttemptNotice();
-  const previous=!!window.rxGeminiLastAnalysis?.analysis;
-  const linkButton=out.querySelector('#rxLinkVisitButton');
-  if(linkButton){linkButton.disabled=true;linkButton.title='Gere uma análise válida para o documento atual antes de vincular à visita.';linkButton.setAttribute('aria-disabled','true');}
-  const banner='<div id="rxGeminiAttemptNotice" role="alert" style="margin:0 0 12px;padding:13px 14px;border:1px solid '+(previous?'#f1d28a':'#f1b8b3')+';border-radius:10px;background:'+(previous?'#fff9e9':'#fff4f2')+';color:'+(previous?'#805500':'#9f2118')+';line-height:1.5"><strong>'+(previous?'A nova tentativa não foi concluída. O último relatório válido foi preservado.':'A análise não foi concluída.')+'</strong><p style="margin:6px 0 0">'+esc(message)+'</p>'+(detail?'<p style="margin:6px 0 0">'+esc(detail)+'</p>':'')+(previous?'<p style="margin:6px 0 0;font-size:12px"><strong>Atenção:</strong> o relatório abaixo pertence à última execução concluída, não necessariamente ao arquivo selecionado agora. Não o vincule à visita até confirmar que corresponde ao documento desejado.</p>':'')+'</div>';
-  if(previous)out.insertAdjacentHTML('afterbegin',banner);
-  else out.innerHTML=banner;
- };
- removeAttemptNotice();
+ window.rxGeminiLastAnalysis=null;
+ if(out){out.replaceChildren();out.textContent='';}
  const file=rxOcrCropFile||rxOriginalPrescriptionFile;
  if(!file){
-  setAttemptNotice('Documento não selecionado','Selecione a imagem ou o PDF original antes de iniciar a análise.');
+  if(statusEl)statusEl.textContent='Primeiro selecione a imagem ou o PDF original da prescrição. Esta versão analisa o documento diretamente, sem OCR.';
+  if(out)out.innerHTML='<p class="rx-photo-note">Nenhum relatório gerado: selecione o documento original.</p>';
   $('rxPhotoInput')?.focus();return;
  }
  if(!sb){
-  setAttemptNotice('Supabase indisponível','O Supabase não está inicializado. Entre novamente no sistema. Nenhum novo relatório foi gerado.');
-  return;
+  if(statusEl)statusEl.textContent='O Supabase não está inicializado. Entre novamente no sistema. Nenhum relatório foi gerado.';
+  if(out)out.innerHTML='<p class="rx-photo-note">Nenhum relatório gerado nesta tentativa.</p>';return;
  }
  if(button){button.disabled=true;button.textContent='Preparando documento…';}
- const oldLink=out?.querySelector('#rxLinkVisitButton');if(oldLink){oldLink.disabled=true;oldLink.title='Aguarde a conclusão da nova tentativa.';oldLink.setAttribute('aria-disabled','true');}
- if(statusEl)statusEl.textContent='Preparando o arquivo original para análise visual do Gemini, sem OCR. O último relatório válido será mantido até a nova análise concluir.';
- if(out){
-  removeAttemptNotice();
-  const notice=document.createElement('div');notice.id='rxGeminiAttemptNotice';notice.style.cssText='margin:0 0 12px;padding:12px 14px;border:1px solid #d7e5f8;border-radius:10px;background:#f7faff;color:#244d83;line-height:1.5';
-  notice.innerHTML='<strong>Nova análise em andamento.</strong><p style="margin:5px 0 0">O último relatório concluído permanece preservado. Ele não poderá ser vinculado enquanto esta tentativa estiver em andamento.</p>';
-  out.prepend(notice);
- }
+ if(statusEl)statusEl.textContent='Preparando o arquivo original para análise visual do Gemini, sem OCR…';
+ if(out)out.innerHTML='<p class="rx-photo-note">Análise visual em andamento. O relatório anterior foi removido.</p>';
  const controller=new AbortController();
  const requestTimer=setTimeout(()=>controller.abort(),125000);
  try{
@@ -3363,11 +3392,13 @@ async function rxRunGeminiAnalysis(){
    indicacao_diagnostico:c.indication||'não informada',
    fonte_da_prescricao:'imagem/PDF original enviado diretamente ao Gemini; sem OCR intermediário',
    regra_de_conciliacao:'Os campos acima representam somente o que foi digitado no formulário. Examine a imagem/PDF para idade, diagnóstico, alergias, exames e medicamentos legíveis. Se estiverem na imagem, registre como lidos no documento mesmo que o campo do formulário esteja vazio. Nunca descreva um dado como ausente do documento apenas porque não foi preenchido no formulário; diferencie explicitamente as duas fontes e informe divergências sem inventar dados.',
-   criterios_clinicos_complementares:"INSTRUÇÕES: examine visualmente todas as páginas do documento original, sem OCR. Gere relatório clínico-farmacêutico detalhado, no padrão da análise completa aprovada; não entregue apenas um resumo curto. Preserve evidências, valores, unidades, datas, medicamentos e divergências legíveis.\n\nRELATÓRIO OBRIGATÓRIO — 9 SEÇÕES:\n1. IDENTIFICAÇÃO/CONTEXTO: idade, sexo, origem/data, diagnósticos, comorbidades, alergias, medicamentos domiciliares, dispositivos/suportes e TODOS os exames legíveis com valores, unidades e datas. Separe dados do documento e formulário.\n2. RESUMO EXECUTIVO: 3–6 achados principais em ordem de risco; não declare prescrição coerente/segura se houver problema crítico ou conflito sem resolver.\n3. MEDICAMENTOS IDENTIFICADOS: tabela completa com nome/apresentação, dose/unidade, via, frequência/velocidade, início, duração/término e observações/legibilidade; inclua soluções, dieta e itens pertinentes. Use “não informado/ilegível” quando necessário, sem adivinhar.\n4. PROBLEMAS FARMACOTERAPÊUTICOS: avaliar cada problema individualmente com prioridade, medicamento/fator, evidência específica, risco clínico e ação de conferência. Incluir eletrólitos críticos, reconciliação domiciliar, omissões aparentes, inconsistências de dispositivos/vias, suporte hemodinâmico, antimicrobianos/culturas e parâmetros de preparo quando documentados. Distinguir confirmado, suspeito e divergência.\n5. SEGURANÇA: discutir indicação, dose, via, frequência, duplicidades, interações entre fármacos realmente concomitantes, alergias/contraindicações, função renal/hepática, peso/ClCr, diluição/infusão, monitorização, culturas/duração e cada item FASTHUG-MAIDENS aplicável. Para cada item, registrar achado e monitorização; se não avaliável, explicar por quê.\n6. PENDÊNCIAS: checklist priorizado por risco, correspondendo aos problemas acima.\n7. CONDUTA FARMACÊUTICA: registrar “A PREENCHER PELO FARMACÊUTICO” para intervenções ainda não realizadas; não afirmar que alguém foi contatado.\n8. VERIFICAÇÕES/LIMITAÇÕES: declarar o que foi inspecionado e quais bases/bulas/protocolos foram realmente consultados.\n9. CONCLUSÃO: síntese proporcional às evidências, alertas imediatos e validação profissional obrigatória.\n\nREGRAS IMPORTANTES: se DDInter não foi consultado, escrever “interações não avaliadas em base externa”; nunca “não há interações”. Não chamar dose de adequada apenas pela creatinina. Para sódio crítico, destacar a urgência de avaliação pela equipe e monitorização, sem prescrever esquema individual de correção. Conferir se há divergências como sonda aberta versus dieta contínua ou drogas vasoativas mencionadas sem prescrição; não decidir qual registro prevalece. Não omitir medicamentos domiciliares nem culturas/exames legíveis. Campo vazio no formulário não significa ausência no documento. Não inventar dados, fontes, diagnósticos, resultados, doses, intervenções ou segurança absoluta. Minimizar identificadores e não misturar pacientes. Português clínico brasileiro, detalhado e organizado."
+   // As instruções clínicas e o formato do relatório ficam centralizados na Edge Function.
+   // Aqui são enviados somente os dados do formulário, evitando passar instruções como se fossem dados do paciente.
+   criterio_de_fonte: 'Os campos acima representam somente o que foi digitado no formulário. Examine a imagem/PDF para dados clínicos legíveis. Se houver divergência, descreva-a sem inventar dados.'
   };
   if(button)button.textContent='Analisando documento visual…';
   if(statusEl)statusEl.textContent='Enviando o documento original ao Gemini. Nenhuma transcrição OCR será usada…';
-  const res=await fetch(`${CONFIG.url}/functions/v1/hnss-prescription-analysis-alt-test`,{
+  const res=await fetch(`${CONFIG.url}/functions/v1/hnss-prescription-analysis-test`,{
    method:'POST',
    headers:{'Content-Type':'application/json','apikey':CONFIG.anonKey,'Authorization':`Bearer ${current.access_token}`},
    body:JSON.stringify({prescriptionImage:visual.data,imageMimeType:visual.mimeType,sourceMode:'visual',patientContext:JSON.stringify(patientContext)}),
@@ -3377,19 +3408,20 @@ async function rxRunGeminiAnalysis(){
   const elapsedMs=Math.max(0,Math.round(performance.now()-analysisStartedAt));
   const elapsedLabel=(elapsedMs/1000).toFixed(1).replace('.',',')+' s';
   if(!res.ok){
-   const rawMsg=data.error||`Falha na análise visual (HTTP ${res.status}).`;
-   const msg=res.status===429
-    ?'O Gemini atingiu o limite de uso (HTTP 429). Aguarde a renovação da cota e confira os limites do projeto Google antes de tentar novamente.'
-    :rawMsg;
-   const models=Array.isArray(data.models_tried)&&data.models_tried.length?'Modelos testados: '+data.models_tried.join(', '):'';
-   setAttemptNotice('Não foi possível concluir a análise visual do Gemini',msg+' Tempo decorrido: '+elapsedLabel+'.',models);
+   window.rxGeminiLastAnalysis=null;
+   const msg=data.error||`Falha na análise visual (HTTP ${res.status}).`;
+   const models=Array.isArray(data.models_tried)?'<br>Modelos testados: '+data.models_tried.map(x=>rxEscapeHtml(String(x))).join(', '):'';
+   if(statusEl)statusEl.innerHTML='<strong>Não foi possível concluir a análise visual do Gemini.</strong><br>'+rxEscapeHtml(msg)+'<br>Tempo decorrido: '+elapsedLabel+'.'+models;
+   if(out)out.innerHTML='<p class="rx-photo-note"><strong>Nenhum relatório foi gerado nesta tentativa.</strong> O relatório anterior foi removido.</p>';
    return;
   }
   if(!data.analysis)throw new Error('O Gemini não retornou um relatório válido.');
   const reportText=String(data.analysis).trim();
   const incompleteMarkers=[/\bPA\s*>=\s*$/i,/\bPrioridade\s*:\s*$/i,/\bAção para o farmacêutico\s*:\s*$/i,/\bCONCLUSÃO\s*:\s*$/i];
   if(data.incomplete===true||data.finish_reason==='MAX_TOKENS'||incompleteMarkers.some(re=>re.test(reportText))){
-   setAttemptNotice('Relatório incompleto — não vincule à visita','O Gemini pode ter interrompido a resposta antes de concluir uma seção. Execute novamente quando o serviço estiver disponível; se persistir, reduza o número de páginas por envio e confira a prescrição original.');
+   window.rxGeminiLastAnalysis=null;
+   if(statusEl)statusEl.innerHTML='<strong>Relatório incompleto — não vincule à visita.</strong><br>O Gemini pode ter interrompido a resposta antes de concluir uma seção. Execute novamente; se persistir, reduza o número de páginas por envio e confira a prescrição original.';
+   if(out)out.innerHTML='<p class="rx-photo-note"><strong>Nenhum relatório incompleto foi disponibilizado para vínculo.</strong></p>';
    return;
   }
   if(out)out.innerHTML='<div class="rx-gemini-report-text" style="border:1px solid #d6e4f5;border-radius:10px;padding:14px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55">'+rxEscapeHtml(reportText)+'</div><p class="rx-photo-note" style="margin-top:8px">Modelo: '+rxEscapeHtml(data.model||'Gemini')+' · Tempo total: '+elapsedLabel+' · Fonte de análise: documento original, sem OCR.</p><button class="secondary" type="button" onclick="rxDownloadGeminiAnalysis()">Baixar relatório farmacêutico (.txt)</button><button class="primary" type="button" id="rxLinkVisitButton" onclick="rxOpenLinkVisitModal()">Vincular à visita</button>';
@@ -3402,9 +3434,11 @@ async function rxRunGeminiAnalysis(){
   };
   if(statusEl)statusEl.innerHTML='<strong>Análise técnica farmacêutica do Gemini concluída.</strong> Modelo: '+rxEscapeHtml(data.model||'Gemini')+'. Tempo real: '+elapsedLabel+'. O documento foi analisado visualmente, sem OCR intermediário e sem consultas automáticas a outras bases. Confira os campos na prescrição original antes de qualquer decisão.';
  }catch(e){
+  window.rxGeminiLastAnalysis=null;
   const elapsedLabel=((performance.now()-analysisStartedAt)/1000).toFixed(1).replace('.',',')+' s';
   const msg=e?.name==='AbortError'?'A análise ultrapassou 125 segundos e foi interrompida.':(e?.message||'Falha ao executar a análise visual do Gemini.');
-  setAttemptNotice('Falha na análise visual',msg+' Tempo decorrido: '+elapsedLabel+'.');
+  if(statusEl)statusEl.textContent=msg+' Tempo decorrido: '+elapsedLabel+'. Nenhum relatório válido foi produzido nesta tentativa.';
+  if(out)out.innerHTML='<p class="rx-photo-note"><strong>Nenhum relatório foi gerado nesta tentativa.</strong> O relatório anterior foi removido.</p>';
  }finally{
   clearTimeout(requestTimer);
   if(button){button.disabled=false;button.textContent='Analisar documento original com Gemini';}
